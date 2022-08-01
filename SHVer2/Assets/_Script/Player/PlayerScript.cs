@@ -6,6 +6,7 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody2D _playerRigidBody;
     private PlayerWeaponScript _playerWeapon;
     private PlayerHealthScript _playerHealth;
+    private PlayerUIScript _playerUI;
 
     private void Awake()
     {
@@ -14,6 +15,12 @@ public class PlayerScript : MonoBehaviour
         _playerMovement = GetComponent<PlayerMovementScript>();
         _playerWeapon = GetComponent<PlayerWeaponScript>();
         _playerHealth = GetComponent<PlayerHealthScript>();
+        _playerUI = GetComponent<PlayerUIScript>();
+    }
+
+    private void Start()
+    {
+        _playerUI.SetPlayerMaxHealth(_playerHealth.maxHealth);
     }
 
     private void FixedUpdate()
@@ -24,7 +31,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-        _playerHealth.Playerhealth();
+        _playerHealth.PlayerIsDead();
         _playerWeapon.FireWeapon();
         _playerMovement.PlayerJump();
         _playerMovement.FlipPlayer();

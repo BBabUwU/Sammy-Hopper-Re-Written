@@ -4,7 +4,7 @@ public class PlayerMovementScript : MonoBehaviour
 {
     [SerializeField] private float walkSpeed;
     [SerializeField] private float jumpPower;
-    [SerializeField] internal bool isFacingRight = true;
+    [SerializeField] private bool isFacingRight = true;
     private Rigidbody2D _playerRigidBody;
     private PlayerInputScript _playerInput;
     private PlayerScript _playerScript;
@@ -28,12 +28,12 @@ public class PlayerMovementScript : MonoBehaviour
         //Detects jump input
         _playerInput.JumpIsPressed();
         _playerInput.JumpIsReleased();
-
+        //Low Jump
         if (_playerInput.JumpIsPressed() && _playerCollision.IsGrounded())
         {
             _playerRigidBody.velocity = new Vector2(_playerRigidBody.velocity.x, jumpPower);
         }
-
+        //High Jump
         if (_playerInput.JumpIsReleased() && _playerRigidBody.velocity.y > 0f)
         {
             _playerRigidBody.velocity = new Vector2(_playerRigidBody.velocity.x, _playerRigidBody.velocity.y * 0.5f);

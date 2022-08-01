@@ -2,35 +2,34 @@ using UnityEngine;
 
 public class PlayerHealthScript : MonoBehaviour
 {
-    private PlayerScript _playerScript;
-    [SerializeField] internal float health = 100f;
+
+    private PlayerUIScript _playerUI;
+    [SerializeField] internal float maxHealth = 100f;
+    [SerializeField] internal float currentHealth = 100f;
     [SerializeField] internal bool isDead = false;
+
     private void Awake()
     {
-        _playerScript = GetComponent<PlayerScript>();
-    }
-    internal void Playerhealth()
-    {
-        HealPlayer();
-        DamagePlayer();
-        PlayerIsDead();
+        _playerUI = GetComponent<PlayerUIScript>();
     }
 
-    private void PlayerIsDead()
+    public void PlayerIsDead()
     {
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             isDead = true;
         }
     }
 
-    private void DamagePlayer()
+    public void DamagePlayer(float damage)
     {
-        //Postpone
+        currentHealth -= damage;
+        _playerUI.SetPlayerHealth(currentHealth);
     }
 
-    private void HealPlayer()
+    public void HealPlayer(float heal)
     {
-        //Postpone
+        currentHealth += heal;
+        _playerUI.SetPlayerHealth(currentHealth);
     }
 }

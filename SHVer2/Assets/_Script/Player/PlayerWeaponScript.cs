@@ -5,7 +5,7 @@ public class PlayerWeaponScript : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private PlayerScript _playerScript;
-    [SerializeField] private float firePower;
+    [SerializeField] internal float fireDamage;
     [SerializeField] internal float fireSpeed;
     [SerializeField] internal float weaponCoolDownTime = 2f;
     private PlayerInputScript _playerInput;
@@ -21,7 +21,6 @@ public class PlayerWeaponScript : MonoBehaviour
     {
         if (_playerInput.WeaponFirePressed() && !WeaponOnCooldown())
         {
-            Debug.Log("shoot");
             ShootWeapon();
             nextFireTime = Time.time + weaponCoolDownTime;
         }

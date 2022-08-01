@@ -24,9 +24,19 @@ public class PlayerWeaponProjectile : MonoBehaviour
         _projectileRigidbody.velocity = transform.right * _playerWeaponScript.fireSpeed;
     }
 
+    public float GetProjectileDamage()
+    {
+        return _playerWeaponScript.fireDamage;
+    }
+
     IEnumerator SelfDestruct()
     {
         yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         Destroy(gameObject);
     }
 }
