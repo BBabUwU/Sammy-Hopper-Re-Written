@@ -7,6 +7,7 @@ public class PlayerScript : MonoBehaviour
     private PlayerWeaponScript _playerWeapon;
     private PlayerHealthScript _playerHealth;
     private PlayerUIScript _playerUI;
+    private PlayerEnableNotepadScript _playerNotepad;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class PlayerScript : MonoBehaviour
         _playerWeapon = GetComponent<PlayerWeaponScript>();
         _playerHealth = GetComponent<PlayerHealthScript>();
         _playerUI = GetComponent<PlayerUIScript>();
+        _playerNotepad = GetComponent<PlayerEnableNotepadScript>();
     }
 
     private void Start()
@@ -35,5 +37,6 @@ public class PlayerScript : MonoBehaviour
         _playerWeapon.FireWeapon();
         _playerMovement.PlayerJump();
         _playerMovement.FlipPlayer();
+        _playerNotepad.SwitchToNotepad();
     }
 }

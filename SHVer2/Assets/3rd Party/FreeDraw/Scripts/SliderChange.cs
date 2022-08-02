@@ -4,13 +4,13 @@ using FreeDraw;
 
 public class SliderChange : MonoBehaviour
 {
-    public Slider _slider;
-    public DrawingSettings _ds;
+    public Slider slider;
+    public DrawingSettings _drawingSettings;
 
     private void Update()
     {
-        Debug.Log(_slider.value);
-        _ds.SetMarkerWidth(_slider.value);
+        Debug.Log(slider.value);
+        _drawingSettings.SetMarkerWidth(slider.value);
     }
 }
 

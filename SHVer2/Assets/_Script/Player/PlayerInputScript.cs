@@ -21,4 +21,9 @@ public class PlayerInputScript : MonoBehaviour
     {
         return Input.GetButton("Fire1");
     }
+
+    internal bool NotepadButtonPressed()
+    {
+        return Input.GetKeyDown(KeyCode.N);
+    }
 }
