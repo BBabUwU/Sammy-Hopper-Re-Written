@@ -26,4 +26,9 @@ public class PlayerInputScript : MonoBehaviour
     {
         return Input.GetKeyDown(KeyCode.N);
     }
+
+    public bool InteractionButtonPressed()
+    {
+        return Input.GetKeyDown(KeyCode.F);
+    }
 }
