@@ -4,7 +4,6 @@ public class PlayerEnableNotepadScript : MonoBehaviour
 {
     private PlayerInputScript _playerInput;
     private CameraManager _cameraManager;
-    private bool usingNotepad;
     [SerializeField] private GameObject _notepad;
 
     private void Awake()
@@ -15,15 +14,15 @@ public class PlayerEnableNotepadScript : MonoBehaviour
 
     internal void SwitchToNotepad()
     {
-        if (_playerInput.NotepadButtonPressed() && !usingNotepad)
+        if (_playerInput.NotepadButtonPressed() && !GameManager.Instance.isUsingNotepad)
         {
-            usingNotepad = true;
+            GameManager.Instance.isUsingNotepad = true;
             _notepad.SetActive(true);
             _cameraManager.SetCurrentCamera(CameraState.Notepad);
         }
-        else if (_playerInput.NotepadButtonPressed() && usingNotepad)
+        else if (_playerInput.NotepadButtonPressed() && GameManager.Instance.isUsingNotepad)
         {
-            usingNotepad = false;
+            GameManager.Instance.isUsingNotepad = false;
             _notepad.SetActive(false);
             _cameraManager.SetCurrentCamera(_cameraManager.GetDefaultCamera());
         }

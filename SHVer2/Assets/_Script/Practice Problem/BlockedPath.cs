@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class InteractBlockedPath : MonoBehaviour
+public class BlockedPath : MonoBehaviour
 {
+    [Header("Detection box size")]
     [SerializeField] private float boxWidth = 4f;
     [SerializeField] private float boxHeight = 6f;
 

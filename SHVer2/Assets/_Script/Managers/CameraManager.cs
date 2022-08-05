@@ -35,7 +35,6 @@ public class CameraManager : MonoBehaviour
         return currentCamera;
     }
 
-
     public CameraState GetDefaultCamera()
     {
         return defaultCameraState;
@@ -43,23 +42,21 @@ public class CameraManager : MonoBehaviour
 
     private void SwitchCamera()
     {
+        SetCameraPriotyToZero();
+
         if (currentCamera == CameraState.Player)
         {
-            SetCameraPriotyToZero();
             playerCamera.Priority = 1;
         }
 
         else if (currentCamera == CameraState.Notepad)
         {
-            SetCameraPriotyToZero();
             notepadCamera.Priority = 1;
         }
         else if (currentCamera == CameraState.BossArena)
         {
-            SetCameraPriotyToZero();
             bossArenaCamera.Priority = 1;
         }
-
     }
 
     private void SetCameraPriotyToZero()
@@ -71,5 +68,3 @@ public class CameraManager : MonoBehaviour
 }
 
 public enum CameraState { Player, Notepad, BossArena }
-
-

@@ -4,7 +4,6 @@ using TMPro;
 
 public class QuizScript : MonoBehaviour
 {
-    [SerializeField] private GameObject practicalProblemsObj;
     [SerializeField] private TMP_Text questionTextUI;
     [SerializeField] private TMP_InputField answerFieldUI_1;
     [SerializeField] private TMP_InputField answerFieldUI_2;
@@ -44,11 +43,10 @@ public class QuizScript : MonoBehaviour
         }
     }
 
-    //-----------------------------BOSS SPECIFIC VARIABLES--------------------------------------
-
     private void Start()
     {
-        practicalProblemsObj.SetActive(true);
+        //Changes the state of the game to answering quiz
+        GameManager.Instance.UpdateGameState(GameState.AnsweringQuiz);
         //Passing score will be half of the maximum number of questions, Mathf.Abs will remove the decimal.
         passingScore = (Mathf.Abs(maximumQuestions / 2));
         Debug.Log("Passing score: " + passingScore);
@@ -126,20 +124,6 @@ public class QuizScript : MonoBehaviour
         DisplayCurrentQuestion();
     }
 
-    private void CheckIfPassed()
-    {
-        if (currentScore >= passingScore)
-        {
-            isPassed = true;
-            Debug.Log("Has passed");
-        }
-        else
-        {
-            isPassed = false;
-            Debug.Log("Has failed");
-        }
-    }
-
     //Check answer function should be in the answefield "on-end enter"
     private void CheckIfCorrect()
     {
@@ -151,7 +135,6 @@ public class QuizScript : MonoBehaviour
 
             if (NoMoreQuestions())
             {
-                practicalProblemsObj.SetActive(false);
                 CheckIfPassed();
             }
 
@@ -167,8 +150,33 @@ public class QuizScript : MonoBehaviour
         }
     }
 
-    public bool PlayerHasPassedQuiz()
+    private void CheckIfPassed()
     {
-        return isPassed;
+        if (currentScore >= passingScore)
+        {
+            isPassed = true;
+            Debug.Log("Has passed");
+        }
+        else
+        {
+            isPassed = false;
+            Debug.Log("Has failed");
+        }
+
+        QuizNumberCheck();
+        GameManager.Instance.UpdateGameState(GameState.CompletionCheck);
+    }
+
+    private void QuizNumberCheck()
+    {
+        if (this.gameObject.tag == "PracticalProblem1")
+        {
+            GameManager.Instance.quiz1Complete = isPassed;
+        }
+
+        else if (this.gameObject.tag == "PracticalProblem2")
+        {
+            GameManager.Instance.quiz2Complete = isPassed;
+        }
     }
 }
