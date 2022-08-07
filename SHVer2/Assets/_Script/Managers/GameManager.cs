@@ -3,22 +3,27 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
+    //Creates an instance of the singleton, which is this class.
     public static GameManager Instance;
     public GameState gameState;
     //Notify that the event has changed.
     public static event Action<GameState> OnGameStateChanged;
+
+    //Checks if the player is using notepad.
     public bool isUsingNotepad;
+
+    //Tracks progress of Quiz
     public bool quiz1Complete;
     public bool quiz2Complete;
 
-    private GameObject blockedArea1;
-    private GameObject blockedArea2;
+    private GameObject _blockedArea1;
+    private GameObject _blockedArea2;
 
     private void Awake()
     {
         Instance = this;
-        blockedArea1 = GameObject.FindGameObjectWithTag("PracticalProblem1");
-        blockedArea2 = GameObject.FindGameObjectWithTag("PracticalProblem2");
+        _blockedArea1 = GameObject.FindGameObjectWithTag("PracticalProblem1");
+        _blockedArea2 = GameObject.FindGameObjectWithTag("PracticalProblem2");
     }
 
     private void Start()
@@ -30,17 +35,17 @@ public class GameManager : MonoBehaviour
     {
         if (quiz1Complete)
         {
-            if (blockedArea1 != null)
+            if (_blockedArea1 != null)
             {
-                Destroy(blockedArea1);
+                Destroy(_blockedArea1);
             }
         }
 
         if (quiz2Complete)
         {
-            if (blockedArea2 != null)
+            if (_blockedArea2 != null)
             {
-                Destroy(blockedArea2);
+                Destroy(_blockedArea2);
             }
         }
 

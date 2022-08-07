@@ -5,6 +5,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _notepadUI;
     [SerializeField] private GameObject _playerUI;
     [SerializeField] private GameObject _quizUI;
+    [SerializeField] private GameObject _npcUI;
 
     private void Update()
     {
@@ -28,6 +29,7 @@ public class UIManager : MonoBehaviour
         {
             //If player is not answering quiz, it will simply just disable the notepadUI
             _notepadUI.SetActive(false);
+            _playerUI.SetActive(true);
         }
     }
 
@@ -52,5 +54,6 @@ public class UIManager : MonoBehaviour
     private void GameManagerOnGameStateChanged(GameState state)
     {
         _quizUI.SetActive(state == GameState.AnsweringQuiz);
+        _npcUI.SetActive(state == GameState.InteractingNPC);
     }
 }

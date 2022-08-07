@@ -8,6 +8,7 @@ public class PlayerWeaponScript : MonoBehaviour
     [SerializeField] internal float fireDamage;
     [SerializeField] internal float fireSpeed;
     [SerializeField] internal float weaponCoolDownTime = 2f;
+    [SerializeField] private bool allowedToFire = true;
     private PlayerInputScript _playerInput;
     private float nextFireTime = 0;
 
@@ -19,6 +20,8 @@ public class PlayerWeaponScript : MonoBehaviour
 
     internal void FireWeapon()
     {
+        if (!allowedToFire) return;
+
         if (_playerInput.WeaponFirePressed() && !WeaponOnCooldown())
         {
             ShootWeapon();
@@ -35,5 +38,29 @@ public class PlayerWeaponScript : MonoBehaviour
     internal void ShootWeapon()
     {
         Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+    }
+
+    //Event functions
+    //Listening to game manager.
+    private void OnEnable()
+    {
+        GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
+    }
+    private void OnDisable()
+    {
+        GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
+    }
+
+    private void GameManagerOnGameStateChanged(GameState state)
+    {
+        if (state == GameState.Exploration || state == GameState.BossBattle)
+        {
+            allowedToFire = true;
+        }
+
+        if (state == GameState.AnsweringQuiz || state == GameState.InteractingNPC || state == GameState.GameOver)
+        {
+            allowedToFire = false;
+        }
     }
 }
