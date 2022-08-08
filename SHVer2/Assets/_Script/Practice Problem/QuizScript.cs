@@ -7,6 +7,7 @@ public class QuizScript : MonoBehaviour
     [SerializeField] private TMP_Text questionTextUI;
     [SerializeField] private TMP_InputField answerFieldUI_1;
     [SerializeField] private TMP_InputField answerFieldUI_2;
+    [SerializeField] private TMP_Text timerTextUI;
 
     //NonReorderable attribute fix the visual bug.
     //List of questions and answers.
@@ -16,6 +17,11 @@ public class QuizScript : MonoBehaviour
     [SerializeField] private int maximumQuestions;
     private int currentQuestionIndex;
     private int currentQuestionNumber = 1;
+    [SerializeField] private bool allowMistakes = true;
+    [SerializeField] private float playerDamage = 10f;
+
+    //PLayer health script to damage player
+    private PlayerHealthScript _playerHealth;
 
     //Stores correct answers.
     private string currentAnswer1;
@@ -32,6 +38,14 @@ public class QuizScript : MonoBehaviour
     private int currentScore = 0;
     private bool isPassed;
 
+    //Timer Variables
+    [SerializeField] private bool EnableTimer = false;
+    [SerializeField] private float timeLeft;
+
+    //Used to reset the time
+    private float defaultTimeLeft;
+
+
     [ExecuteInEditMode]
     void OnValidate()
     {
@@ -43,23 +57,82 @@ public class QuizScript : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
+        _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthScript>();
+    }
+
+    private void OnEnable()
+    {
+        defaultTimeLeft = timeLeft;
+        //Converts timer to seconds
+        timeLeft = timeLeft * 60;
         //Changes the state of the game to answering quiz
         GameManager.Instance.UpdateGameState(GameState.AnsweringQuiz);
-        //Passing score will be half of the maximum number of questions, Mathf.Abs will remove the decimal.
-        passingScore = (Mathf.Abs(maximumQuestions / 2));
-        Debug.Log("Passing score: " + passingScore);
+        //Passing score will be half of the maximum number of questions, Mathf.Abs will remove the decimal. If only one question, passing score will be one.
+        PassingScore();
         RandomizeQuestion();
         DisplayCurrentQuestion();
     }
 
     private void Update()
     {
+        //Timer will run if enabled
+        Timer();
         //Allows the player to submit answer using the return (enter) button.
         PlayerSubmitsAnswer();
     }
 
+    private void PassingScore()
+    {
+        if (maximumQuestions == 1)
+        {
+            passingScore = 1;
+        }
+        else
+        {
+            passingScore = (Mathf.Abs(maximumQuestions / 2));
+        }
+
+        Debug.Log(passingScore);
+    }
+
+    private void ResetValues()
+    {
+        timeLeft = defaultTimeLeft;
+        currentQuestionNumber = 1;
+        currentQuestionIndex = 0;
+        currentScore = 0;
+    }
+
+    //------------------------------------------------Timer---------------------------------------
+    private void Timer()
+    {
+        if (EnableTimer)
+        {
+            if (timeLeft > 0)
+            {
+                timeLeft -= Time.deltaTime;
+                UpdateTimer(timeLeft);
+            }
+            else
+            {
+                CheckIfPassed();
+            }
+        }
+    }
+
+    private void UpdateTimer(float currentTime)
+    {
+        currentTime += 1;
+
+        float _minutes = Mathf.FloorToInt(currentTime / 60);
+        float _seconds = Mathf.FloorToInt(currentTime % 60);
+
+        timerTextUI.text = string.Format("{0:00} : {1:00}", _minutes, _seconds);
+    }
+
+    //--------------------------------------------------------------------------------------------
     private void RandomizeQuestion()
     {
         currentQuestionIndex = Random.Range(0, questionAndAnswers.Count);
@@ -143,10 +216,11 @@ public class QuizScript : MonoBehaviour
                 NextQuestion();
             }
         }
-        else
+        else if (!allowMistakes)
         {
-            //Damage player here
-            Debug.Log("Player damaged");
+            //Damage player when the answer is wrong.
+            //It will only damage the player when allow mistakes is disabled.
+            _playerHealth.DamagePlayer(playerDamage);
         }
     }
 
@@ -161,10 +235,12 @@ public class QuizScript : MonoBehaviour
         {
             isPassed = false;
             Debug.Log("Has failed");
+            ResetValues();
         }
 
         QuizNumberCheck();
         GameManager.Instance.UpdateGameState(GameState.CompletionCheck);
+        this.enabled = false;
     }
 
     private void QuizNumberCheck()
@@ -178,5 +254,10 @@ public class QuizScript : MonoBehaviour
         {
             GameManager.Instance.quiz2Complete = isPassed;
         }
+    }
+
+    public int GetCurrentScore()
+    {
+        return currentScore;
     }
 }
