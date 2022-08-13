@@ -11,11 +11,13 @@ public class PlayerWeaponScript : MonoBehaviour
     [SerializeField] private bool allowedToFire = true;
     private PlayerInputScript _playerInput;
     private float nextFireTime = 0;
+    private Animator _playerAnimation;
 
     private void Awake()
     {
         _playerScript = GetComponent<PlayerScript>();
         _playerInput = GetComponent<PlayerInputScript>();
+        _playerAnimation = GetComponent<Animator>();
     }
 
     internal void FireWeapon()
@@ -25,6 +27,7 @@ public class PlayerWeaponScript : MonoBehaviour
         if (_playerInput.WeaponFirePressed() && !WeaponOnCooldown())
         {
             ShootWeapon();
+            _playerAnimation.SetTrigger("WeaponShoot");
             nextFireTime = Time.time + weaponCoolDownTime;
         }
     }

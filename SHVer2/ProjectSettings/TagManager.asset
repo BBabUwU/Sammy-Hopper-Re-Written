@@ -8,10 +8,13 @@ TagManager:
   - Enemy
   - CameraManager
   - UserInterfaceManager
-  - Quiz
-  - PracticalProblem1
-  - PracticalProblem2
   - NpcUI
+  - Quest1
+  - QuestItem
+  - QuestManager
+  - Quiz1
+  - Quiz2
+  - Quest2
   layers:
   - Default
   - TransparentFX
@@ -24,9 +27,9 @@ TagManager:
   - Player
   - Enemy
   - DrawArea
-  - 
-  - 
-  - 
+  - Item
+  - PlayerProjectile
+  - Npc
   - 
   - 
   - 

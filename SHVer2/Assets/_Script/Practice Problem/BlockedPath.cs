@@ -6,16 +6,20 @@ public class BlockedPath : MonoBehaviour
     [SerializeField] private float boxWidth = 4f;
     [SerializeField] private float boxHeight = 6f;
 
-    private QuizScript _quizScript;
+    private QuizScript quizScript;
+
+    private QuestManager questManager;
 
     private void Awake()
     {
-        _quizScript = GetComponent<QuizScript>();
+        quizScript = GetComponent<QuizScript>();
+        questManager = GameObject.FindGameObjectWithTag("QuestManager").GetComponent<QuestManager>();
     }
 
     private void Update()
     {
         PlayerDetected();
+        QuizIsCompleted();
     }
     private Vector2 DetectionSize()
     {
@@ -31,8 +35,16 @@ public class BlockedPath : MonoBehaviour
 
             if (_playerInteraction.InteractionButtonPressed())
             {
-                _quizScript.enabled = true;
+                quizScript.enabled = true;
             }
+        }
+    }
+
+    private void QuizIsCompleted()
+    {
+        if (questManager.QuestIsCompleted(gameObject.tag))
+        {
+            Destroy(gameObject);
         }
     }
 

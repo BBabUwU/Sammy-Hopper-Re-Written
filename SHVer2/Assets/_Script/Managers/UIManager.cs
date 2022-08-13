@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
 
     private void IsUsingNotepad()
     {
-        if (GameManager.Instance.isUsingNotepad)
+        if (EnableNotepad.isUsingNotepad)
         {
             DisableAllUI();
             _notepadUI.SetActive(true);

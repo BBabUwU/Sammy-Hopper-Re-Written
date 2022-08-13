@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2503057582135355637}
   - component: {fileID: 2503057582135355634}
   - component: {fileID: 2503057582135355635}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 078d306bc80fd0842aebd018578c9075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFacingRight: 1
 --- !u!114 &2503057582135355635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,3 +145,4 @@ MonoBehaviour:
   - Sammy rover the dopper lopper dopper baer
   - Yes thats cool
   textSpeed: 0.05
+  questCompleteLines: []

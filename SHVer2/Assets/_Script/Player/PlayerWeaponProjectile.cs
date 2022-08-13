@@ -9,6 +9,12 @@ public class PlayerWeaponProjectile : MonoBehaviour
     private PlayerWeaponScript _playerWeaponScript;
     private void Awake()
     {
+        //Ignored collisions
+        //12 = Bullet layer
+        Physics2D.IgnoreLayerCollision(12, 11); //Item layer
+        Physics2D.IgnoreLayerCollision(12, 13); //Npc layer
+
+
         _projectileRigidbody = gameObject.GetComponent<Rigidbody2D>();
         _playerObj = GameObject.FindGameObjectWithTag("Player").gameObject;
         _playerWeaponScript = _playerObj.GetComponent<PlayerWeaponScript>();

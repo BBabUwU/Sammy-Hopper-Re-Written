@@ -38,5 +38,11 @@ public class PlayerScript : MonoBehaviour
         _playerMovement.PlayerJump();
         _playerMovement.FlipPlayer();
         _playerNotepad.SwitchToNotepad();
+
+        //Animations
+        _playerMovement.PlayerHorizontalMovementAnimation();
     }
+
+
+
 }

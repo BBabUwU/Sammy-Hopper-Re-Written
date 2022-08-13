@@ -13,6 +13,24 @@ public class PlayerHealthScript : MonoBehaviour
         _playerUI = GetComponent<PlayerUIScript>();
     }
 
+    public float CurrentHealth
+    {
+        get { return currentHealth; }
+    }
+
+    public void SavePlayer()
+    {
+        SaveSystem.SavePlayer(this);
+    }
+
+    public void LoadPlayer()
+    {
+        PlayerData data = SaveSystem.LoadPlayer();
+
+        currentHealth = data.health;
+        _playerUI.SetPlayerHealth(currentHealth);
+    }
+
     public void PlayerIsDead()
     {
         if (currentHealth <= 0)

@@ -14,15 +14,15 @@ public class PlayerEnableNotepadScript : MonoBehaviour
 
     internal void SwitchToNotepad()
     {
-        if (_playerInput.NotepadButtonPressed() && !GameManager.Instance.isUsingNotepad)
+        if (_playerInput.NotepadButtonPressed() && !EnableNotepad.isUsingNotepad)
         {
-            GameManager.Instance.isUsingNotepad = true;
+            EnableNotepad.isUsingNotepad = true;
             _notepad.SetActive(true);
             _cameraManager.SetCurrentCamera(CameraState.Notepad);
         }
-        else if (_playerInput.NotepadButtonPressed() && GameManager.Instance.isUsingNotepad)
+        else if (_playerInput.NotepadButtonPressed() && EnableNotepad.isUsingNotepad)
         {
-            GameManager.Instance.isUsingNotepad = false;
+            EnableNotepad.isUsingNotepad = false;
             _notepad.SetActive(false);
             _cameraManager.SetCurrentCamera(_cameraManager.GetDefaultCamera());
         }

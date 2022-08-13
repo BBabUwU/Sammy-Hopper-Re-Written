@@ -10,12 +10,14 @@ public class PlayerMovementScript : MonoBehaviour
     private PlayerInputScript _playerInput;
     private PlayerScript _playerScript;
     private PlayerCollisionScript _playerCollision;
+    private Animator _playerAnimation;
     private void Awake()
     {
         _playerRigidBody = GetComponent<Rigidbody2D>();
         _playerScript = GetComponent<PlayerScript>();
         _playerInput = GetComponent<PlayerInputScript>();
         _playerCollision = GetComponent<PlayerCollisionScript>();
+        _playerAnimation = GetComponent<Animator>();
     }
 
     internal void PLayerHorizontalMovement()
@@ -58,6 +60,11 @@ public class PlayerMovementScript : MonoBehaviour
             isFacingRight = !isFacingRight;
             transform.Rotate(0f, 180f, 0f);
         }
+    }
+
+    internal void PlayerHorizontalMovementAnimation()
+    {
+        _playerAnimation.SetFloat("RunSpeed", Mathf.Abs(_playerRigidBody.velocity.x));
     }
 
     //Event functions

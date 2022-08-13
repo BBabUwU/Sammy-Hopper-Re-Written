@@ -9,6 +9,8 @@ public class QuizScript : MonoBehaviour
     [SerializeField] private TMP_InputField answerFieldUI_2;
     [SerializeField] private TMP_Text timerTextUI;
 
+    private QuestManager questManager;
+
     //NonReorderable attribute fix the visual bug.
     //List of questions and answers.
     [NonReorderable]
@@ -59,6 +61,7 @@ public class QuizScript : MonoBehaviour
 
     private void Awake()
     {
+        questManager = GameObject.FindGameObjectWithTag("QuestManager").GetComponent<QuestManager>();
         _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthScript>();
     }
 
@@ -70,7 +73,7 @@ public class QuizScript : MonoBehaviour
         //Changes the state of the game to answering quiz
         GameManager.Instance.UpdateGameState(GameState.AnsweringQuiz);
         //Passing score will be half of the maximum number of questions, Mathf.Abs will remove the decimal. If only one question, passing score will be one.
-        PassingScore();
+        SetPassingScore();
         RandomizeQuestion();
         DisplayCurrentQuestion();
     }
@@ -83,7 +86,7 @@ public class QuizScript : MonoBehaviour
         PlayerSubmitsAnswer();
     }
 
-    private void PassingScore()
+    private void SetPassingScore()
     {
         if (maximumQuestions == 1)
         {
@@ -228,31 +231,27 @@ public class QuizScript : MonoBehaviour
     {
         if (currentScore >= passingScore)
         {
-            isPassed = true;
-            Debug.Log("Has passed");
+            questManager.QuestIsFinished(gameObject.tag);
         }
         else
         {
-            isPassed = false;
-            Debug.Log("Has failed");
+            Debug.Log("Failed");
             ResetValues();
         }
 
-        QuizNumberCheck();
-        GameManager.Instance.UpdateGameState(GameState.CompletionCheck);
-        this.enabled = false;
+        GameManager.Instance.UpdateGameState(GameState.Exploration);
+        CheckIfDone();
     }
 
-    private void QuizNumberCheck()
+    private void CheckIfDone()
     {
-        if (this.gameObject.tag == "PracticalProblem1")
+        if (questManager.QuestIsCompleted(gameObject.tag))
         {
-            GameManager.Instance.quiz1Complete = isPassed;
+            Destroy(gameObject);
         }
-
-        else if (this.gameObject.tag == "PracticalProblem2")
+        else
         {
-            GameManager.Instance.quiz2Complete = isPassed;
+            this.enabled = false;
         }
     }
 
