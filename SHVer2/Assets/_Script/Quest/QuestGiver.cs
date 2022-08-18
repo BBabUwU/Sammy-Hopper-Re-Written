@@ -1,22 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class QuestGiver : MonoBehaviour
 {
-    private QuestManager questManager;
+    public QuestNumber questNumber;
     public Quest quest;
 
-    private void Awake()
+    private void OnEnable()
     {
-        questManager = GameObject.FindGameObjectWithTag("QuestManager").GetComponent<QuestManager>();
+        GatherQuest.itemCollected += AddCounter;
+        KillQuest.enemyKilled += AddCounter;
+    }
+
+    private void OnDisable()
+    {
+        GatherQuest.itemCollected -= AddCounter;
+        KillQuest.enemyKilled -= AddCounter;
     }
 
     public void QuestComplete()
     {
         if (quest.completed)
         {
-            questManager.QuestIsFinished(gameObject.tag);
+            ProgressManager.Instance.QuestIsFinished(questNumber);
+        }
+    }
+
+    private void AddCounter(QuestNumber questNumber)
+    {
+        if (questNumber == this.questNumber)
+        {
+            quest.goal.ItemCollected();
+            quest.goal.EnemyKilled();
+            quest.Evaluate();
+            QuestComplete();
         }
     }
 }

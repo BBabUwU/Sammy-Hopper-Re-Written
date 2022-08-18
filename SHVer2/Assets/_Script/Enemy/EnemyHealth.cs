@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] internal float maxHealth = 100f;
     [SerializeField] internal float currentHealth = 100f;
@@ -12,12 +12,12 @@ public class EnemyHealth : MonoBehaviour
         _enemyCollision = GetComponent<EnemyCollision>();
     }
 
-    internal void DamageEnemy(float damage)
+    public void Damage(float damageAmount)
     {
-        currentHealth -= damage;
+        currentHealth -= damageAmount;
     }
 
-    internal void EnemyIsDead()
+    public void IsDead()
     {
         if (currentHealth <= 0)
         {

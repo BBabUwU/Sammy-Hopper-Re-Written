@@ -48,17 +48,10 @@ public class EnemyCollision : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         //Gets component of the collided object. E.g. Player projectile object will get component PlayerWeaponProjectile. 
-        if (other.CompareTag("PlayerProjectile"))
-        {
-            Debug.Log("Enemy was hit by projectile");
-            PlayerWeaponProjectile _playerProjectile = other.GetComponent<PlayerWeaponProjectile>();
-            _enemyHealth.DamageEnemy(_playerProjectile.GetProjectileDamage());
-        }
-
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player hit enemy");
-            PlayerHealthScript _playerHealth = other.GetComponent<PlayerHealthScript>();
+            PlayerHealth _playerHealth = other.GetComponent<PlayerHealth>();
             _playerHealth.DamagePlayer(_enemyAttack.GetEnemyDamage());
         }
     }

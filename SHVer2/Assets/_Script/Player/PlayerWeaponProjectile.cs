@@ -5,34 +5,38 @@ public class PlayerWeaponProjectile : MonoBehaviour
 {
     private Rigidbody2D _projectileRigidbody;
     private GameObject _playerObj;
-    private PlayerScript _playerScript;
-    private PlayerWeaponScript _playerWeaponScript;
+    private Player _playerScript;
+    private PlayerWeapon _playerWeapon;
     private void Awake()
     {
-        //Ignored collisions
-        //12 = Bullet layer
-        Physics2D.IgnoreLayerCollision(12, 11); //Item layer
-        Physics2D.IgnoreLayerCollision(12, 13); //Npc layer
-
-
         _projectileRigidbody = gameObject.GetComponent<Rigidbody2D>();
         _playerObj = GameObject.FindGameObjectWithTag("Player").gameObject;
-        _playerWeaponScript = _playerObj.GetComponent<PlayerWeaponScript>();
-        _playerScript = _playerObj.GetComponent<PlayerScript>();
+        _playerWeapon = _playerObj.GetComponent<PlayerWeapon>();
+        _playerScript = _playerObj.GetComponent<Player>();
+        IgnoreLayers();
     }
     private void Start()
     {
         ProjectileTravel();
         StartCoroutine(SelfDestruct());
     }
+
+    private void IgnoreLayers()
+    {
+        //Ignored collisions
+        //12 = Bullet layer
+        Physics2D.IgnoreLayerCollision(12, 11); //Item layer
+        Physics2D.IgnoreLayerCollision(12, 13); //Npc layer
+    }
+
     private void ProjectileTravel()
     {
-        _projectileRigidbody.velocity = transform.right * _playerWeaponScript.fireSpeed;
+        _projectileRigidbody.velocity = transform.right * _playerWeapon.fireSpeed;
     }
 
     public float GetProjectileDamage()
     {
-        return _playerWeaponScript.fireDamage;
+        return _playerWeapon.fireDamage;
     }
 
     IEnumerator SelfDestruct()
@@ -43,6 +47,13 @@ public class PlayerWeaponProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        IDamageable damageable = other.GetComponent<IDamageable>();
+
+        if (damageable != null)
+        {
+            damageable.Damage(_playerWeapon.fireDamage);
+        }
+
         Destroy(gameObject);
     }
 }

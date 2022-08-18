@@ -1,32 +1,18 @@
 using UnityEngine;
+using System;
 
-public class GatherQuest : MonoBehaviour
+public class GatherQuest : MonoBehaviour, IPickable
 {
-    private QuestGiver questGiver;
-    [SerializeField] private QuestNumber questNumber;
+    [SerializeField] private QuestNumber questItem;
+    public static Action<QuestNumber> itemCollected;
 
-    private void Awake()
+    private void OnDisable()
     {
-        questGiver = GameObject.FindGameObjectWithTag(questNumber.ToString()).GetComponent<QuestGiver>();
+        itemCollected?.Invoke(questItem);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void PickUp()
     {
-        if (other.CompareTag("Player"))
-        {
-            questGiver.quest.goal.ItemCollected();
-            CheckIfComplete();
-            Destroy(gameObject);
-        }
-    }
-
-    private void CheckIfComplete()
-    {
-        questGiver.quest.Evaluate();
-
-        if (questGiver.quest.completed)
-        {
-            questGiver.QuestComplete();
-        }
+        Destroy(gameObject);
     }
 }

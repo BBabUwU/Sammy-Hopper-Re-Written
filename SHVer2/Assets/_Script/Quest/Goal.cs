@@ -2,7 +2,6 @@
 public class Goal
 {
     public GoalType goalType;
-
     public int requiredAmount;
     public int currentAmount;
 

@@ -9,12 +9,9 @@ TagManager:
   - CameraManager
   - UserInterfaceManager
   - NpcUI
-  - Quest1
   - QuestItem
   - QuestManager
-  - Quiz1
-  - Quiz2
-  - Quest2
+  - PracticalProblem1
   layers:
   - Default
   - TransparentFX

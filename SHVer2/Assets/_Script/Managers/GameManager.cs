@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
         {
             case GameState.Exploration:
                 break;
-            case GameState.InteractingNPC:
+            case GameState.NPCInteraction:
                 break;
             case GameState.AnsweringQuiz:
                 break;
@@ -46,4 +46,4 @@ public class GameManager : MonoBehaviour
     }
 }
 
-public enum GameState { Exploration, InteractingNPC, AnsweringQuiz, BossBattle, GameOver, LevelComplete }
+public enum GameState { Exploration, NPCInteraction, AnsweringQuiz, BossBattle, GameOver, LevelComplete }

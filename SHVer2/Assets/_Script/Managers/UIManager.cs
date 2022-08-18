@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
 
     private void IsUsingNotepad()
     {
-        if (EnableNotepad.isUsingNotepad)
+        if (NotepadManager.isUsingNotepad)
         {
             DisableAllUI();
             _notepadUI.SetActive(true);
@@ -54,6 +54,6 @@ public class UIManager : MonoBehaviour
     private void GameManagerOnGameStateChanged(GameState state)
     {
         _quizUI.SetActive(state == GameState.AnsweringQuiz);
-        _npcUI.SetActive(state == GameState.InteractingNPC);
+        _npcUI.SetActive(state == GameState.NPCInteraction);
     }
 }

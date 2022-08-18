@@ -15,11 +15,6 @@ public class CameraManager : MonoBehaviour
         defaultCameraState = CameraState.Player;
     }
 
-    private void Update()
-    {
-        SwitchCamera();
-    }
-
     public void SetCurrentCamera(CameraState currentCamera)
     {
         this.currentCamera = currentCamera;
@@ -40,7 +35,7 @@ public class CameraManager : MonoBehaviour
         return defaultCameraState;
     }
 
-    private void SwitchCamera()
+    public void SwitchCamera()
     {
         SetCameraPriotyToZero();
 
@@ -64,6 +59,34 @@ public class CameraManager : MonoBehaviour
         playerCamera.Priority = 0;
         notepadCamera.Priority = 0;
         bossArenaCamera.Priority = 0;
+    }
+
+    //Event functions
+    //Listening to game manager.
+    private void OnEnable()
+    {
+        GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
+    }
+    private void OnDisable()
+    {
+        GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
+    }
+
+    private void GameManagerOnGameStateChanged(GameState state)
+    {
+        if (state == GameState.BossBattle)
+        {
+            SetDefaultCamera(CameraState.BossArena);
+            SetCurrentCamera(CameraState.BossArena);
+            SwitchCamera();
+        }
+
+        else
+        {
+            SetDefaultCamera(CameraState.Player);
+            SetCurrentCamera(CameraState.Player);
+            SwitchCamera();
+        }
     }
 }
 

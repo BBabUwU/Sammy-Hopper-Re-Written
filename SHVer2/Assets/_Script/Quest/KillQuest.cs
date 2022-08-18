@@ -1,28 +1,13 @@
 using UnityEngine;
+using System;
 
 public class KillQuest : MonoBehaviour
 {
-    private QuestGiver questGiver;
-    [SerializeField] private QuestNumber questNumber;
+    [SerializeField] private QuestNumber questEnemy;
+    public static Action<QuestNumber> enemyKilled;
 
-    private void Awake()
+    private void OnDisable()
     {
-        questGiver = GameObject.FindGameObjectWithTag(questNumber.ToString()).GetComponent<QuestGiver>();
-    }
-
-    private void OnDestroy()
-    {
-        questGiver.quest.goal.EnemyKilled();
-        CheckIfComplete();
-    }
-
-    private void CheckIfComplete()
-    {
-        questGiver.quest.Evaluate();
-
-        if (questGiver.quest.completed)
-        {
-            questGiver.QuestComplete();
-        }
+        enemyKilled?.Invoke(questEnemy);
     }
 }
