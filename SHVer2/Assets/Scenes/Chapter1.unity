@@ -686,7 +686,7 @@ GameObject:
   - component: {fileID: 134060449}
   - component: {fileID: 134060450}
   m_Layer: 0
-  m_Name: Quest/Quiz Manager
+  m_Name: Progress Manager
   m_TagString: QuestManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2814,7 +2814,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -49.815804, y: -1.1469731, z: -9.969767}
+  m_LocalPosition: {x: -49.815804, y: -1.2369728, z: -9.969767}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4749,7 +4749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3735944535458297020, guid: 8d36ec2ac4f47bb44a2fb8b145ecae82, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3735944535458297020, guid: 8d36ec2ac4f47bb44a2fb8b145ecae82, type: 3}
       propertyPath: m_TagString
@@ -5025,7 +5025,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001027696}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -58.27, y: -6.07, z: 0}
+  m_LocalPosition: {x: -58.27, y: -6.16, z: 0}
   m_LocalScale: {x: 0.03430942, y: 0.03430943, z: 0.03430943}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5169,7 +5169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6f545c7e052f9741a7d74a5dd942ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notepadManager: {fileID: 1374821594}
+  isUsing: 0
+  notepad: {fileID: 1968003023}
 --- !u!114 &1001027714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5446,7 +5447,7 @@ MonoBehaviour:
   m_Priority: 0
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1374821593}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 6
@@ -6060,55 +6061,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 668ebe55b43253445ae73b49f8b48220, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentCamera: 0
+  currentCameraState: 0
   playerCamera: {fileID: 1613825874}
   notepadCamera: {fileID: 1157201786}
   bossArenaCamera: {fileID: 1518533616}
---- !u!1 &1374821591
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1374821593}
-  - component: {fileID: 1374821594}
-  m_Layer: 0
-  m_Name: 'Notepad '
-  m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1374821593
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374821591}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.7, y: 21.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1968003024}
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1374821594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374821591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3aa0b23ac12711439b1769e5fcb92af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1440941015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6950,7 +6906,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613825872}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -49.815804, y: -1.1469731, z: -9.969767}
+  m_LocalPosition: {x: -49.815804, y: -1.2369728, z: -9.969767}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8797,8 +8753,8 @@ MonoBehaviour:
   lines:
   - Help me!
   - Collect the pages ples
-  - Thank you!
   textSpeed: 0.05
+  doneTalking: 0
   questCompleteLines:
   - Oh my thank you for collecting the pages O_O
   - I will now teach you
@@ -9107,7 +9063,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1913812649
 Transform:
   m_ObjectHideFlags: 0
@@ -9349,13 +9305,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968003023}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -10.7, y: 21.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1374821593}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1968003025
 SpriteRenderer:

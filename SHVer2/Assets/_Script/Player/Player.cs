@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     private PlayerWeapon _playerWeapon;
     private PlayerHealth _playerHealth;
     private PlayerUI _playerUI;
-    private PlayerEnableNotepad _playerNotepad;
+    private PlayerNotepad _playerNotepad;
 
     private void Awake()
     {
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
         _playerWeapon = GetComponent<PlayerWeapon>();
         _playerHealth = GetComponent<PlayerHealth>();
         _playerUI = GetComponent<PlayerUI>();
-        _playerNotepad = GetComponent<PlayerEnableNotepad>();
+        _playerNotepad = GetComponent<PlayerNotepad>();
     }
 
     private void Start()
@@ -36,9 +36,11 @@ public class Player : MonoBehaviour
         _playerWeapon.FireWeapon();
         _playerMovement.Jump();
         _playerMovement.FlipPlayer();
-        _playerNotepad.SwitchToNotepad();
 
         //Animations
         _playerMovement.HorizontalMovementAnimation();
+
+        //Notepad
+        _playerNotepad.SwitchToNotepad();
     }
 }

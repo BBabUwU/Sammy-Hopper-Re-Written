@@ -9,7 +9,6 @@ public class SliderChange : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(slider.value);
         _drawingSettings.SetMarkerWidth(slider.value);
     }
 }

@@ -3,8 +3,14 @@ using System;
 
 public class QuestGiver : MonoBehaviour
 {
-    public QuestNumber questNumber;
     public Quest quest;
+    public static event Action<Quest> AddQuest;
+    public static event Action<Quest> QuestPassed;
+
+    private void Awake()
+    {
+        AddQuest?.Invoke(quest);
+    }
 
     private void OnEnable()
     {
@@ -22,13 +28,13 @@ public class QuestGiver : MonoBehaviour
     {
         if (quest.completed)
         {
-            ProgressManager.Instance.QuestIsFinished(questNumber);
+            QuestPassed?.Invoke(quest);
         }
     }
 
-    private void AddCounter(QuestNumber questNumber)
+    private void AddCounter(int questNumber)
     {
-        if (questNumber == this.questNumber)
+        if (questNumber == quest.questNumber)
         {
             quest.goal.ItemCollected();
             quest.goal.EnemyKilled();

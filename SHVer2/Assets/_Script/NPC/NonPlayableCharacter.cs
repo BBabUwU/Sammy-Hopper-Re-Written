@@ -1,15 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
-public class NonPlayerCharacter : MonoBehaviour
+public class NonPlayableCharacter : MonoBehaviour
 {
     //Components
     private GameObject _playerObj;
     private PlayerInput _playerInput;
     private Transform _playerPosition;
     private bool defaultDirection;
-    private InteractionDialogue npcDialogue;
-    private bool isInteractable = false;
     [SerializeField] private bool isFacingRight = true;
 
     private void Awake()
@@ -18,20 +16,11 @@ public class NonPlayerCharacter : MonoBehaviour
         LookAtDirection();
         //Last direction of where the NPC is looking at.
         defaultDirection = isFacingRight;
-
         _playerObj = GameObject.FindGameObjectWithTag("Player");
-        _playerInput = _playerObj.GetComponent<PlayerInput>();
         _playerPosition = _playerObj.GetComponent<Transform>();
-
-        npcDialogue = GetComponent<InteractionDialogue>();
     }
 
-    private bool IsInteractingNPC()
-    {
-        return GameManager.Instance.gameState == GameState.NPCInteraction;
-    }
-
-    private void SwitchDirection()
+    public void SwitchDirection()
     {
         if (_playerPosition.position.x > transform.position.x)
         {
@@ -43,7 +32,7 @@ public class NonPlayerCharacter : MonoBehaviour
         }
     }
 
-    private void LookAtDirection()
+    public void LookAtDirection()
     {
         if (isFacingRight)
         {

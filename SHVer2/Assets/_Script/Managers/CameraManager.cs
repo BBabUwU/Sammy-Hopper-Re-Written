@@ -1,57 +1,26 @@
 using UnityEngine;
 using Cinemachine;
+using System;
 
 public class CameraManager : MonoBehaviour
 {
-    [SerializeField] private CameraState currentCamera;
+    [SerializeField] private CameraState currentCameraState;
     private CameraState defaultCameraState;
+
+    [Header("Camera components")]
     [SerializeField] private CinemachineVirtualCamera playerCamera;
     [SerializeField] private CinemachineVirtualCamera notepadCamera;
     [SerializeField] private CinemachineVirtualCamera bossArenaCamera;
 
-    private void Awake()
+
+    private void ChangeToNotepad()
     {
-        currentCamera = CameraState.Player;
-        defaultCameraState = CameraState.Player;
+        currentCameraState = CameraState.Notepad;
     }
 
-    public void SetCurrentCamera(CameraState currentCamera)
+    private void SwitchToDefaultCamera()
     {
-        this.currentCamera = currentCamera;
-    }
-
-    public void SetDefaultCamera(CameraState newDefaultCamera)
-    {
-        defaultCameraState = newDefaultCamera;
-    }
-
-    public CameraState GetCurrentCamera()
-    {
-        return currentCamera;
-    }
-
-    public CameraState GetDefaultCamera()
-    {
-        return defaultCameraState;
-    }
-
-    public void SwitchCamera()
-    {
-        SetCameraPriotyToZero();
-
-        if (currentCamera == CameraState.Player)
-        {
-            playerCamera.Priority = 1;
-        }
-
-        else if (currentCamera == CameraState.Notepad)
-        {
-            notepadCamera.Priority = 1;
-        }
-        else if (currentCamera == CameraState.BossArena)
-        {
-            bossArenaCamera.Priority = 1;
-        }
+        currentCameraState = defaultCameraState;
     }
 
     private void SetCameraPriotyToZero()
@@ -61,32 +30,71 @@ public class CameraManager : MonoBehaviour
         bossArenaCamera.Priority = 0;
     }
 
-    //Event functions
-    //Listening to game manager.
-    private void OnEnable()
+    private void SwitchCamera()
     {
-        GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
-    }
-    private void OnDisable()
-    {
-        GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
+        SetCameraPriotyToZero();
+
+        if (currentCameraState == CameraState.Player)
+        {
+            playerCamera.Priority = 1;
+        }
+
+        else if (currentCameraState == CameraState.Notepad)
+        {
+            notepadCamera.Priority = 1;
+        }
+
+        else if (currentCameraState == CameraState.BossArena)
+        {
+            bossArenaCamera.Priority = 1;
+        }
     }
 
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    ///<Summary>
+    //Event functions
+    //Listening to game manager.
+    ///</Summary>
     private void GameManagerOnGameStateChanged(GameState state)
     {
         if (state == GameState.BossBattle)
         {
-            SetDefaultCamera(CameraState.BossArena);
-            SetCurrentCamera(CameraState.BossArena);
-            SwitchCamera();
+            defaultCameraState = CameraState.BossArena;
+            currentCameraState = CameraState.BossArena;
+
         }
 
         else
         {
-            SetDefaultCamera(CameraState.Player);
-            SetCurrentCamera(CameraState.Player);
-            SwitchCamera();
+            defaultCameraState = CameraState.Player;
+            currentCameraState = CameraState.Player;
         }
+    }
+
+    private void OnEnable()
+    {
+        GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
+
+        //Enable Notepad
+        PlayerNotepad.OnNotepadEnabled += ChangeToNotepad;
+        PlayerNotepad.OnNotepadEnabled += SwitchCamera;
+
+        //Disable Notepad
+        PlayerNotepad.OnNotepadDisabled += SwitchToDefaultCamera;
+        PlayerNotepad.OnNotepadDisabled += SwitchCamera;
+    }
+    private void OnDisable()
+    {
+        GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
+
+        //Notepad
+        PlayerNotepad.OnNotepadEnabled -= ChangeToNotepad;
+        PlayerNotepad.OnNotepadEnabled -= SwitchCamera;
+
+        //Disable Notepad
+        PlayerNotepad.OnNotepadDisabled -= SwitchToDefaultCamera;
+        PlayerNotepad.OnNotepadDisabled -= SwitchCamera;
     }
 }
 

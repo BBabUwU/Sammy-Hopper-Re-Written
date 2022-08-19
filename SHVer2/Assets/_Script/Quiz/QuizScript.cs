@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class QuizScript : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class QuizScript : MonoBehaviour
     [SerializeField] private TMP_InputField answerFieldUI_2;
     [SerializeField] private TMP_Text timerTextUI;
 
-    public QuizNumber quizNumber;
+    public int quizNumber;
     //NonReorderable attribute fix the visual bug.
     //List of questions and answers.
     [NonReorderable]
@@ -46,6 +47,11 @@ public class QuizScript : MonoBehaviour
     //Used to reset the time
     private float defaultTimeLeft;
 
+    //Events
+    public static event Action<Quiz> AddQuiz;
+    public static event Action<Quiz> QuizPassed;
+
+    private Quiz quiz = new Quiz();
 
     [ExecuteInEditMode]
     void OnValidate()
@@ -60,6 +66,7 @@ public class QuizScript : MonoBehaviour
 
     private void Awake()
     {
+        InitializeQuizDetails();
         this.enabled = false;
         _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
     }
@@ -83,6 +90,14 @@ public class QuizScript : MonoBehaviour
         Timer();
         //Allows the player to submit answer using the return (enter) button.
         PlayerSubmitsAnswer();
+    }
+
+    private void InitializeQuizDetails()
+    {
+        quiz.quizNumber = quizNumber;
+        quiz.isPassed = isPassed;
+        quiz.score = currentScore;
+        AddQuiz?.Invoke(quiz);
     }
 
     private void SetPassingScore()
@@ -137,7 +152,7 @@ public class QuizScript : MonoBehaviour
     //--------------------------------------------------------------------------------------------
     private void RandomizeQuestion()
     {
-        currentQuestionIndex = Random.Range(0, questionAndAnswers.Count);
+        currentQuestionIndex = UnityEngine.Random.Range(0, questionAndAnswers.Count);
         currentAnswer1 = questionAndAnswers[currentQuestionIndex].correctAnswer1;
         currentAnswer2 = questionAndAnswers[currentQuestionIndex].correctAnswer2;
     }
@@ -230,19 +245,16 @@ public class QuizScript : MonoBehaviour
     {
         if (currentScore >= passingScore)
         {
-            ProgressManager.Instance.QuizIsFinished(quizNumber);
+            QuizPassed?.Invoke(quiz);
+            isPassed = true;
         }
         else
         {
-            Debug.Log("Failed");
             ResetValues();
+            isPassed = false;
         }
 
+        this.enabled = false;
         GameManager.Instance.UpdateGameState(GameState.Exploration);
-    }
-
-    public int GetCurrentScore()
-    {
-        return currentScore;
     }
 }

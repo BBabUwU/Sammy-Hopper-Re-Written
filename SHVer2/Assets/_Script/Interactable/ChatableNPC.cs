@@ -1,20 +1,25 @@
 using UnityEngine;
 
 [RequireComponent(typeof(InteractionDialogue))]
-public class Chatable : Interactable
+[RequireComponent(typeof(NonPlayableCharacter))]
+public class ChatableNPC : Interactable
 {
     private bool isTalking = false;
     private InteractionDialogue dialogue;
+    private NonPlayableCharacter npcScript;
 
     private void Awake()
     {
         dialogue = GetComponent<InteractionDialogue>();
+        npcScript = GetComponent<NonPlayableCharacter>();
     }
     public override void Interact()
     {
         if (!isTalking)
         {
             isTalking = true;
+            npcScript.SwitchDirection();
+            npcScript.LookAtDirection();
             dialogue.StartDialogue();
         }
 
@@ -26,6 +31,11 @@ public class Chatable : Interactable
         if (isTalking && dialogue.doneTalking)
         {
             isTalking = false;
+        }
+
+        if (!isTalking && dialogue.doneTalking)
+        {
+            StartCoroutine(npcScript.LookBackAtDefaultDirection());
         }
     }
 }

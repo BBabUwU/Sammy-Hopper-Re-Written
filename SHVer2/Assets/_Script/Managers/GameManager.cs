@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     //Creates an instance of the singleton, which is this class.
     public static GameManager Instance;
+
     //Notify that the event has changed.
     public static event Action<GameState> OnGameStateChanged;
 

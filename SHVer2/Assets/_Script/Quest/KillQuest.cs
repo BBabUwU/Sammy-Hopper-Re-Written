@@ -3,8 +3,8 @@ using System;
 
 public class KillQuest : MonoBehaviour
 {
-    [SerializeField] private QuestNumber questEnemy;
-    public static Action<QuestNumber> enemyKilled;
+    [SerializeField] private int questEnemy;
+    public static Action<int> enemyKilled;
 
     private void OnDisable()
     {

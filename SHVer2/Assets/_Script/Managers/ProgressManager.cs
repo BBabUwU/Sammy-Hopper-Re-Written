@@ -1,101 +1,92 @@
 using UnityEngine;
+using System.Collections.Generic;
 using System;
 
 public class ProgressManager : MonoBehaviour
 {
-    public static ProgressManager Instance;
-    public bool quest1Completed;
-    public bool quest2Completed;
-    public bool quiz1Completed;
-    public bool quiz2Completed;
-    public bool quiz3Completed;
+    List<Quiz> quizRecord = new List<Quiz>();
+    List<Quest> questRecord = new List<Quest>();
 
-
-    private void Awake()
+    private void AddQuiz(Quiz quiz)
     {
-        Instance = this;
+        quizRecord.Add(quiz);
     }
 
-    public void QuestIsFinished(QuestNumber questName)
+    private void AddQuest(Quest quest)
     {
-        if (questName == QuestNumber.Quest1)
-        {
-            quest1Completed = true;
-        }
-
-        if (questName == QuestNumber.Quest2)
-        {
-            quest2Completed = true;
-        }
+        questRecord.Add(quest);
     }
 
-    public void QuizIsFinished(QuizNumber quizNumber)
+    private void UpdateQuestRecord(Quest quest)
     {
-        if (quizNumber == QuizNumber.Quiz1)
+        foreach (Quest questList in questRecord)
         {
-            quiz1Completed = true;
-        }
-
-        if (quizNumber == QuizNumber.Quiz2)
-        {
-            quiz2Completed = true;
-        }
-
-        if (quizNumber == QuizNumber.Quiz3)
-        {
-            quiz3Completed = true;
+            if (questList.questNumber == quest.questNumber)
+            {
+                questList.completed = quest.completed;
+                questList.goal = quest.goal;
+            }
         }
     }
 
-    public bool CheckIfFinished(QuestNumber questNumber)
+    private void UpdateQuizRecord(Quiz quiz)
     {
-        bool isFinished = false;
-
-        if (questNumber == QuestNumber.Quest1)
+        foreach (Quiz quizList in quizRecord)
         {
-            return isFinished = quest1Completed;
+            if (quiz.quizNumber == quizList.quizNumber)
+            {
+                quizList.isPassed = quiz.isPassed;
+                quizList.score = quiz.score;
+            }
         }
-
-        if (questNumber == QuestNumber.Quest2)
-        {
-            return isFinished = quest2Completed;
-        }
-
-        return isFinished;
     }
 
-    public bool CheckIfFinished(QuizNumber quizNumber)
+    private bool CheckQuizIfPassed(int quizNumber)
     {
-        bool isFinished = false;
+        bool quizPassed = false;
 
-        if (quizNumber == QuizNumber.Quiz1)
+        foreach (Quiz recordedQuiz in quizRecord)
         {
-            return isFinished = quiz1Completed;
+            if (recordedQuiz.quizNumber == quizNumber && recordedQuiz.isPassed)
+            {
+                quizPassed = true;
+            }
         }
 
-        if (quizNumber == QuizNumber.Quiz2)
-        {
-            return isFinished = quiz2Completed;
-        }
-
-        if (quizNumber == QuizNumber.Quiz3)
-        {
-            return isFinished = quiz3Completed;
-        }
-
-        return isFinished;
+        return quizPassed;
     }
-}
 
-public enum QuestNumber
-{
-    Quest1,
-    Quest2
-}
+    private bool CheckQuestIfPassed(int questNumber)
+    {
+        bool questPassed = false;
 
-public enum QuizNumber
-{
-    Quiz1,
-    Quiz2,
-    Quiz3
+        foreach (Quest recordedQuest in questRecord)
+        {
+            if (recordedQuest.questNumber == questNumber && recordedQuest.completed)
+            {
+                questPassed = true;
+            }
+        }
+
+        return questPassed;
+    }
+
+    private void OnEnable()
+    {
+        QuizScript.QuizPassed += UpdateQuizRecord;
+        QuizScript.AddQuiz += AddQuiz;
+
+        QuestGiver.QuestPassed -= UpdateQuestRecord;
+        QuestGiver.AddQuest += AddQuest;
+    }
+
+    private void OnDisable()
+    {
+        QuizScript.QuizPassed -= UpdateQuizRecord;
+        QuizScript.AddQuiz -= AddQuiz;
+
+        QuestGiver.QuestPassed -= UpdateQuestRecord;
+        QuestGiver.AddQuest -= AddQuest;
+    }
+
 }

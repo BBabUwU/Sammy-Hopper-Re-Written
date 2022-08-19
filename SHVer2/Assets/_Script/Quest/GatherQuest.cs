@@ -3,12 +3,12 @@ using System;
 
 public class GatherQuest : MonoBehaviour, IPickable
 {
-    [SerializeField] private QuestNumber questItem;
-    public static Action<QuestNumber> itemCollected;
+    [SerializeField] private int questItemID;
+    public static Action<int> itemCollected;
 
     private void OnDisable()
     {
-        itemCollected?.Invoke(questItem);
+        itemCollected?.Invoke(questItemID);
     }
 
     public void PickUp()

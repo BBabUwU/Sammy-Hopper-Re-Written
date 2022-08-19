@@ -26,11 +26,29 @@ public class InteractionDialogue : MonoBehaviour
 
     [Header("Quest complete lines")]
     [Header("Only set if NPC has quest")]
+    [SerializeField] private bool hasQuest;
+    private QuestGiver questGiver;
     [SerializeField] private List<string> questCompleteLines = new List<string>();
+
+    private void Awake()
+    {
+        if (hasQuest)
+        {
+            questGiver = GetComponent<QuestGiver>();
+        }
+    }
 
     private void SetLines()
     {
         currentLines = lines;
+
+        if (questGiver != null)
+        {
+            if (questGiver.quest.completed)
+            {
+                currentLines = questCompleteLines;
+            }
+        }
     }
 
     public void StartDialogue()
@@ -85,4 +103,5 @@ public class InteractionDialogue : MonoBehaviour
     {
         return currentLineIndex < currentLines.Count - 1;
     }
+
 }
