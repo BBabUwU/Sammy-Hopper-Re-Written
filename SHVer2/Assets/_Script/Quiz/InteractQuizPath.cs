@@ -4,7 +4,6 @@ using UnityEngine;
 public class InteractQuizPath : Interactable
 {
     private QuizScript quizScript;
-    private bool hasInteracted;
     private void Awake()
     {
         quizScript = GetComponent<QuizScript>();
@@ -12,9 +11,8 @@ public class InteractQuizPath : Interactable
 
     public override void Interact()
     {
-        if (!hasInteracted)
+        if (!quizScript.quizStarted)
         {
-            hasInteracted = true;
             quizScript.enabled = true;
         }
     }

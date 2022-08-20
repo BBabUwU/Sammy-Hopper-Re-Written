@@ -13,14 +13,24 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera bossArenaCamera;
 
 
-    private void ChangeToNotepad()
+    private void ChangeStateToNotepad()
     {
         currentCameraState = CameraState.Notepad;
     }
 
-    private void SwitchToDefaultCamera()
+    private void ChangeStateToBossCamera()
+    {
+        currentCameraState = CameraState.BossArena;
+    }
+
+    private void ChangeStateToDefaultCamera()
     {
         currentCameraState = defaultCameraState;
+    }
+
+    private void SetDefaultCamera(CameraState cameraState)
+    {
+        defaultCameraState = cameraState;
     }
 
     private void SetCameraPriotyToZero()
@@ -62,7 +72,6 @@ public class CameraManager : MonoBehaviour
         {
             defaultCameraState = CameraState.BossArena;
             currentCameraState = CameraState.BossArena;
-
         }
 
         else
@@ -77,24 +86,36 @@ public class CameraManager : MonoBehaviour
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
 
         //Enable Notepad
-        PlayerNotepad.OnNotepadEnabled += ChangeToNotepad;
+        PlayerNotepad.OnNotepadEnabled += ChangeStateToNotepad;
         PlayerNotepad.OnNotepadEnabled += SwitchCamera;
 
         //Disable Notepad
-        PlayerNotepad.OnNotepadDisabled += SwitchToDefaultCamera;
+        PlayerNotepad.OnNotepadDisabled += ChangeStateToDefaultCamera;
         PlayerNotepad.OnNotepadDisabled += SwitchCamera;
+
+        //Boss Camera
+        BossManager.BossArenaCamera += ChangeStateToBossCamera;
+        BossManager.BossArenaCamera += SwitchCamera;
+        BossManager.ChangeDefaultCamera += SetDefaultCamera;
+
     }
     private void OnDisable()
     {
         GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
 
         //Notepad
-        PlayerNotepad.OnNotepadEnabled -= ChangeToNotepad;
+        PlayerNotepad.OnNotepadEnabled -= ChangeStateToNotepad;
         PlayerNotepad.OnNotepadEnabled -= SwitchCamera;
 
         //Disable Notepad
-        PlayerNotepad.OnNotepadDisabled -= SwitchToDefaultCamera;
+        PlayerNotepad.OnNotepadDisabled -= ChangeStateToDefaultCamera;
         PlayerNotepad.OnNotepadDisabled -= SwitchCamera;
+
+        //Boss Camera
+        BossManager.BossArenaCamera -= ChangeStateToBossCamera;
+        BossManager.BossArenaCamera -= SwitchCamera;
+        BossManager.ChangeDefaultCamera -= SetDefaultCamera;
+
     }
 }
 

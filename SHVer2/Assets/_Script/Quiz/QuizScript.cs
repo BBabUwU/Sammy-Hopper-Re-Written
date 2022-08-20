@@ -11,6 +11,7 @@ public class QuizScript : MonoBehaviour
     [SerializeField] private TMP_Text timerTextUI;
 
     public int quizNumber;
+    [SerializeField] private GameState setStateAfterFinished;
     //NonReorderable attribute fix the visual bug.
     //List of questions and answers.
     [NonReorderable]
@@ -38,6 +39,7 @@ public class QuizScript : MonoBehaviour
     private bool allowEnter;
     private int passingScore;
     private int currentScore = 0;
+    public bool quizStarted;
     private bool isPassed;
 
     //Timer Variables
@@ -50,8 +52,7 @@ public class QuizScript : MonoBehaviour
     //Events
     public static event Action<Quiz> AddQuiz;
     public static event Action<Quiz> QuizPassed;
-
-    private Quiz quiz = new Quiz();
+    public Quiz quiz = new Quiz();
 
     [ExecuteInEditMode]
     void OnValidate()
@@ -69,6 +70,11 @@ public class QuizScript : MonoBehaviour
         InitializeQuizDetails();
         this.enabled = false;
         _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+    }
+
+    private void Start()
+    {
+        quizStarted = true;
     }
 
     private void OnEnable()
@@ -97,7 +103,14 @@ public class QuizScript : MonoBehaviour
         quiz.quizNumber = quizNumber;
         quiz.isPassed = isPassed;
         quiz.score = currentScore;
+        quiz.totalScore = maximumQuestions;
         AddQuiz?.Invoke(quiz);
+    }
+
+    private void SetQuizValues()
+    {
+        quiz.isPassed = isPassed;
+        quiz.score = currentScore;
     }
 
     private void SetPassingScore()
@@ -175,7 +188,7 @@ public class QuizScript : MonoBehaviour
     private void PlayerSubmitsAnswer()
     {
         //Checks if player is allowed to click enter, length of text is greater than 0 and return key (enter key) or numpad enter key is pressed.
-        if ((allowEnter && (answerFieldUI_1.text.Length > 0) || (answerFieldUI_2.text.Length > 0)) && (Input.GetKey(KeyCode.Return) || Input.GetKey(KeyCode.KeypadEnter)))
+        if ((allowEnter && (answerFieldUI_1.text.Length > 0) || (answerFieldUI_2.text.Length > 0)) && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)))
         {
             CheckIfCorrect();
             allowEnter = false;
@@ -217,21 +230,12 @@ public class QuizScript : MonoBehaviour
     //Check answer function should be in the answefield "on-end enter"
     private void CheckIfCorrect()
     {
+        Debug.Log(IsCorrectAnswer());
         if (IsCorrectAnswer())
         {
             currentScore++;
             currentQuestionNumber++;
             ClearInputField();
-
-            if (NoMoreQuestions())
-            {
-                CheckIfPassed();
-            }
-
-            else
-            {
-                NextQuestion();
-            }
         }
         else if (!allowMistakes)
         {
@@ -239,22 +243,36 @@ public class QuizScript : MonoBehaviour
             //It will only damage the player when allow mistakes is disabled.
             _playerHealth.DamagePlayer(playerDamage);
         }
+
+        if (NoMoreQuestions())
+        {
+            CheckIfPassed();
+        }
+
+        else
+        {
+            NextQuestion();
+        }
     }
 
     private void CheckIfPassed()
     {
         if (currentScore >= passingScore)
         {
-            QuizPassed?.Invoke(quiz);
             isPassed = true;
+            SetQuizValues();
+            QuizPassed?.Invoke(quiz);
         }
         else
         {
-            ResetValues();
             isPassed = false;
+            SetQuizValues();
+            ResetValues();
         }
 
+        GameManager.Instance.UpdateGameState(setStateAfterFinished);
+        ClearInputField();
+        quizStarted = false;
         this.enabled = false;
-        GameManager.Instance.UpdateGameState(GameState.Exploration);
     }
 }

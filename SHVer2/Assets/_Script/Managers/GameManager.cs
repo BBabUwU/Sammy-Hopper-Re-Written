@@ -33,9 +33,11 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.AnsweringQuiz:
                 break;
+            case GameState.ShowScore:
+                break;
             case GameState.BossBattle:
                 break;
-            case GameState.GameOver:
+            case GameState.PlayerDead:
                 break;
             case GameState.LevelComplete:
                 break;
@@ -47,4 +49,4 @@ public class GameManager : MonoBehaviour
     }
 }
 
-public enum GameState { Exploration, NPCInteraction, AnsweringQuiz, BossBattle, GameOver, LevelComplete }
+public enum GameState { Exploration, NPCInteraction, AnsweringQuiz, ShowScore, BossBattle, PlayerDead, LevelComplete }

@@ -14,14 +14,18 @@ public class QuestGiver : MonoBehaviour
 
     private void OnEnable()
     {
-        GatherQuest.itemCollected += AddCounter;
-        KillQuest.enemyKilled += AddCounter;
+        GatherQuest.itemCollected += AddGatherCounter;
+        KillQuest.enemyKilled += AddKillCounter;
+        GatherQuest.itemCollected += CheckIfFinish;
+        KillQuest.enemyKilled += CheckIfFinish;
     }
 
     private void OnDisable()
     {
-        GatherQuest.itemCollected -= AddCounter;
-        KillQuest.enemyKilled -= AddCounter;
+        GatherQuest.itemCollected -= AddGatherCounter;
+        KillQuest.enemyKilled -= AddKillCounter;
+        GatherQuest.itemCollected -= CheckIfFinish;
+        KillQuest.enemyKilled -= CheckIfFinish;
     }
 
     public void QuestComplete()
@@ -32,12 +36,26 @@ public class QuestGiver : MonoBehaviour
         }
     }
 
-    private void AddCounter(int questNumber)
+    private void AddKillCounter(int questNumber)
+    {
+        if (questNumber == quest.questNumber)
+        {
+            quest.goal.EnemyKilled();
+        }
+    }
+
+    private void AddGatherCounter(int questNumber)
     {
         if (questNumber == quest.questNumber)
         {
             quest.goal.ItemCollected();
-            quest.goal.EnemyKilled();
+        }
+    }
+
+    private void CheckIfFinish(int questNumber)
+    {
+        if (questNumber == quest.questNumber)
+        {
             quest.Evaluate();
             QuestComplete();
         }

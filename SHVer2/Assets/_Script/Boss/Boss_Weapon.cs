@@ -3,7 +3,6 @@ using UnityEngine;
 public class Boss_Weapon : MonoBehaviour
 {
     public int attackDamage = 20;
-
     public Vector3 attackOffset;
     public float attackRange = 1f;
     public LayerMask attackMask;

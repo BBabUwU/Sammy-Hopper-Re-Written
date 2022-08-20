@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             isDead = true;
+            GameManager.Instance.UpdateGameState(GameState.PlayerDead);
         }
     }
 

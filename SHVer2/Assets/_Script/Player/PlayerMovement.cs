@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
             allowedToMove = true;
         }
 
-        if (state == GameState.AnsweringQuiz || state == GameState.NPCInteraction || state == GameState.GameOver)
+        else if (state == GameState.AnsweringQuiz || state == GameState.NPCInteraction || state == GameState.PlayerDead)
         {
             allowedToMove = false;
         }
