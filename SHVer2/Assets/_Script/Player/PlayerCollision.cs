@@ -25,8 +25,4 @@ public class PlayerCollision : MonoBehaviour
             pickableItem.PickUp();
         }
     }
-
-    //Interactable Script
-
-
 }

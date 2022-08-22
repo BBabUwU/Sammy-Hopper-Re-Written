@@ -5,7 +5,7 @@ using System;
 public class CameraManager : MonoBehaviour
 {
     [SerializeField] private CameraState currentCameraState;
-    private CameraState defaultCameraState;
+    [SerializeField] private CameraState defaultCameraState;
 
     [Header("Camera components")]
     [SerializeField] private CinemachineVirtualCamera playerCamera;
@@ -74,7 +74,7 @@ public class CameraManager : MonoBehaviour
             currentCameraState = CameraState.BossArena;
         }
 
-        else
+        else if (state == GameState.Exploration)
         {
             defaultCameraState = CameraState.Player;
             currentCameraState = CameraState.Player;

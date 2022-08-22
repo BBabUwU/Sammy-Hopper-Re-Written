@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss_Walk : StateMachineBehaviour
+public class BossWalk : StateMachineBehaviour
 {
     public float speed = 2.5f;
     public float attackRange = 10f;

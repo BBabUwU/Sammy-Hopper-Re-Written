@@ -5,9 +5,9 @@ using TMPro;
 
 public class BossManager : MonoBehaviour
 {
-    private bool isAtBossArena;
     [SerializeField] private GameObject boss;
     private QuizScript quizScript;
+    private BossHealth bossHealth;
     private Animator bossAnimator;
     [SerializeField] private TMP_Text scoreResult;
     [SerializeField] private TMP_Text passMessage;
@@ -19,7 +19,13 @@ public class BossManager : MonoBehaviour
     private void Awake()
     {
         quizScript = boss.GetComponent<QuizScript>();
+        bossHealth = boss.GetComponent<BossHealth>();
         bossAnimator = boss.GetComponent<Animator>();
+    }
+
+    private void SetPlayerAttackMultiplier()
+    {
+        bossHealth.SetAttackMultiplier(quizScript.quiz.score);
     }
 
     private void SetBossToActive()
@@ -37,6 +43,7 @@ public class BossManager : MonoBehaviour
         }
         else
         {
+            SetPlayerAttackMultiplier();
             bossAnimator.SetBool("BossStarted", true);
             GameManager.Instance.UpdateGameState(GameState.BossBattle);
         }

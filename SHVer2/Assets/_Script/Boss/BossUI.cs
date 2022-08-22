@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Slider bossHealthSlider;
+
+    //Health bar
+    public void SetMaxHealth(float playerHealth)
     {
-        
+        bossHealthSlider.maxValue = playerHealth;
+        bossHealthSlider.value = playerHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetHealth(float playerHealth)
     {
-        
+        bossHealthSlider.value = playerHealth;
     }
 }

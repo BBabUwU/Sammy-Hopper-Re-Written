@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _npcUI;
     [SerializeField] private GameObject _showScoreUI;
     [SerializeField] private GameObject _playerDeadUI;
+    [SerializeField] private GameObject _bossUI;
     private GameState currentState;
 
     private void EnableNotepadUI()
@@ -46,6 +47,7 @@ public class UIManager : MonoBehaviour
         {
             DisableAllUI();
             _playerUI.SetActive(true);
+            _bossUI.SetActive(true);
         }
 
         if (currentState == GameState.PlayerDead)
@@ -62,6 +64,7 @@ public class UIManager : MonoBehaviour
         _quizUI.SetActive(false);
         _npcUI.SetActive(false);
         _showScoreUI.SetActive(false);
+        _bossUI.SetActive(false);
     }
 
     //Event functions

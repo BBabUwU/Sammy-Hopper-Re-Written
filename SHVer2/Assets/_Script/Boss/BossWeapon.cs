@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Boss_Weapon : MonoBehaviour
+public class BossWeapon : MonoBehaviour
 {
     public int attackDamage = 20;
     public Vector3 attackOffset;
