@@ -3,14 +3,12 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
-    //Creates an instance of the singleton, which is this class.
     public static GameManager Instance;
-
-    //Notify that the event has changed.
     public static event Action<GameState> OnGameStateChanged;
 
     [Header("State of the game")]
     public GameState gameState;
+
     private void Awake()
     {
         Instance = this;
@@ -18,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateGameState(GameState.Exploration);
+        UpdateGameState(GameState.MainMenu);
     }
 
     public void UpdateGameState(GameState newState)
@@ -27,20 +25,36 @@ public class GameManager : MonoBehaviour
 
         switch (newState)
         {
-            case GameState.Exploration:
+            case GameState.MainMenu:
+                //User Interface
+                CanvasManager.Instance.SwitchCanvas(CanvasType.MainMenu);
                 break;
+
+            case GameState.Exploration:
+                //User Interface
+                CanvasManager.Instance.SwitchCanvas(CanvasType.GameUI);
+                UIManager.Instance.TurnOnUI(UIType.PlayerUI);
+                break;
+
             case GameState.NPCInteraction:
                 break;
+
             case GameState.AnsweringQuiz:
+
                 break;
+
             case GameState.ShowScore:
                 break;
+
             case GameState.BossBattle:
                 break;
+
             case GameState.PlayerDead:
                 break;
+
             case GameState.LevelComplete:
                 break;
+
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
@@ -49,4 +63,4 @@ public class GameManager : MonoBehaviour
     }
 }
 
-public enum GameState { Exploration, NPCInteraction, AnsweringQuiz, ShowScore, BossBattle, PlayerDead, LevelComplete }
+public enum GameState { MainMenu, Exploration, NPCInteraction, AnsweringQuiz, ShowScore, BossBattle, PlayerDead, LevelComplete }

@@ -14,7 +14,6 @@ public class BossManager : MonoBehaviour
 
     //Events
     public static event Action BossArenaCamera;
-    public static event Action<CameraState> ChangeDefaultCamera;
 
     private void Awake()
     {
@@ -52,7 +51,6 @@ public class BossManager : MonoBehaviour
     private void SwitchCamera()
     {
         BossArenaCamera?.Invoke();
-        ChangeDefaultCamera?.Invoke(CameraState.BossArena);
     }
 
     private void ScoreMessage()

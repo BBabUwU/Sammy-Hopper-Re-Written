@@ -6,8 +6,8 @@ public class PlayerNotepad : MonoBehaviour
     private PlayerInput playerInput;
 
     //Events
-    public static Action OnNotepadEnabled;
-    public static Action OnNotepadDisabled;
+    public static Action<CameraType> EnableNotepadCamera;
+    public static Action SwitchDefault;
 
     [SerializeField] private bool isUsing;
     [SerializeField] private GameObject notepad;
@@ -21,14 +21,16 @@ public class PlayerNotepad : MonoBehaviour
         {
             isUsing = false;
             notepad.SetActive(false);
-            OnNotepadDisabled?.Invoke();
+            CanvasManager.Instance.SwitchCanvas(CanvasType.GameUI);
+            SwitchDefault?.Invoke();
         }
 
         else if (playerInput.NotepadButtonPressed() && !isUsing)
         {
             isUsing = true;
             notepad.SetActive(true);
-            OnNotepadEnabled?.Invoke();
+            CanvasManager.Instance.SwitchCanvas(CanvasType.Notepad);
+            EnableNotepadCamera?.Invoke(CameraType.NotepadCamera);
         }
     }
 }

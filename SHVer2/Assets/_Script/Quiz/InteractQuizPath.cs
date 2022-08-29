@@ -1,25 +1,24 @@
 using UnityEngine;
-
-[RequireComponent(typeof(QuizScript))]
 public class InteractQuizPath : Interactable
 {
-    private QuizScript quizScript;
+    private QuizScript quiz;
     private void Awake()
     {
-        quizScript = GetComponent<QuizScript>();
+        quiz = GetComponent<QuizScript>();
     }
 
     public override void Interact()
     {
-        if (!quizScript.quizStarted)
+        if (!quiz.quizStarted)
         {
-            quizScript.enabled = true;
+            quiz.enabled = true;
         }
     }
 
+    /*
     private void QuizPassed(Quiz quiz)
     {
-        if (quizScript.quizNumber == quiz.quizNumber)
+        if (NewQuiz.quizNumber == quiz.quizNumber)
         {
             Destroy(transform.parent.gameObject);
         }
@@ -34,4 +33,5 @@ public class InteractQuizPath : Interactable
     {
         QuizScript.QuizPassed -= QuizPassed;
     }
+    */
 }

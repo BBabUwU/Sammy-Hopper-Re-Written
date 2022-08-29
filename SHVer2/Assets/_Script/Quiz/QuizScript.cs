@@ -1,22 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using System;
 
 public class QuizScript : MonoBehaviour
 {
-    [SerializeField] private TMP_Text questionTextUI;
-    [SerializeField] private TMP_InputField answerFieldUI_1;
-    [SerializeField] private TMP_InputField answerFieldUI_2;
-    [SerializeField] private TMP_Text timerTextUI;
-
-    public int quizNumber;
+    [SerializeField] private int quizNumber;
     [SerializeField] private GameState setStateAfterFinished;
     //NonReorderable attribute fix the visual bug.
     //List of questions and answers.
     [NonReorderable]
     [SerializeField]
-    private List<Chapter1QnATemplate> questionAndAnswers = new List<Chapter1QnATemplate>();
+    private List<Chapter1QnATemplate> questionAndAnswers;
     [SerializeField] private int maximumQuestions;
     private int currentQuestionIndex;
     private int currentQuestionNumber = 1;
@@ -50,9 +44,14 @@ public class QuizScript : MonoBehaviour
     private float defaultTimeLeft;
 
     //Events
+    //Record quiz events
     public static event Action<Quiz> AddQuiz;
     public static event Action<Quiz> QuizPassed;
-    public Quiz quiz = new Quiz();
+    public Quiz quiz;
+
+    //UI Events
+    public static event Action<UITextType, string> UpdateQuestionText;
+    public static event Action<UITextType, string> UpdateTimerText;
 
     [ExecuteInEditMode]
     void OnValidate()
@@ -68,6 +67,7 @@ public class QuizScript : MonoBehaviour
     private void Awake()
     {
         InitializeQuizDetails();
+
         this.enabled = false;
         _playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
     }
@@ -79,15 +79,25 @@ public class QuizScript : MonoBehaviour
 
     private void OnEnable()
     {
+        //Events
+        InputController.onValueChangedInput += ReadUserInput;
+
         defaultTimeLeft = timeLeft;
         //Converts timer to seconds
         timeLeft = timeLeft * 60;
         //Changes the state of the game to answering quiz
         GameManager.Instance.UpdateGameState(GameState.AnsweringQuiz);
+        UIManager.Instance.TurnOnUI(UIType.QuizUI);
         //Passing score will be half of the maximum number of questions, Mathf.Abs will remove the decimal. If only one question, passing score will be one.
         SetPassingScore();
         RandomizeQuestion();
         DisplayCurrentQuestion();
+    }
+
+    private void OnDisable()
+    {
+        //Events
+        InputController.onValueChangedInput -= ReadUserInput;
     }
 
     private void Update()
@@ -95,7 +105,7 @@ public class QuizScript : MonoBehaviour
         //Timer will run if enabled
         Timer();
         //Allows the player to submit answer using the return (enter) button.
-        PlayerSubmitsAnswer();
+        //PlayerSubmitsAnswer();
     }
 
     private void InitializeQuizDetails()
@@ -159,7 +169,9 @@ public class QuizScript : MonoBehaviour
         float _minutes = Mathf.FloorToInt(currentTime / 60);
         float _seconds = Mathf.FloorToInt(currentTime % 60);
 
-        timerTextUI.text = string.Format("{0:00} : {1:00}", _minutes, _seconds);
+        string timerString = string.Format("{0:00} : {1:00}", _minutes, _seconds);
+
+        UpdateTimerText?.Invoke(UITextType.TimeText, timerString);
     }
 
     //--------------------------------------------------------------------------------------------
@@ -172,19 +184,16 @@ public class QuizScript : MonoBehaviour
 
     private void DisplayCurrentQuestion()
     {
-        questionTextUI.text = questionAndAnswers[currentQuestionIndex].question;
+        UpdateQuestionText?.Invoke(UITextType.QuestionText, questionAndAnswers[currentQuestionIndex].question);
     }
 
-    public void ReadUserInput_1(string answer)
+    public void ReadUserInput(AnswerType _type, string _answer)
     {
-        userInput1 = answer;
+        if (_type == AnswerType.Answer1) userInput1 = _answer;
+        if (_type == AnswerType.Answer2) userInput2 = _answer;
     }
 
-    public void ReadUserInput_2(string answer)
-    {
-        userInput2 = answer;
-    }
-
+    /*
     private void PlayerSubmitsAnswer()
     {
         //Checks if player is allowed to click enter, length of text is greater than 0 and return key (enter key) or numpad enter key is pressed.
@@ -198,6 +207,7 @@ public class QuizScript : MonoBehaviour
             allowEnter = answerFieldUI_1.isFocused || answerFieldUI_2.isFocused;
         }
     }
+    */
 
     //Check functions
     private bool IsCorrectAnswer()
@@ -213,12 +223,14 @@ public class QuizScript : MonoBehaviour
         return noMoreQuestions;
     }
 
+    /*
     private void ClearInputField()
     {
         answerFieldUI_1.text = "";
         answerFieldUI_2.text = "";
         answerFieldUI_1.Select();
     }
+    */
 
     private void NextQuestion()
     {
@@ -235,7 +247,7 @@ public class QuizScript : MonoBehaviour
         {
             currentScore++;
             currentQuestionNumber++;
-            ClearInputField();
+            //ClearInputField();
         }
         else if (!allowMistakes)
         {
@@ -271,7 +283,7 @@ public class QuizScript : MonoBehaviour
         }
 
         GameManager.Instance.UpdateGameState(setStateAfterFinished);
-        ClearInputField();
+        //ClearInputField();
         quizStarted = false;
         this.enabled = false;
     }
