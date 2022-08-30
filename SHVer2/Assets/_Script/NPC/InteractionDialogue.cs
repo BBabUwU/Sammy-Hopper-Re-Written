@@ -1,20 +1,13 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
-using TMPro;
+using System;
 
 public class InteractionDialogue : MonoBehaviour
 {
-    [Header("UI components")]
-    [SerializeField] private TMP_Text npcNameText;
-    [SerializeField] private TMP_Text dialogueText;
-
     [SerializeField] private string npcName;
-
     [SerializeField] private List<string> lines = new List<string>();
-
     [SerializeField] private float textSpeed = 0.05f;
-
     [HideInInspector] public bool doneTalking;
 
     /// <Summary>
@@ -28,7 +21,14 @@ public class InteractionDialogue : MonoBehaviour
     [Header("Only set if NPC has quest")]
     [SerializeField] private bool hasQuest;
     private QuestGiver questGiver;
-    [SerializeField] private List<string> questCompleteLines = new List<string>();
+    [SerializeField] private List<string> questCompleteLines;
+
+    //Events 
+    public static event Action<UITextType, string> nameText;
+    public static event Action<UITextType, string> dialogueText;
+    public static event Action<char> updateDialogueText;
+    public static event Func<UITextType, string> currentUIText;
+    public static event Action<UITextType, string> updateUIText;
 
     private void Awake()
     {
@@ -54,10 +54,11 @@ public class InteractionDialogue : MonoBehaviour
     public void StartDialogue()
     {
         GameManager.Instance.UpdateGameState(GameState.NPCInteraction);
+        UIManager.Instance.TurnOnUI(UIType.DialogueUI);
         SetLines();
         doneTalking = false;
-        npcNameText.text = npcName;
-        dialogueText.text = string.Empty;
+        nameText?.Invoke(UITextType.NameText, npcName);
+        dialogueText?.Invoke(UITextType.DialogueText, string.Empty);
         currentLineIndex = 0;
         StartCoroutine(TypeLine());
     }
@@ -66,17 +67,17 @@ public class InteractionDialogue : MonoBehaviour
     {
         foreach (char c in currentLines[currentLineIndex].ToCharArray())
         {
-            dialogueText.text += c;
+            updateDialogueText?.Invoke(c);
             yield return new WaitForSeconds(textSpeed);
         }
     }
 
     public void SkipText()
     {
-        if (dialogueText.text != currentLines[currentLineIndex])
+        if (currentUIText(UITextType.DialogueText) != currentLines[currentLineIndex])
         {
             StopAllCoroutines();
-            dialogueText.text = currentLines[currentLineIndex];
+            updateUIText?.Invoke(UITextType.DialogueText, currentLines[currentLineIndex]);
         }
         else
         {
@@ -88,13 +89,14 @@ public class InteractionDialogue : MonoBehaviour
     {
         if (StillHasLines())
         {
-            dialogueText.text = string.Empty;
+            updateUIText?.Invoke(UITextType.DialogueText, string.Empty);
             currentLineIndex++;
             StartCoroutine(TypeLine());
         }
         else
         {
             doneTalking = true;
+            UIManager.Instance.TurnOffUI(UIType.DialogueUI);
             GameManager.Instance.UpdateGameState(GameState.Exploration);
         }
     }

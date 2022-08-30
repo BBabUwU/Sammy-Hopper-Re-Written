@@ -4,7 +4,7 @@ using System;
 
 public class QuizScript : MonoBehaviour
 {
-    [SerializeField] private int quizNumber;
+    public int quizNumber;
     [SerializeField] private GameState setStateAfterFinished;
     //NonReorderable attribute fix the visual bug.
     //List of questions and answers.
@@ -52,6 +52,7 @@ public class QuizScript : MonoBehaviour
     //UI Events
     public static event Action<UITextType, string> UpdateQuestionText;
     public static event Action<UITextType, string> UpdateTimerText;
+    public static event Action ClearInput;
 
     [ExecuteInEditMode]
     void OnValidate()
@@ -81,6 +82,7 @@ public class QuizScript : MonoBehaviour
     {
         //Events
         InputController.onValueChangedInput += ReadUserInput;
+        InputController.onSubmitAnswer += CheckIfCorrect;
 
         defaultTimeLeft = timeLeft;
         //Converts timer to seconds
@@ -98,6 +100,7 @@ public class QuizScript : MonoBehaviour
     {
         //Events
         InputController.onValueChangedInput -= ReadUserInput;
+        InputController.onSubmitAnswer -= CheckIfCorrect;
     }
 
     private void Update()
@@ -193,21 +196,6 @@ public class QuizScript : MonoBehaviour
         if (_type == AnswerType.Answer2) userInput2 = _answer;
     }
 
-    /*
-    private void PlayerSubmitsAnswer()
-    {
-        //Checks if player is allowed to click enter, length of text is greater than 0 and return key (enter key) or numpad enter key is pressed.
-        if ((allowEnter && (answerFieldUI_1.text.Length > 0) || (answerFieldUI_2.text.Length > 0)) && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)))
-        {
-            CheckIfCorrect();
-            allowEnter = false;
-        }
-        else
-        {
-            allowEnter = answerFieldUI_1.isFocused || answerFieldUI_2.isFocused;
-        }
-    }
-    */
 
     //Check functions
     private bool IsCorrectAnswer()
@@ -223,15 +211,6 @@ public class QuizScript : MonoBehaviour
         return noMoreQuestions;
     }
 
-    /*
-    private void ClearInputField()
-    {
-        answerFieldUI_1.text = "";
-        answerFieldUI_2.text = "";
-        answerFieldUI_1.Select();
-    }
-    */
-
     private void NextQuestion()
     {
         questionAndAnswers.RemoveAt(currentQuestionIndex);
@@ -242,12 +221,11 @@ public class QuizScript : MonoBehaviour
     //Check answer function should be in the answefield "on-end enter"
     private void CheckIfCorrect()
     {
-        Debug.Log(IsCorrectAnswer());
         if (IsCorrectAnswer())
         {
             currentScore++;
             currentQuestionNumber++;
-            //ClearInputField();
+            ClearInput?.Invoke();
         }
         else if (!allowMistakes)
         {
@@ -283,7 +261,9 @@ public class QuizScript : MonoBehaviour
         }
 
         GameManager.Instance.UpdateGameState(setStateAfterFinished);
-        //ClearInputField();
+        UIManager.Instance.TurnOffUI(UIType.QuizUI);
+
+        ClearInput?.Invoke();
         quizStarted = false;
         this.enabled = false;
     }

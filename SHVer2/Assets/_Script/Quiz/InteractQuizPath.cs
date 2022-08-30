@@ -15,10 +15,10 @@ public class InteractQuizPath : Interactable
         }
     }
 
-    /*
+
     private void QuizPassed(Quiz quiz)
     {
-        if (NewQuiz.quizNumber == quiz.quizNumber)
+        if (quiz.isPassed)
         {
             Destroy(transform.parent.gameObject);
         }
@@ -33,5 +33,4 @@ public class InteractQuizPath : Interactable
     {
         QuizScript.QuizPassed -= QuizPassed;
     }
-    */
 }
