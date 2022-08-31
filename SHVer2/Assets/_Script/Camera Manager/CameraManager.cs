@@ -64,12 +64,18 @@ public class CameraManager : MonoBehaviour
     {
         PlayerNotepad.EnableNotepadCamera += SwitchCamera;
         PlayerNotepad.SwitchDefault += SwitchDefaultCamera;
+
+        BossManager.SwitchBossArenaCamera += SwitchCamera;
+        BossManager.SwitchBossArenaCamera += SetDefaultCamera;
     }
 
     private void OnDisable()
     {
         PlayerNotepad.EnableNotepadCamera -= SwitchCamera;
         PlayerNotepad.SwitchDefault -= SwitchDefaultCamera;
+
+        BossManager.SwitchBossArenaCamera -= SwitchCamera;
+        BossManager.SwitchBossArenaCamera -= SetDefaultCamera;
     }
 }
 

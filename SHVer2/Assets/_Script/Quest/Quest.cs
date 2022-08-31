@@ -3,7 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class Quest
 {
-    public int questNumber;
+    public int questID;
     [HideInInspector] public bool completed;
     public string title;
     public string description;

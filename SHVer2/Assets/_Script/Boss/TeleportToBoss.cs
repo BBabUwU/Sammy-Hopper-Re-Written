@@ -11,7 +11,6 @@ public class TeleportToBoss : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.UpdateGameState(GameState.AnsweringQuiz);
             other.transform.position = pointB.position;
             Teleported?.Invoke();
         }

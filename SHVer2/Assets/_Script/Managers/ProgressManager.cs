@@ -20,7 +20,7 @@ public class ProgressManager : MonoBehaviour
     {
         foreach (Quest questList in questRecord)
         {
-            if (questList.questNumber == quest.questNumber)
+            if (questList.questID == quest.questID)
             {
                 questList.completed = quest.completed;
                 questList.goal = quest.goal;
@@ -32,7 +32,7 @@ public class ProgressManager : MonoBehaviour
     {
         foreach (Quiz quizList in quizRecord)
         {
-            if (quiz.quizNumber == quizList.quizNumber)
+            if (quiz.quizID == quizList.quizID)
             {
                 quizList.isPassed = quiz.isPassed;
                 quizList.score = quiz.score;
@@ -40,13 +40,13 @@ public class ProgressManager : MonoBehaviour
         }
     }
 
-    private bool CheckQuizIfPassed(int quizNumber)
+    private bool CheckQuizIfPassed(int quizID)
     {
         bool quizPassed = false;
 
         foreach (Quiz recordedQuiz in quizRecord)
         {
-            if (recordedQuiz.quizNumber == quizNumber && recordedQuiz.isPassed)
+            if (recordedQuiz.quizID == quizID && recordedQuiz.isPassed)
             {
                 quizPassed = true;
             }
@@ -61,7 +61,7 @@ public class ProgressManager : MonoBehaviour
 
         foreach (Quest recordedQuest in questRecord)
         {
-            if (recordedQuest.questNumber == questNumber && recordedQuest.completed)
+            if (recordedQuest.questID == questNumber && recordedQuest.completed)
             {
                 questPassed = true;
             }

@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
     private Rigidbody2D _playerRigidBody;
     private PlayerWeapon _playerWeapon;
     private PlayerHealth _playerHealth;
-    private PlayerUI _playerUI;
     private PlayerNotepad _playerNotepad;
 
     private void Awake()
@@ -15,13 +14,7 @@ public class Player : MonoBehaviour
         _playerMovement = GetComponent<PlayerMovement>();
         _playerWeapon = GetComponent<PlayerWeapon>();
         _playerHealth = GetComponent<PlayerHealth>();
-        _playerUI = GetComponent<PlayerUI>();
         _playerNotepad = GetComponent<PlayerNotepad>();
-    }
-
-    private void Start()
-    {
-        _playerUI.SetPlayerMaxHealth(_playerHealth.maxHealth);
     }
 
     private void FixedUpdate()

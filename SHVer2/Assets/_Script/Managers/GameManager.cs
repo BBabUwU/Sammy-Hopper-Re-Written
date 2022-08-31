@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateGameState(GameState.MainMenu);
+        UpdateGameState(gameState);
     }
 
     public void UpdateGameState(GameState newState)
@@ -26,30 +26,31 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case GameState.MainMenu:
-                //User Interface
                 CanvasManager.Instance.SwitchCanvas(CanvasType.MainMenu);
                 break;
 
             case GameState.Exploration:
-                //User Interface
                 CanvasManager.Instance.SwitchCanvas(CanvasType.GameUI);
                 UIManager.Instance.TurnOnUI(UIType.PlayerUI);
                 break;
 
             case GameState.NPCInteraction:
+                UIManager.Instance.TurnOnUI(UIType.DialogueUI);
                 break;
 
             case GameState.AnsweringQuiz:
-
+                UIManager.Instance.TurnOnUI(UIType.QuizUI);
                 break;
 
-            case GameState.ShowScore:
+            case GameState.BossQuizEvaluation:
+                UIManager.Instance.TurnOnUI(UIType.QuizResult);
                 break;
 
             case GameState.BossBattle:
                 break;
 
             case GameState.PlayerDead:
+                UIManager.Instance.TurnOnUI(UIType.PlayerDeathUI);
                 break;
 
             case GameState.LevelComplete:
@@ -63,4 +64,4 @@ public class GameManager : MonoBehaviour
     }
 }
 
-public enum GameState { MainMenu, Exploration, NPCInteraction, AnsweringQuiz, ShowScore, BossBattle, PlayerDead, LevelComplete }
+public enum GameState { MainMenu, Exploration, NPCInteraction, AnsweringQuiz, BossQuizEvaluation, BossBattle, PlayerDead, LevelComplete }

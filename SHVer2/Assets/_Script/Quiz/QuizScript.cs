@@ -4,13 +4,16 @@ using System;
 
 public class QuizScript : MonoBehaviour
 {
-    public int quizNumber;
-    [SerializeField] private GameState setStateAfterFinished;
+    public int quizID;
+    public QuizType quizType;
+
     //NonReorderable attribute fix the visual bug.
     //List of questions and answers.
     [NonReorderable]
     [SerializeField]
+    private List<Chapter1QnATemplate> intialQuestionAndAnswers;
     private List<Chapter1QnATemplate> questionAndAnswers;
+
     [SerializeField] private int maximumQuestions;
     private int currentQuestionIndex;
     private int currentQuestionNumber = 1;
@@ -59,9 +62,9 @@ public class QuizScript : MonoBehaviour
     {
         //Limits the number of questions allowed to be edited on the editor.
         //If the editor changes the value of maximum questions higher than the number of questions in the list, it will set the maximum questions to the number of questions of the list.
-        if (maximumQuestions > questionAndAnswers.Count)
+        if (maximumQuestions > intialQuestionAndAnswers.Count)
         {
-            maximumQuestions = questionAndAnswers.Count;
+            maximumQuestions = intialQuestionAndAnswers.Count;
         }
     }
 
@@ -80,6 +83,7 @@ public class QuizScript : MonoBehaviour
 
     private void OnEnable()
     {
+        questionAndAnswers = intialQuestionAndAnswers.GetRange(0, intialQuestionAndAnswers.Count);
         //Events
         InputController.onValueChangedInput += ReadUserInput;
         InputController.onSubmitAnswer += CheckIfCorrect;
@@ -89,7 +93,6 @@ public class QuizScript : MonoBehaviour
         timeLeft = timeLeft * 60;
         //Changes the state of the game to answering quiz
         GameManager.Instance.UpdateGameState(GameState.AnsweringQuiz);
-        UIManager.Instance.TurnOnUI(UIType.QuizUI);
         //Passing score will be half of the maximum number of questions, Mathf.Abs will remove the decimal. If only one question, passing score will be one.
         SetPassingScore();
         RandomizeQuestion();
@@ -107,13 +110,12 @@ public class QuizScript : MonoBehaviour
     {
         //Timer will run if enabled
         Timer();
-        //Allows the player to submit answer using the return (enter) button.
-        //PlayerSubmitsAnswer();
     }
 
     private void InitializeQuizDetails()
     {
-        quiz.quizNumber = quizNumber;
+        quiz.quizID = quizID;
+        quiz.quizType = quizType;
         quiz.isPassed = isPassed;
         quiz.score = currentScore;
         quiz.totalScore = maximumQuestions;
@@ -136,8 +138,6 @@ public class QuizScript : MonoBehaviour
         {
             passingScore = (Mathf.Abs(maximumQuestions / 2));
         }
-
-        Debug.Log(passingScore);
     }
 
     private void ResetValues()
@@ -146,6 +146,7 @@ public class QuizScript : MonoBehaviour
         currentQuestionNumber = 1;
         currentQuestionIndex = 0;
         currentScore = 0;
+        questionAndAnswers = intialQuestionAndAnswers.GetRange(0, intialQuestionAndAnswers.Count);
     }
 
     //------------------------------------------------Timer---------------------------------------
@@ -260,11 +261,17 @@ public class QuizScript : MonoBehaviour
             ResetValues();
         }
 
-        GameManager.Instance.UpdateGameState(setStateAfterFinished);
+        SetState();
         UIManager.Instance.TurnOffUI(UIType.QuizUI);
-
         ClearInput?.Invoke();
         quizStarted = false;
         this.enabled = false;
+    }
+
+    private void SetState()
+    {
+        if (quizType == QuizType.ExplorationQuiz) GameManager.Instance.UpdateGameState(GameState.Exploration);
+
+        else if (quizType == QuizType.BossQuiz) GameManager.Instance.UpdateGameState(GameState.BossQuizEvaluation);
     }
 }

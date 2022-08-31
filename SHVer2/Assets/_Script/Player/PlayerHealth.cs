@@ -1,15 +1,17 @@
 using UnityEngine;
+using System;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private PlayerUI _playerUI;
     public float maxHealth = 100f;
     public float currentHealth = 100f;
     public bool isDead = false;
+    public static event Action<UISliderType, float> SetMaxHealthUI;
+    public static event Action<UISliderType, float> SetCurrentHealthUI;
 
-    private void Awake()
+    private void Start()
     {
-        _playerUI = GetComponent<PlayerUI>();
+        SetMaxHealthUI?.Invoke(UISliderType.PlayerHealthBar, maxHealth);
     }
 
     public void IsDead()
@@ -25,23 +27,32 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         if (currentHealth <= 0) currentHealth = 0;
-        _playerUI.SetPlayerHealth(currentHealth);
+        SetCurrentHealthUI?.Invoke(UISliderType.PlayerHealthBar, currentHealth);
     }
 
     public void HealPlayer(float heal)
     {
         currentHealth += heal;
         if (currentHealth > maxHealth) currentHealth = maxHealth;
-        _playerUI.SetPlayerHealth(currentHealth);
+        SetCurrentHealthUI?.Invoke(UISliderType.PlayerHealthBar, currentHealth);
+    }
+
+    private void InstantKill()
+    {
+        DamagePlayer(maxHealth);
     }
 
     private void OnEnable()
     {
         HealthPotion.HealPlayer += HealPlayer;
+
+        BossManager.KillPlayer += InstantKill;
     }
 
     private void OnDisable()
     {
         HealthPotion.HealPlayer -= HealPlayer;
+
+        BossManager.KillPlayer -= InstantKill;
     }
 }

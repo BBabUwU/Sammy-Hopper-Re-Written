@@ -6,7 +6,9 @@ public enum UITextType
     QuestionText,
     TimeText,
     DialogueText,
-    NameText
+    NameText,
+    ScoreText,
+    MessageText
 }
 
 public class UITextController : MonoBehaviour
@@ -30,11 +32,6 @@ public class UITextController : MonoBehaviour
         return null;
     }
 
-    public void SetText(string _text)
-    {
-        textUI.text = _text;
-    }
-
     private void UpdateText(UITextType _type, string _text)
     {
         if (textType == _type)
@@ -55,21 +52,27 @@ public class UITextController : MonoBehaviour
     {
         QuizScript.UpdateQuestionText += UpdateText;
         QuizScript.UpdateTimerText += UpdateText;
+
         InteractionDialogue.nameText += UpdateText;
         InteractionDialogue.dialogueText += UpdateText;
         InteractionDialogue.updateDialogueText += UpdateDialogue;
         InteractionDialogue.currentUIText += GetText;
         InteractionDialogue.updateUIText += UpdateText;
+
+        BossManager.DisplayQuizResult += UpdateText;
     }
 
     private void OnDisable()
     {
         QuizScript.UpdateQuestionText -= UpdateText;
         QuizScript.UpdateTimerText -= UpdateText;
+
         InteractionDialogue.nameText -= UpdateText;
         InteractionDialogue.dialogueText -= UpdateText;
         InteractionDialogue.updateDialogueText -= UpdateDialogue;
         InteractionDialogue.currentUIText -= GetText;
         InteractionDialogue.updateUIText -= UpdateText;
+
+        BossManager.DisplayQuizResult -= UpdateText;
     }
 }

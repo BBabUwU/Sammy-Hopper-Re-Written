@@ -54,7 +54,6 @@ public class InteractionDialogue : MonoBehaviour
     public void StartDialogue()
     {
         GameManager.Instance.UpdateGameState(GameState.NPCInteraction);
-        UIManager.Instance.TurnOnUI(UIType.DialogueUI);
         SetLines();
         doneTalking = false;
         nameText?.Invoke(UITextType.NameText, npcName);

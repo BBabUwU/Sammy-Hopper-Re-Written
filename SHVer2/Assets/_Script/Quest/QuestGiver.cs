@@ -38,7 +38,7 @@ public class QuestGiver : MonoBehaviour
 
     private void AddKillCounter(int questNumber)
     {
-        if (questNumber == quest.questNumber)
+        if (questNumber == quest.questID)
         {
             quest.goal.EnemyKilled();
         }
@@ -46,7 +46,7 @@ public class QuestGiver : MonoBehaviour
 
     private void AddGatherCounter(int questNumber)
     {
-        if (questNumber == quest.questNumber)
+        if (questNumber == quest.questID)
         {
             quest.goal.ItemCollected();
         }
@@ -54,7 +54,7 @@ public class QuestGiver : MonoBehaviour
 
     private void CheckIfFinish(int questNumber)
     {
-        if (questNumber == quest.questNumber)
+        if (questNumber == quest.questID)
         {
             quest.Evaluate();
             QuestComplete();

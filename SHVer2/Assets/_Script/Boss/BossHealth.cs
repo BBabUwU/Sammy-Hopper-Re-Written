@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class BossHealth : MonoBehaviour, IDamageable
 {
@@ -6,14 +7,15 @@ public class BossHealth : MonoBehaviour, IDamageable
     public float currentHealth = 500f;
     public bool isDead;
     private int attackMultiplier = 1;
-    private BossUI bossUI;
     private Animator bossAnim;
+    public static event Action<UISliderType, float> SetMaxHealthUI;
+    public static event Action<UISliderType, float> SetCurrentHealthUI;
+
 
     private void Awake()
     {
-        bossUI = GetComponent<BossUI>();
         bossAnim = GetComponent<Animator>();
-        bossUI.SetMaxHealth(maxHealth);
+        SetMaxHealthUI?.Invoke(UISliderType.BossHealthBar, maxHealth);
     }
 
     public void IsDead()
@@ -30,7 +32,7 @@ public class BossHealth : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
 
-    public void SetAttackMultiplier(int attackMultiplier)
+    public void SetPlayerAttackMultiplier(int attackMultiplier)
     {
         this.attackMultiplier = attackMultiplier;
     }
@@ -38,7 +40,7 @@ public class BossHealth : MonoBehaviour, IDamageable
     public void Damage(float damage)
     {
         currentHealth -= damage * attackMultiplier;
-        bossUI.SetHealth(currentHealth);
+        SetCurrentHealthUI?.Invoke(UISliderType.BossHealthBar, currentHealth);
         IsDead();
     }
 }

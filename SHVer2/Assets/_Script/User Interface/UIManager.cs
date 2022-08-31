@@ -5,10 +5,12 @@ using System.Linq;
 public enum UIType
 {
     PlayerUI,
+    PlayerDeathUI,
     NotepadUI,
     DialogueUI,
     QuizUI,
-    BossUI
+    BossUI,
+    QuizResult
 }
 
 public class UIManager : MonoBehaviour

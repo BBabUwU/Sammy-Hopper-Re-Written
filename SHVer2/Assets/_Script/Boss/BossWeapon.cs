@@ -4,7 +4,7 @@ public class BossWeapon : MonoBehaviour
 {
     public int attackDamage = 20;
     public Vector3 attackOffset;
-    public float attackRange = 1f;
+    public float attackRadius = 1f;
     public LayerMask attackMask;
 
     public void Attack()
@@ -13,7 +13,8 @@ public class BossWeapon : MonoBehaviour
         pos += transform.right * attackOffset.x;
         pos += transform.up * attackOffset.y;
 
-        Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
+        Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRadius, attackMask);
+
         if (colInfo != null)
         {
             colInfo.GetComponent<PlayerHealth>().DamagePlayer(attackDamage);
@@ -27,6 +28,6 @@ public class BossWeapon : MonoBehaviour
         pos += transform.up * attackOffset.y;
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(pos, attackRange);
+        Gizmos.DrawWireSphere(pos, attackRadius);
     }
 }
