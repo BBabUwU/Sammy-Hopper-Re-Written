@@ -10,9 +10,9 @@ public class BossManager : MonoBehaviour
     public static event Action StartPhase_2;
     public static event Action<CameraType> SwitchBossArenaCamera;
     public static event Func<QuizScript> BossQuizScript;
-    public static event Action<UITextType, string> DisplayQuizResult;
-    public static event Action<UITextType, string> DisplayMessage;
+    public static event Action<UITextType, string> DisplayText;
     public static event Action KillPlayer;
+    public static event Action<int> SetPAttackMultiplier;
 
     private void StartPhase1()
     {
@@ -38,7 +38,7 @@ public class BossManager : MonoBehaviour
     {
         string quizResult = string.Format("{0:0} / {1:0}", BossQuizScript().quiz.score, BossQuizScript().quiz.totalScore);
 
-        DisplayQuizResult?.Invoke(UITextType.ScoreText, quizResult);
+        DisplayText?.Invoke(UITextType.ScoreText, quizResult);
 
         string messageString = "You failed";
 
@@ -47,14 +47,15 @@ public class BossManager : MonoBehaviour
             messageString = "You passed";
         }
 
-        DisplayQuizResult?.Invoke(UITextType.MessageText, messageString);
+        DisplayText?.Invoke(UITextType.MessageText, messageString);
     }
 
     private void StartPhase2()
     {
         StartPhase_2?.Invoke();
+        SetPAttackMultiplier?.Invoke(BossQuizScript().quiz.score);
+        GameManager.Instance.UpdateGameState(GameState.BossBattle);
     }
-
 
     private void GameManagerOnGameStateChanged(GameState state)
     {

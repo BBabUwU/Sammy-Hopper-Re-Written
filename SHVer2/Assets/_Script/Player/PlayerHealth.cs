@@ -9,9 +9,13 @@ public class PlayerHealth : MonoBehaviour
     public static event Action<UISliderType, float> SetMaxHealthUI;
     public static event Action<UISliderType, float> SetCurrentHealthUI;
 
-    private void Start()
+    public void SetInitialUIvalues(UISliderType _sliderType)
     {
-        SetMaxHealthUI?.Invoke(UISliderType.PlayerHealthBar, maxHealth);
+        if (_sliderType == UISliderType.PlayerHealthBar)
+        {
+            SetMaxHealthUI?.Invoke(UISliderType.PlayerHealthBar, maxHealth);
+            SetCurrentHealthUI?.Invoke(UISliderType.PlayerHealthBar, currentHealth);
+        }
     }
 
     public void IsDead()
@@ -47,6 +51,8 @@ public class PlayerHealth : MonoBehaviour
         HealthPotion.HealPlayer += HealPlayer;
 
         BossManager.KillPlayer += InstantKill;
+
+        UISliderController.SetSliderValue += SetInitialUIvalues;
     }
 
     private void OnDisable()
@@ -54,5 +60,7 @@ public class PlayerHealth : MonoBehaviour
         HealthPotion.HealPlayer -= HealPlayer;
 
         BossManager.KillPlayer -= InstantKill;
+
+        UISliderController.SetSliderValue -= SetInitialUIvalues;
     }
 }

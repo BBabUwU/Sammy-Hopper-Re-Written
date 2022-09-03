@@ -2,13 +2,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using UnityEngine.EventSystems;
+using System;
 
 public class VideoPlayerTracker : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField] private VideoPlayer videoPlayer;
+    private VideoPlayer videoPlayer;
     [SerializeField] private Slider audioVolume;
     [SerializeField] private Slider progressTracker;
     bool usingSlider = false;
+
+    private void Awake()
+    {
+        videoPlayer = GetComponent<VideoPlayer>();
+    }
 
     private void Update()
     {

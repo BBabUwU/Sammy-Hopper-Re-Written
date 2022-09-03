@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.BossBattle:
+                UIManager.Instance.TurnOnUI(UIType.BossUI);
                 break;
 
             case GameState.PlayerDead:
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.LevelComplete:
+                Debug.Log("GO TO NEXT LEVEL");
                 break;
 
             default:

@@ -15,7 +15,15 @@ public class BossHealth : MonoBehaviour, IDamageable
     private void Awake()
     {
         bossAnim = GetComponent<Animator>();
-        SetMaxHealthUI?.Invoke(UISliderType.BossHealthBar, maxHealth);
+    }
+
+    public void SetInitialUIvalues(UISliderType _sliderType)
+    {
+        if (_sliderType == UISliderType.BossHealthBar)
+        {
+            SetMaxHealthUI?.Invoke(UISliderType.BossHealthBar, maxHealth);
+            SetCurrentHealthUI?.Invoke(UISliderType.BossHealthBar, currentHealth);
+        }
     }
 
     public void IsDead()
@@ -32,9 +40,9 @@ public class BossHealth : MonoBehaviour, IDamageable
         Destroy(gameObject);
     }
 
-    public void SetPlayerAttackMultiplier(int attackMultiplier)
+    public void SetPlayerAttackMultiplier(int _attackMultiplier)
     {
-        this.attackMultiplier = attackMultiplier;
+        attackMultiplier = _attackMultiplier;
     }
 
     public void Damage(float damage)
@@ -42,5 +50,21 @@ public class BossHealth : MonoBehaviour, IDamageable
         currentHealth -= damage * attackMultiplier;
         SetCurrentHealthUI?.Invoke(UISliderType.BossHealthBar, currentHealth);
         IsDead();
+    }
+
+    private void OnEnable()
+    {
+        BossManager.SetPAttackMultiplier += SetPlayerAttackMultiplier;
+
+
+        UISliderController.SetSliderValue += SetInitialUIvalues;
+    }
+
+    private void OnDisable()
+    {
+        BossManager.SetPAttackMultiplier -= SetPlayerAttackMultiplier;
+
+
+        UISliderController.SetSliderValue -= SetInitialUIvalues;
     }
 }

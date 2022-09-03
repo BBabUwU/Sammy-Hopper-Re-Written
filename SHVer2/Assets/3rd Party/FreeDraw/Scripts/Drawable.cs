@@ -146,8 +146,6 @@ namespace FreeDraw
                 // Convert mouse coordinates to world coordinates
                 Vector2 mouse_world_position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-                Debug.Log(mouse_world_position);
-
                 // Check if the current mouse position overlaps our image
                 Collider2D hit = Physics2D.OverlapPoint(mouse_world_position, Drawing_Layers.value);
                 if (hit != null && hit.transform != null)

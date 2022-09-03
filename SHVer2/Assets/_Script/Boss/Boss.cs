@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class Boss : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Boss : MonoBehaviour
     private void Awake()
     {
         bossQuiz = GetComponent<QuizScript>();
+        bossAnimator = GetComponent<Animator>();
     }
 
     private void StartQuiz()
@@ -25,7 +27,7 @@ public class Boss : MonoBehaviour
 
     private void StartBossFight()
     {
-
+        bossAnimator.SetBool("BossStarted", true);
     }
 
     public void LookAtPlayer()
@@ -48,15 +50,24 @@ public class Boss : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        GameManager.Instance.UpdateGameState(GameState.LevelComplete);
+    }
+
     private void OnEnable()
     {
         BossManager.StartPhase_1 += StartQuiz;
         BossManager.BossQuizScript += GetQuiz;
+
+        BossManager.StartPhase_2 += StartBossFight;
     }
 
     private void OnDisable()
     {
         BossManager.StartPhase_1 -= StartQuiz;
         BossManager.BossQuizScript -= GetQuiz;
+
+        BossManager.StartPhase_2 -= StartBossFight;
     }
 }

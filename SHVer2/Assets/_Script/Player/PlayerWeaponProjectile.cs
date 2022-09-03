@@ -56,4 +56,16 @@ public class PlayerWeaponProjectile : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
+
+        if (damageable != null)
+        {
+            damageable.Damage(_playerWeapon.fireDamage);
+        }
+
+        Destroy(gameObject);
+    }
 }

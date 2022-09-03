@@ -3,9 +3,15 @@ using UnityEngine.Video;
 
 public class VideoPlayerSetup : MonoBehaviour
 {
-    [SerializeField] private VideoPlayer videoPlayer;
+    private VideoPlayer videoPlayer;
     [SerializeField] private VideoClip tutorialClip_1;
     [SerializeField] private VideoClip tutorialClip_2;
+
+    private void Awake()
+    {
+        videoPlayer = GetComponent<VideoPlayer>();
+        videoPlayer.clip = tutorialClip_1;
+    }
 
     public void ChooseVideo1()
     {
