@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        CreateSingleton();
     }
 
     private void Start()
@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case GameState.MainMenu:
+
                 CanvasManager.Instance.SwitchCanvas(CanvasType.MainMenu);
                 break;
 
@@ -54,6 +55,10 @@ public class GameManager : MonoBehaviour
                 UIManager.Instance.TurnOnUI(UIType.PlayerDeathUI);
                 break;
 
+            case GameState.VideoPlayer:
+                CanvasManager.Instance.SwitchCanvas(CanvasType.VideoPlayer);
+                break;
+
             case GameState.LevelComplete:
                 Debug.Log("GO TO NEXT LEVEL");
                 break;
@@ -64,6 +69,19 @@ public class GameManager : MonoBehaviour
 
         OnGameStateChanged?.Invoke(newState);
     }
+
+    private void CreateSingleton()
+    {
+        if (Instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 }
 
-public enum GameState { MainMenu, Exploration, NPCInteraction, AnsweringQuiz, BossQuizEvaluation, BossBattle, PlayerDead, LevelComplete }
+public enum GameState { MainMenu, Exploration, NPCInteraction, VideoPlayer, AnsweringQuiz, BossQuizEvaluation, BossBattle, PlayerDead, LevelComplete }

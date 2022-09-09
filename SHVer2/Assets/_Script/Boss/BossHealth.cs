@@ -8,8 +8,8 @@ public class BossHealth : MonoBehaviour, IDamageable
     public bool isDead;
     private int attackMultiplier = 1;
     private Animator bossAnim;
-    public static event Action<UISliderType, float> SetMaxHealthUI;
-    public static event Action<UISliderType, float> SetCurrentHealthUI;
+    public static event Action<UIHealthType, float> SetMaxHealthUI;
+    public static event Action<UIHealthType, float> SetCurrentHealthUI;
 
 
     private void Awake()
@@ -17,12 +17,12 @@ public class BossHealth : MonoBehaviour, IDamageable
         bossAnim = GetComponent<Animator>();
     }
 
-    public void SetInitialUIvalues(UISliderType _sliderType)
+    public void SetInitialUIvalues(UIHealthType _sliderType)
     {
-        if (_sliderType == UISliderType.BossHealthBar)
+        if (_sliderType == UIHealthType.BossHealthBar)
         {
-            SetMaxHealthUI?.Invoke(UISliderType.BossHealthBar, maxHealth);
-            SetCurrentHealthUI?.Invoke(UISliderType.BossHealthBar, currentHealth);
+            SetMaxHealthUI?.Invoke(UIHealthType.BossHealthBar, maxHealth);
+            SetCurrentHealthUI?.Invoke(UIHealthType.BossHealthBar, currentHealth);
         }
     }
 
@@ -48,7 +48,7 @@ public class BossHealth : MonoBehaviour, IDamageable
     public void Damage(float damage)
     {
         currentHealth -= damage * attackMultiplier;
-        SetCurrentHealthUI?.Invoke(UISliderType.BossHealthBar, currentHealth);
+        SetCurrentHealthUI?.Invoke(UIHealthType.BossHealthBar, currentHealth);
         IsDead();
     }
 
@@ -57,7 +57,7 @@ public class BossHealth : MonoBehaviour, IDamageable
         BossManager.SetPAttackMultiplier += SetPlayerAttackMultiplier;
 
 
-        UISliderController.SetSliderValue += SetInitialUIvalues;
+        UIHealthController.SetSliderValue += SetInitialUIvalues;
     }
 
     private void OnDisable()
@@ -65,6 +65,6 @@ public class BossHealth : MonoBehaviour, IDamageable
         BossManager.SetPAttackMultiplier -= SetPlayerAttackMultiplier;
 
 
-        UISliderController.SetSliderValue -= SetInitialUIvalues;
+        UIHealthController.SetSliderValue -= SetInitialUIvalues;
     }
 }

@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     private PlayerWeapon _playerWeapon;
     private PlayerHealth _playerHealth;
     private PlayerNotepad _playerNotepad;
+    private PlayerInventory _playerInventory;
 
     private void Awake()
     {
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
         _playerWeapon = GetComponent<PlayerWeapon>();
         _playerHealth = GetComponent<PlayerHealth>();
         _playerNotepad = GetComponent<PlayerNotepad>();
+        _playerInventory = GetComponent<PlayerInventory>();
     }
 
     private void FixedUpdate()
@@ -35,5 +37,8 @@ public class Player : MonoBehaviour
 
         //Notepad
         _playerNotepad.SwitchToNotepad();
+
+        //Video player
+        _playerInventory.OpenVideoPlayer();
     }
 }

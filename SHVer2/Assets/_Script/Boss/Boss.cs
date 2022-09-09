@@ -50,10 +50,12 @@ public class Boss : MonoBehaviour
         }
     }
 
+    /*
     private void OnDestroy()
     {
         GameManager.Instance.UpdateGameState(GameState.LevelComplete);
     }
+    */
 
     private void OnEnable()
     {

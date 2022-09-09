@@ -5,10 +5,11 @@ using System;
 public enum VideoButtonType
 {
     PlayButton,
-    PauseButton
+    PauseButton,
+    CloseButton
 }
 
-public class VideoPlayerButton : MonoBehaviour
+public class VideoButtonController : MonoBehaviour
 {
     [SerializeField] private VideoButtonType videoButtonType;
     private Button button;

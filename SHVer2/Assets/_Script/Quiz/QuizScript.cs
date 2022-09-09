@@ -85,8 +85,8 @@ public class QuizScript : MonoBehaviour
     {
         questionAndAnswers = intialQuestionAndAnswers.GetRange(0, intialQuestionAndAnswers.Count);
         //Events
-        InputController.onValueChangedInput += ReadUserInput;
-        InputController.onSubmitAnswer += CheckIfCorrect;
+        InputFieldController.onValueChangedInput += ReadUserInput;
+        InputFieldController.onSubmitAnswer += CheckIfCorrect;
 
         defaultTimeLeft = timeLeft;
         //Converts timer to seconds
@@ -102,8 +102,8 @@ public class QuizScript : MonoBehaviour
     private void OnDisable()
     {
         //Events
-        InputController.onValueChangedInput -= ReadUserInput;
-        InputController.onSubmitAnswer -= CheckIfCorrect;
+        InputFieldController.onValueChangedInput -= ReadUserInput;
+        InputFieldController.onSubmitAnswer -= CheckIfCorrect;
     }
 
     private void Update()

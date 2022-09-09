@@ -4,33 +4,32 @@ using System;
 public class PlayerNotepad : MonoBehaviour
 {
     private PlayerInput playerInput;
-
-    //Events
-    public static Action<CameraType> EnableNotepadCamera;
-    public static Action SwitchDefault;
-
     [SerializeField] private bool isUsing;
-    [SerializeField] private GameObject notepad;
+    private CameraSwitcher cameraSwitcher;
+    public static event Action TurnOnNotepad;
+    public static event Action TurnOffNotepad;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
+        cameraSwitcher = GetComponent<CameraSwitcher>();
     }
     public void SwitchToNotepad()
     {
         if (playerInput.NotepadButtonPressed() && isUsing)
         {
             isUsing = false;
-            notepad.SetActive(false);
             CanvasManager.Instance.SwitchCanvas(CanvasType.GameUI);
-            SwitchDefault?.Invoke();
+            cameraSwitcher.SwitchDefaultCamera();
+            TurnOffNotepad?.Invoke();
         }
 
         else if (playerInput.NotepadButtonPressed() && !isUsing)
         {
             isUsing = true;
-            notepad.SetActive(true);
             CanvasManager.Instance.SwitchCanvas(CanvasType.Notepad);
-            EnableNotepadCamera?.Invoke(CameraType.NotepadCamera);
+            cameraSwitcher.SwitchCamera(CameraType.NotepadCamera);
+            TurnOnNotepad?.Invoke();
         }
     }
 }

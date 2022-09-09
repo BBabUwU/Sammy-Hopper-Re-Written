@@ -2,17 +2,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public enum UISliderType
+public enum UIHealthType
 {
     PlayerHealthBar,
     BossHealthBar
 }
 
-public class UISliderController : MonoBehaviour
+public class UIHealthController : MonoBehaviour
 {
-    [SerializeField] private UISliderType sliderType;
+    [SerializeField] private UIHealthType sliderType;
     private Slider sliderUI;
-    public static event Action<UISliderType> SetSliderValue;
+    public static event Action<UIHealthType> SetSliderValue;
     private bool hasNotSetvalue;
 
     private void Awake()
@@ -30,7 +30,7 @@ public class UISliderController : MonoBehaviour
         }
     }
 
-    public void SetMaxHealth(UISliderType _sliderType, float health)
+    public void SetMaxHealth(UIHealthType _sliderType, float health)
     {
         Debug.Log("Set max health: " + _sliderType);
         if (sliderType == _sliderType)
@@ -39,7 +39,7 @@ public class UISliderController : MonoBehaviour
         }
     }
 
-    public void SetHealth(UISliderType _sliderType, float health)
+    public void SetHealth(UIHealthType _sliderType, float health)
     {
         if (sliderType == _sliderType)
         {

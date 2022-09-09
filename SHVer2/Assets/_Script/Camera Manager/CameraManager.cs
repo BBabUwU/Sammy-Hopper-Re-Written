@@ -6,8 +6,7 @@ using System.Linq;
 public enum CameraType
 {
     PlayerCamera,
-    NotepadCamera,
-    BossArenaCamera
+    NotepadCamera
 }
 
 public class CameraManager : MonoBehaviour
@@ -62,20 +61,13 @@ public class CameraManager : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerNotepad.EnableNotepadCamera += SwitchCamera;
-        PlayerNotepad.SwitchDefault += SwitchDefaultCamera;
-
-        BossManager.SwitchBossArenaCamera += SwitchCamera;
-        BossManager.SwitchBossArenaCamera += SetDefaultCamera;
+        CameraSwitcher.Switch_Camera += SwitchCamera;
+        CameraSwitcher.Switch_DefaultCamera += SwitchDefaultCamera;
     }
 
     private void OnDisable()
     {
-        PlayerNotepad.EnableNotepadCamera -= SwitchCamera;
-        PlayerNotepad.SwitchDefault -= SwitchDefaultCamera;
-
-        BossManager.SwitchBossArenaCamera -= SwitchCamera;
-        BossManager.SwitchBossArenaCamera -= SetDefaultCamera;
+        CameraSwitcher.Switch_Camera -= SwitchCamera;
+        CameraSwitcher.Switch_DefaultCamera -= SwitchDefaultCamera;
     }
 }
-

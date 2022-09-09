@@ -8,7 +8,6 @@ public class BossManager : MonoBehaviour
     [SerializeField] private int scoreWaitTime = 5;
     public static event Action StartPhase_1;
     public static event Action StartPhase_2;
-    public static event Action<CameraType> SwitchBossArenaCamera;
     public static event Func<QuizScript> BossQuizScript;
     public static event Action<UITextType, string> DisplayText;
     public static event Action KillPlayer;
@@ -17,7 +16,6 @@ public class BossManager : MonoBehaviour
     private void StartPhase1()
     {
         StartPhase_1?.Invoke();
-        SwitchBossArenaCamera?.Invoke(CameraType.BossArenaCamera);
     }
 
     private IEnumerator Phase1Passed()

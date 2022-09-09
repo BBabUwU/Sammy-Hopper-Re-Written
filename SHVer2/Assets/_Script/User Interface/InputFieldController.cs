@@ -9,7 +9,7 @@ public enum AnswerType
 }
 
 [RequireComponent(typeof(TMP_InputField))]
-public class InputController : MonoBehaviour
+public class InputFieldController : MonoBehaviour
 {
     public AnswerType inputType;
     TMP_InputField inputButton;

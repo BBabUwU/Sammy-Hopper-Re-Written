@@ -6,15 +6,15 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth = 100f;
     public float currentHealth = 100f;
     public bool isDead = false;
-    public static event Action<UISliderType, float> SetMaxHealthUI;
-    public static event Action<UISliderType, float> SetCurrentHealthUI;
+    public static event Action<UIHealthType, float> SetMaxHealthUI;
+    public static event Action<UIHealthType, float> SetCurrentHealthUI;
 
-    public void SetInitialUIvalues(UISliderType _sliderType)
+    public void SetInitialUIvalues(UIHealthType _sliderType)
     {
-        if (_sliderType == UISliderType.PlayerHealthBar)
+        if (_sliderType == UIHealthType.PlayerHealthBar)
         {
-            SetMaxHealthUI?.Invoke(UISliderType.PlayerHealthBar, maxHealth);
-            SetCurrentHealthUI?.Invoke(UISliderType.PlayerHealthBar, currentHealth);
+            SetMaxHealthUI?.Invoke(UIHealthType.PlayerHealthBar, maxHealth);
+            SetCurrentHealthUI?.Invoke(UIHealthType.PlayerHealthBar, currentHealth);
         }
     }
 
@@ -31,14 +31,14 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth -= damage;
         if (currentHealth <= 0) currentHealth = 0;
-        SetCurrentHealthUI?.Invoke(UISliderType.PlayerHealthBar, currentHealth);
+        SetCurrentHealthUI?.Invoke(UIHealthType.PlayerHealthBar, currentHealth);
     }
 
     public void HealPlayer(float heal)
     {
         currentHealth += heal;
         if (currentHealth > maxHealth) currentHealth = maxHealth;
-        SetCurrentHealthUI?.Invoke(UISliderType.PlayerHealthBar, currentHealth);
+        SetCurrentHealthUI?.Invoke(UIHealthType.PlayerHealthBar, currentHealth);
     }
 
     private void InstantKill()
@@ -52,7 +52,7 @@ public class PlayerHealth : MonoBehaviour
 
         BossManager.KillPlayer += InstantKill;
 
-        UISliderController.SetSliderValue += SetInitialUIvalues;
+        UIHealthController.SetSliderValue += SetInitialUIvalues;
     }
 
     private void OnDisable()
@@ -61,6 +61,6 @@ public class PlayerHealth : MonoBehaviour
 
         BossManager.KillPlayer -= InstantKill;
 
-        UISliderController.SetSliderValue -= SetInitialUIvalues;
+        UIHealthController.SetSliderValue -= SetInitialUIvalues;
     }
 }

@@ -9,6 +9,7 @@ public enum CanvasType
     MainMenu,
     GameUI,
     Notepad,
+    VideoPlayer,
     EndScreen
 }
 
