@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 [RequireComponent(typeof(InteractionDialogue))]
 [RequireComponent(typeof(NonPlayableCharacter))]
@@ -18,6 +19,7 @@ public class ChatableNPC : Interactable
         if (!isTalking)
         {
             isTalking = true;
+            StopAllCoroutines();
             npcScript.SwitchDirection();
             npcScript.LookAtDirection();
             dialogue.StartDialogue();

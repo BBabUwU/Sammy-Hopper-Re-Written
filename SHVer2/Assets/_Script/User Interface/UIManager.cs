@@ -10,7 +10,9 @@ public enum UIType
     DialogueUI,
     QuizUI,
     BossUI,
-    QuizResult
+    QuizResult,
+    VideoMenu,
+    VideoPlayer
 }
 
 public class UIManager : MonoBehaviour

@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
 
             case GameState.VideoPlayer:
                 CanvasManager.Instance.SwitchCanvas(CanvasType.VideoPlayer);
+                UIManager.Instance.TurnOnUI(UIType.VideoMenu);
                 break;
 
             case GameState.LevelComplete:
