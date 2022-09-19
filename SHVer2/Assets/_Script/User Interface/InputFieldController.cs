@@ -14,7 +14,7 @@ public class InputFieldController : MonoBehaviour
     public AnswerType inputType;
     TMP_InputField inputButton;
     bool allowEnter;
-    public static event Action<AnswerType, string> onValueChangedInput;
+    public static event Action<AnswerType, string> onValueChangeInput;
     public static event Action onSubmitAnswer;
 
     private void Start()
@@ -30,7 +30,7 @@ public class InputFieldController : MonoBehaviour
 
     void OnValueChanged(string _answer)
     {
-        onValueChangedInput?.Invoke(inputType, _answer);
+        onValueChangeInput?.Invoke(inputType, _answer);
     }
 
     private void SubmitAnswerInput()
@@ -60,12 +60,12 @@ public class InputFieldController : MonoBehaviour
 
     private void OnEnable()
     {
-        QuizScript.ClearInput += ClearInputField;
+        Quiz.ClearInput += ClearInputField;
     }
 
     private void OnDisable()
     {
-        QuizScript.ClearInput -= ClearInputField;
+        Quiz.ClearInput -= ClearInputField;
     }
 }
 

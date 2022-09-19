@@ -32,7 +32,6 @@ public class UIHealthController : MonoBehaviour
 
     public void SetMaxHealth(UIHealthType _sliderType, float health)
     {
-        Debug.Log("Set max health: " + _sliderType);
         if (sliderType == _sliderType)
         {
             sliderUI.maxValue = health;

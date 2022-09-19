@@ -50,29 +50,23 @@ public class UITextController : MonoBehaviour
 
     private void OnEnable()
     {
-        QuizScript.UpdateQuestionText += UpdateText;
-        QuizScript.UpdateTimerText += UpdateText;
-
         InteractionDialogue.nameText += UpdateText;
         InteractionDialogue.dialogueText += UpdateText;
         InteractionDialogue.updateDialogueText += UpdateDialogue;
         InteractionDialogue.currentUIText += GetText;
         InteractionDialogue.updateUIText += UpdateText;
 
-        BossManager.DisplayText += UpdateText;
+        Quiz.UpdateQuestionText += UpdateText;
     }
 
     private void OnDisable()
     {
-        QuizScript.UpdateQuestionText -= UpdateText;
-        QuizScript.UpdateTimerText -= UpdateText;
-
         InteractionDialogue.nameText -= UpdateText;
         InteractionDialogue.dialogueText -= UpdateText;
         InteractionDialogue.updateDialogueText -= UpdateDialogue;
         InteractionDialogue.currentUIText -= GetText;
         InteractionDialogue.updateUIText -= UpdateText;
 
-        BossManager.DisplayText -= UpdateText;
+        Quiz.UpdateQuestionText -= UpdateText;
     }
 }

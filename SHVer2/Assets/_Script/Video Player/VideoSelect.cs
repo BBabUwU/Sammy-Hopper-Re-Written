@@ -12,7 +12,6 @@ public class VideoSelect : MonoBehaviour
 {
     [SerializeField] private VideoNumber videoNumber;
     private Button button;
-
     public static event Action<VideoNumber> ChangeClip;
 
     private void Awake()

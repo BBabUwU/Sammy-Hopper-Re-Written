@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
     List<UIController> uiControllerList;
     private void Awake()
     {
-        CreateSingleton();
+        Instance = this;
         uiControllerList = GetComponentsInChildren<UIController>(true).ToList();
         DisableAllUI();
     }
@@ -51,17 +51,5 @@ public class UIManager : MonoBehaviour
     public void DisableAllUI()
     {
         uiControllerList.ForEach(x => x.gameObject.SetActive(false));
-    }
-
-    private void CreateSingleton()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 }

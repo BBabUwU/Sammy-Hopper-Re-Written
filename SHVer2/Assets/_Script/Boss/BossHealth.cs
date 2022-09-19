@@ -54,17 +54,11 @@ public class BossHealth : MonoBehaviour, IDamageable
 
     private void OnEnable()
     {
-        BossManager.SetPAttackMultiplier += SetPlayerAttackMultiplier;
-
-
         UIHealthController.SetSliderValue += SetInitialUIvalues;
     }
 
     private void OnDisable()
     {
-        BossManager.SetPAttackMultiplier -= SetPlayerAttackMultiplier;
-
-
         UIHealthController.SetSliderValue -= SetInitialUIvalues;
     }
 }

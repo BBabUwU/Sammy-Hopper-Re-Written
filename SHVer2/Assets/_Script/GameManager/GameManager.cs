@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case GameState.MainMenu:
-
                 CanvasManager.Instance.SwitchCanvas(CanvasType.MainMenu);
                 break;
 

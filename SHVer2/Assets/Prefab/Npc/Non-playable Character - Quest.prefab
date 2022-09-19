@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest:
-    questNumber: 1
+    questID: 0
     completed: 0
     title: 
     description: 
@@ -173,15 +173,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945aa0689e5910c44b572f14d5eedd9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcNameText: {fileID: 0}
-  dialogueText: {fileID: 0}
-  npcName: Sussy
-  lines:
-  - Help me!
-  - Collect the pages ples
+  npcName: 
+  lines: []
   textSpeed: 0.05
   doneTalking: 0
-  hasQuest: 1
+  hasQuest: 0
   questCompleteLines:
-  - Oh my thank you for collecting the pages O_O
-  - I will now teach you
+  - 
+  - 

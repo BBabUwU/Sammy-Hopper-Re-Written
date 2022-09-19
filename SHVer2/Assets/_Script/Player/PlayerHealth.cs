@@ -49,18 +49,12 @@ public class PlayerHealth : MonoBehaviour
     private void OnEnable()
     {
         HealthPotion.HealPlayer += HealPlayer;
-
-        BossManager.KillPlayer += InstantKill;
-
         UIHealthController.SetSliderValue += SetInitialUIvalues;
     }
 
     private void OnDisable()
     {
         HealthPotion.HealPlayer -= HealPlayer;
-
-        BossManager.KillPlayer -= InstantKill;
-
         UIHealthController.SetSliderValue -= SetInitialUIvalues;
     }
 }
