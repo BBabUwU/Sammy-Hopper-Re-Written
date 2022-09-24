@@ -1,4 +1,6 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 
 public class GameManager : MonoBehaviour
@@ -8,10 +10,12 @@ public class GameManager : MonoBehaviour
 
     [Header("State of the game")]
     public GameState gameState;
+    private int currentScene = 0;
 
     private void Awake()
     {
         CreateSingleton();
+        currentScene = SceneManager.GetActiveScene().buildIndex;
     }
 
     private void Start()
@@ -27,6 +31,10 @@ public class GameManager : MonoBehaviour
         {
             case GameState.MainMenu:
                 CanvasManager.Instance.SwitchCanvas(CanvasType.MainMenu);
+                break;
+
+            case GameState.SceneLoad:
+                newScene(1);
                 break;
 
             case GameState.Exploration:
@@ -59,6 +67,10 @@ public class GameManager : MonoBehaviour
                 UIManager.Instance.TurnOnUI(UIType.VideoMenu);
                 break;
 
+            case GameState.Puzzle:
+                CanvasManager.Instance.SwitchCanvas(CanvasType.Puzzle);
+                break;
+
             case GameState.LevelComplete:
                 Debug.Log("GO TO NEXT LEVEL");
                 break;
@@ -68,6 +80,33 @@ public class GameManager : MonoBehaviour
         }
 
         OnGameStateChanged?.Invoke(newState);
+    }
+
+    public void newScene(int sceneNumber)
+    {
+        SceneManager.LoadScene(sceneNumber);
+
+        if (SceneManager.GetActiveScene().buildIndex != sceneNumber)
+        {
+            StartCoroutine("waitForSceneLoad", sceneNumber);
+        }
+    }
+
+    IEnumerator waitForSceneLoad(int sceneNumber)
+    {
+        while (SceneManager.GetActiveScene().buildIndex != sceneNumber)
+        {
+            yield return null;
+            Debug.Log("Not yet loaded");
+        }
+
+        // Do anything after proper scene has been loaded
+        if (SceneManager.GetActiveScene().buildIndex == sceneNumber)
+        {
+            UpdateGameState(GameState.Exploration);
+        }
+
+        currentScene = sceneNumber;
     }
 
     private void CreateSingleton()
@@ -84,4 +123,4 @@ public class GameManager : MonoBehaviour
     }
 }
 
-public enum GameState { MainMenu, Exploration, NPCInteraction, VideoPlayer, AnsweringQuiz, BossQuizEvaluation, BossBattle, PlayerDead, LevelComplete }
+public enum GameState { MainMenu, SceneLoad, Exploration, NPCInteraction, VideoPlayer, Puzzle, AnsweringQuiz, BossQuizEvaluation, BossBattle, PlayerDead, LevelComplete }

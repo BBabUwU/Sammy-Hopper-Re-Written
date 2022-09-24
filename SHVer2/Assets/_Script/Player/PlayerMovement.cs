@@ -39,6 +39,11 @@ public class PlayerMovement : MonoBehaviour
         //Detects jump input
         _playerInput.JumpIsPressed();
         _playerInput.JumpIsReleased();
+
+        //Animation
+        if (_playerCollision.IsGrounded()) _playerAnimation.SetBool("Grounded", true);
+        else if (!_playerCollision.IsGrounded()) _playerAnimation.SetBool("Grounded", false);
+
         //Low Jump
         if (_playerInput.JumpIsPressed() && _playerCollision.IsGrounded())
         {
@@ -49,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
         {
             _playerRigidBody.velocity = new Vector2(_playerRigidBody.velocity.x, _playerRigidBody.velocity.y * 0.5f);
         }
+
+        _playerAnimation.SetFloat("Falling", _playerRigidBody.velocity.y);
     }
 
     internal void FlipPlayer()
@@ -85,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
             allowedToMove = true;
         }
 
-        else if (state == GameState.AnsweringQuiz || state == GameState.NPCInteraction || state == GameState.PlayerDead)
+        else
         {
             allowedToMove = false;
         }

@@ -61,7 +61,7 @@ public class PlayerWeapon : MonoBehaviour
             allowedToFire = true;
         }
 
-        else if (state == GameState.AnsweringQuiz || state == GameState.NPCInteraction || state == GameState.PlayerDead)
+        else
         {
             allowedToFire = false;
         }

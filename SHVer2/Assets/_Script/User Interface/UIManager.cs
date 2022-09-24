@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
         {
             desiredUI.gameObject.SetActive(true);
         }
-        else { Debug.Log("The desired UI was not found"); }
+        else { Debug.Log(_uiType + " UI was not found"); }
     }
 
     public void TurnOffUI(UIType _uiType)
@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour
         {
             desiredUI.gameObject.SetActive(false);
         }
-        else { Debug.Log("The desired UI was not found"); }
+        else { Debug.Log(_uiType + " UI was not found"); }
     }
 
     public void DisableAllUI()

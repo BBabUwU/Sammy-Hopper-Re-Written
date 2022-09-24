@@ -80,6 +80,8 @@ public class Quiz : MonoBehaviour
         {
             Debug.Log("Wrong");
         }
+
+        ClearInput?.Invoke();
     }
 
     private void OnDisable()

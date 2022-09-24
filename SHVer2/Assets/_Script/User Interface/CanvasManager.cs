@@ -9,7 +9,8 @@ public enum CanvasType
     GameUI,
     Notepad,
     VideoPlayer,
-    EndScreen
+    EndScreen,
+    Puzzle
 }
 
 public class CanvasManager : MonoBehaviour
@@ -19,7 +20,7 @@ public class CanvasManager : MonoBehaviour
     CanvasController lastActiveCanvas;
     private void Awake()
     {
-        CreateSingleton();
+        Instance = this;
 
         canvasControllerList = GetComponentsInChildren<CanvasController>(true).ToList();
         canvasControllerList.ForEach(x => x.gameObject.SetActive(false));
@@ -42,16 +43,18 @@ public class CanvasManager : MonoBehaviour
         else { Debug.Log("The desired canvas was not found"); }
     }
 
-    private void CreateSingleton()
+    private Canvas GetCanvas()
     {
-        if (Instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        return GetComponent<Canvas>();
+    }
+
+    private void OnEnable()
+    {
+        PuzzlePiece.canvas += GetCanvas;
+    }
+
+    private void OnDisable()
+    {
+        PuzzlePiece.canvas -= GetCanvas;
     }
 }
