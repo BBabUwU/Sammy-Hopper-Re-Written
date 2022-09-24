@@ -21,6 +21,9 @@ public class Quiz : MonoBehaviour
     public static event Action<UITextType, string> UpdateQuestionText;
     public static event Action ClearInput;
 
+    //Sends message that the quiz is complete to the puzzle manager
+    public static event Action QuizComplete;
+
     private void Start()
     {
         RandomizeQuestion();
@@ -70,9 +73,10 @@ public class Quiz : MonoBehaviour
     {
         if (IsCorrect())
         {
-            Debug.Log("Is Correct");
+            ClearInput?.Invoke();
             UIManager.Instance.TurnOffUI(UIType.QuizUI);
             GameManager.Instance.UpdateGameState(GameState.Exploration);
+            QuizComplete?.Invoke();
             this.enabled = false;
         }
 

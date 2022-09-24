@@ -11,7 +11,7 @@ public class PuzzlePiece : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     private PuzzleSlot slot;
-    private RawImage rawImage;
+    public RawImage rawImage;
 
     //Puzzle Index
     [HideInInspector] public int puzzlePieceID;
@@ -25,7 +25,7 @@ public class PuzzlePiece : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         puzzlePieceID = slot.puzzleSlotID;
         rawImage.texture = slot.rawImage.texture;
         this.slot = slot;
-        //gameObject.SetActive(false);
+        rawImage.enabled = false;
     }
 
     private void Awake()

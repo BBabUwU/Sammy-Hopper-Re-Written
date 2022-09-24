@@ -18,12 +18,35 @@ public class PuzzleManager : MonoBehaviour
     public static event Action PuzzleIsComplete;
 
     //Random unique number
-    List<int> uniqueNumbers = new List<int>();
+    List<int> PuzzlePiecePositionIndex = new List<int>();
 
+    //Activates the puzzle piece when the quiz is completed
+    public static event Action<int> ActivatePiece;
+
+    //Gets the number of quizzes the player answered
+    public static Func<int> quizzesAnswered;
     private void Start()
     {
-        UniqueNumbers();
+        RandomizePiecesPosition();
         Spawn();
+    }
+
+    private void RandomizePiecesPosition()
+    {
+        List<int> values = new List<int>() { 0, 1, 2, 3, 4 };
+
+        System.Random rand = new System.Random();
+
+        PuzzlePiecePositionIndex = values.OrderBy(_ => rand.Next()).ToList();
+    }
+
+    private void EnablePuzzlePiece()
+    {
+        for (int i = 0; i < quizzesAnswered(); i++)
+        {
+            Debug.Log("Ran: " + (i + 1) + " times");
+            ActivatePiece?.Invoke(PuzzlePiecePositionIndex[i]);
+        }
     }
 
     void Spawn()
@@ -45,20 +68,9 @@ public class PuzzleManager : MonoBehaviour
             //Set current slot reference.
             currentSlots.Add(spawnedSlot.GetComponent<PuzzleSlot>());
 
-            var spawnedPiece = Instantiate(piecePrefab, pieceParent.GetChild(i).position, Quaternion.identity, parentTransform);
+            var spawnedPiece = Instantiate(piecePrefab, pieceParent.GetChild(PuzzlePiecePositionIndex[i]).position, Quaternion.identity, parentTransform);
 
             spawnedPiece.GetComponent<PuzzlePiece>().Init(spawnedSlot.GetComponent<PuzzleSlot>());
-        }
-    }
-    public void UniqueNumbers()
-    {
-        for (int i = 0; i < numberOfPieces; i++)
-        {
-            int val = UnityEngine.Random.Range(0, 4);
-
-            Debug.Log(uniqueNumbers.Contains(val));
-
-            uniqueNumbers.Add(val);
         }
     }
 
@@ -91,10 +103,12 @@ public class PuzzleManager : MonoBehaviour
     private void OnEnable()
     {
         PuzzleSlot.CheckCompletion += CheckCompletion;
+        PuzzlePieceController.CheckActivation += EnablePuzzlePiece;
     }
 
     private void OnDisable()
     {
         PuzzleSlot.CheckCompletion -= CheckCompletion;
+        PuzzlePieceController.CheckActivation -= EnablePuzzlePiece;
     }
 }
