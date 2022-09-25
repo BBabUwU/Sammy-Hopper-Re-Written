@@ -4027,7 +4027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockedArea: {fileID: 1181409807}
-  answerQuizzes: 0
+  answeredQuizzes: 0
 --- !u!4 &462223557
 Transform:
   m_ObjectHideFlags: 0
@@ -4121,7 +4121,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.58559, y: -10.708271, z: -9.960548}
+  m_LocalPosition: {x: 19.075592, y: -10.708271, z: -9.960548}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4641,7 +4641,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1001027696}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -40.08, y: -16.89, z: 0}
+  m_LocalPosition: {x: -39.59, y: -16.89, z: 0}
   m_LocalScale: {x: 0.03430942, y: 0.03430943, z: 0.03430943}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8850,7 +8850,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1747411656, guid: 4de6b0380d0866c4594f92d8fd6972c5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2120755140, guid: 4de6b0380d0866c4594f92d8fd6972c5, type: 3}
       propertyPath: m_Enabled
@@ -8980,7 +8980,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613825872}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.58559, y: -10.708271, z: -9.960548}
+  m_LocalPosition: {x: 19.075592, y: -10.708271, z: -9.960548}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -50,7 +50,6 @@ public class InputFieldController : MonoBehaviour
 
     private void ClearInputField()
     {
-        Debug.Log("IsHere");
         inputButton.text = "";
 
         if (inputType == AnswerType.Answer1)
