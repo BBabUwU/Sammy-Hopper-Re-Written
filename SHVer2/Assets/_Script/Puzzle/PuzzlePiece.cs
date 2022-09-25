@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
 using UnityEngine.UI;
+using System.Collections;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class PuzzlePiece : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
@@ -19,6 +20,9 @@ public class PuzzlePiece : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     //Original position
     private Vector3 originalPosition;
 
+    //Sends message for activation
+    public static event Action SendActivationMessage;
+
     public void Init(PuzzleSlot slot)
     {
         originalPosition = transform.position;
@@ -33,6 +37,17 @@ public class PuzzlePiece : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         rawImage = GetComponent<RawImage>();
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(WaitActivation());
+    }
+
+    IEnumerator WaitActivation()
+    {
+        yield return new WaitForSeconds(0.1f);
+        SendActivationMessage?.Invoke();
     }
 
     public void OnBeginDrag(PointerEventData eventData)

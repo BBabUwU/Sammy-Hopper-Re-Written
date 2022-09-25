@@ -4,18 +4,12 @@ using System;
 public class QuestGiver : MonoBehaviour
 {
     public Quest quest;
-    public static event Action<Quest> AddQuest;
-    public static event Action<Quest> QuestPassed;
-
-    private void Awake()
-    {
-        AddQuest?.Invoke(quest);
-    }
 
     private void OnEnable()
     {
         GatherQuest.itemCollected += AddGatherCounter;
         KillQuest.enemyKilled += AddKillCounter;
+
         GatherQuest.itemCollected += CheckIfFinish;
         KillQuest.enemyKilled += CheckIfFinish;
     }
@@ -24,16 +18,9 @@ public class QuestGiver : MonoBehaviour
     {
         GatherQuest.itemCollected -= AddGatherCounter;
         KillQuest.enemyKilled -= AddKillCounter;
+
         GatherQuest.itemCollected -= CheckIfFinish;
         KillQuest.enemyKilled -= CheckIfFinish;
-    }
-
-    public void QuestComplete()
-    {
-        if (quest.completed)
-        {
-            QuestPassed?.Invoke(quest);
-        }
     }
 
     private void AddKillCounter(int questNumber)
@@ -57,7 +44,6 @@ public class QuestGiver : MonoBehaviour
         if (questNumber == quest.questID)
         {
             quest.Evaluate();
-            QuestComplete();
         }
     }
 }

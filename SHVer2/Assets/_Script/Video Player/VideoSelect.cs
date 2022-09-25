@@ -2,17 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public enum VideoNumber
-{
-    Video1,
-    Video2
-}
-
 public class VideoSelect : MonoBehaviour
 {
-    [SerializeField] private VideoNumber videoNumber;
+    public int videoNumber;
     private Button button;
-    public static event Action<VideoNumber> ChangeClip;
+    public static event Action<int> ChangeClip;
+    public bool isLocked;
 
     private void Awake()
     {
@@ -22,8 +17,11 @@ public class VideoSelect : MonoBehaviour
 
     private void SetClip()
     {
-        ChangeClip?.Invoke(videoNumber);
-        UIManager.Instance.TurnOnUI(UIType.VideoPlayer);
-        UIManager.Instance.TurnOffUI(UIType.VideoMenu);
+        if (!isLocked)
+        {
+            ChangeClip?.Invoke(videoNumber);
+            UIManager.Instance.TurnOnUI(UIType.VideoPlayer);
+            UIManager.Instance.TurnOffUI(UIType.VideoMenu);
+        }
     }
 }

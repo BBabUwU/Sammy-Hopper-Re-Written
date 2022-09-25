@@ -104,5 +104,4 @@ public class InteractionDialogue : MonoBehaviour
     {
         return currentLineIndex < currentLines.Count - 1;
     }
-
 }

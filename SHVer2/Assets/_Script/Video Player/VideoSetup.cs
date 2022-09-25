@@ -5,15 +5,12 @@ using System;
 public class VideoSetup : MonoBehaviour
 {
     public VideoClip videoTutorial_1;
-    public VideoClip videoTutorial_2;
     public static event Func<VideoPlayer> videoPlayer;
 
-    private void SetClip(VideoNumber videoNumber)
+    private void SetClip(int videoNumber)
     {
-        if (videoNumber == VideoNumber.Video1)
+        if (videoNumber == 0)
             videoPlayer().clip = videoTutorial_1;
-        if (videoNumber == VideoNumber.Video2)
-            videoPlayer().clip = videoTutorial_2;
     }
 
     private void OnEnable()

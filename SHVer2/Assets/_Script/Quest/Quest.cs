@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 [System.Serializable]
 public class Quest
@@ -8,6 +9,7 @@ public class Quest
     public string title;
     public string description;
     public Goal goal;
+    public int VideoNumber;
 
     public void Evaluate()
     {

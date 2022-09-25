@@ -14,14 +14,14 @@ public class PuzzleManager : MonoBehaviour
     //Current Puzzle Slot references
     List<PuzzleSlot> currentSlots = new List<PuzzleSlot>();
 
+    //Current Puzzle Slot references
+    List<PuzzlePiece> currentPieces = new List<PuzzlePiece>();
+
     //Use to signal that the puzzle is complete
     public static event Action PuzzleIsComplete;
 
     //Random unique number
     List<int> PuzzlePiecePositionIndex = new List<int>();
-
-    //Activates the puzzle piece when the quiz is completed
-    public static event Action<int> ActivatePiece;
 
     //Gets the number of quizzes the player answered
     public static Func<int> quizzesAnswered;
@@ -44,8 +44,7 @@ public class PuzzleManager : MonoBehaviour
     {
         for (int i = 0; i < quizzesAnswered(); i++)
         {
-            Debug.Log("Ran: " + (i + 1) + " times");
-            ActivatePiece?.Invoke(PuzzlePiecePositionIndex[i]);
+            currentPieces[i].rawImage.enabled = true;
         }
     }
 
@@ -69,6 +68,9 @@ public class PuzzleManager : MonoBehaviour
             currentSlots.Add(spawnedSlot.GetComponent<PuzzleSlot>());
 
             var spawnedPiece = Instantiate(piecePrefab, pieceParent.GetChild(PuzzlePiecePositionIndex[i]).position, Quaternion.identity, parentTransform);
+
+            //Set current piece reference
+            currentPieces.Add(spawnedPiece.GetComponent<PuzzlePiece>());
 
             spawnedPiece.GetComponent<PuzzlePiece>().Init(spawnedSlot.GetComponent<PuzzleSlot>());
         }
@@ -103,12 +105,15 @@ public class PuzzleManager : MonoBehaviour
     private void OnEnable()
     {
         PuzzleSlot.CheckCompletion += CheckCompletion;
-        PuzzlePieceController.CheckActivation += EnablePuzzlePiece;
+
+        PuzzlePiece.SendActivationMessage += EnablePuzzlePiece;
+
     }
 
     private void OnDisable()
     {
         PuzzleSlot.CheckCompletion -= CheckCompletion;
-        PuzzlePieceController.CheckActivation -= EnablePuzzlePiece;
+
+        PuzzlePiece.SendActivationMessage -= EnablePuzzlePiece;
     }
 }
