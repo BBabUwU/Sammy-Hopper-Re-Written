@@ -5,11 +5,11 @@ using UnityEngine;
 public class ProgressManager : MonoBehaviour
 {
     [SerializeField] private GameObject blockedArea;
-    public int answeredQuizzes = 0;
+    public int answerQuizzes = 0;
 
     private void QuizCompleted()
     {
-        answeredQuizzes++;
+        answerQuizzes++;
     }
 
     private void PuzzleCompleted()
@@ -19,7 +19,7 @@ public class ProgressManager : MonoBehaviour
 
     private int GetNumberOfAnsweredQuizzes()
     {
-        return answeredQuizzes;
+        return answerQuizzes;
     }
 
     private void OnEnable()

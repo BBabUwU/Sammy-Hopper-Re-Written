@@ -77,7 +77,7 @@ public class Quiz : MonoBehaviour
             UIManager.Instance.TurnOffUI(UIType.QuizUI);
             GameManager.Instance.UpdateGameState(GameState.Exploration);
             QuizComplete?.Invoke();
-            Destroy(gameObject);
+            this.enabled = false;
         }
 
         else
