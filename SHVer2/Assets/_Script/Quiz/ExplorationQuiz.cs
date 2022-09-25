@@ -3,7 +3,7 @@ using UnityEngine;
 using System;
 
 
-public class Quiz : MonoBehaviour
+public class ExplorationQuiz : MonoBehaviour
 {
     //Variables
     private string userInput1;

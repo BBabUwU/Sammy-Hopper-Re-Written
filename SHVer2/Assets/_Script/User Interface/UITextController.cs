@@ -56,7 +56,9 @@ public class UITextController : MonoBehaviour
         InteractionDialogue.currentUIText += GetText;
         InteractionDialogue.updateUIText += UpdateText;
 
-        Quiz.UpdateQuestionText += UpdateText;
+        ExplorationQuiz.UpdateQuestionText += UpdateText;
+
+        BossQuiz.UpdateQuestionText += UpdateText;
     }
 
     private void OnDisable()
@@ -67,6 +69,8 @@ public class UITextController : MonoBehaviour
         InteractionDialogue.currentUIText -= GetText;
         InteractionDialogue.updateUIText -= UpdateText;
 
-        Quiz.UpdateQuestionText -= UpdateText;
+        ExplorationQuiz.UpdateQuestionText -= UpdateText;
+
+        BossQuiz.UpdateQuestionText -= UpdateText;
     }
 }

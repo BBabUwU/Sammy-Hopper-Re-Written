@@ -9,7 +9,6 @@ public class PuzzleManager : MonoBehaviour
     [SerializeField] private PuzzlePiece piecePrefab;
     [SerializeField] private Transform slotParent, pieceParent;
     [SerializeField] private Transform parentTransform;
-    private int numberOfPieces = 5;
 
     //Current Puzzle Slot references
     List<PuzzleSlot> currentSlots = new List<PuzzleSlot>();
@@ -29,33 +28,40 @@ public class PuzzleManager : MonoBehaviour
     {
         RandomizePiecesPosition();
         Spawn();
+        InitialPieces();
     }
 
     private void RandomizePiecesPosition()
     {
-        List<int> values = new List<int>() { 0, 1, 2, 3, 4 };
+        List<int> values = new List<int>() { 0, 1, 2, 3, 4, 5, 6 };
 
         System.Random rand = new System.Random();
 
         PuzzlePiecePositionIndex = values.OrderBy(_ => rand.Next()).ToList();
     }
 
+    private void InitialPieces()
+    {
+        for (int i = 4; i < 7; i++)
+        {
+            currentPieces[PuzzlePiecePositionIndex[i]].rawImage.enabled = true;
+        }
+    }
+
     private void EnablePuzzlePiece()
     {
         for (int i = 0; i < quizzesAnswered(); i++)
         {
-            currentPieces[i].rawImage.enabled = true;
+            currentPieces[PuzzlePiecePositionIndex[i]].rawImage.enabled = true;
         }
     }
 
     void Spawn()
     {
 
-        var randomSet = slotPrefabs.OrderBy(s => UnityEngine.Random.value).Take(numberOfPieces).ToList();
-
-        for (int i = 0; i < randomSet.Count; i++)
+        for (int i = 0; i < slotPrefabs.Count(); i++)
         {
-            var spawnedSlot = Instantiate(randomSet[i], slotParent.GetChild(i).position, Quaternion.identity, parentTransform);
+            var spawnedSlot = Instantiate(slotPrefabs[i], slotParent.GetChild(i).position, Quaternion.identity, parentTransform);
 
             //Sets slot ID
             spawnedSlot.GetComponent<PuzzleSlot>().puzzleSlotID = i;
@@ -81,14 +87,14 @@ public class PuzzleManager : MonoBehaviour
         bool isComplete = false;
         int numberOfMatchedPieces = 0;
 
-        for (int i = 0; i < numberOfPieces; i++)
+        for (int i = 0; i < slotPrefabs.Count(); i++)
         {
             if (currentSlots[i].pieceMatched) numberOfMatchedPieces++;
             else if (!currentSlots[i].pieceMatched) numberOfMatchedPieces--;
             Debug.Log(numberOfMatchedPieces);
         }
 
-        if (numberOfMatchedPieces == numberOfPieces) isComplete = true;
+        if (numberOfMatchedPieces == slotPrefabs.Count()) isComplete = true;
 
         if (isComplete)
         {

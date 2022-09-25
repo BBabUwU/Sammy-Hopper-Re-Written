@@ -46,7 +46,7 @@ public class ProgressManager : MonoBehaviour
     {
         PuzzleManager.PuzzleIsComplete += PuzzleCompleted;
 
-        Quiz.QuizComplete += QuizCompleted;
+        ExplorationQuiz.QuizComplete += QuizCompleted;
 
         PuzzleManager.quizzesAnswered += GetNumberOfAnsweredQuizzes;
 
@@ -57,7 +57,7 @@ public class ProgressManager : MonoBehaviour
     {
         PuzzleManager.PuzzleIsComplete -= PuzzleCompleted;
 
-        Quiz.QuizComplete -= QuizCompleted;
+        ExplorationQuiz.QuizComplete -= QuizCompleted;
 
         PuzzleManager.quizzesAnswered -= GetNumberOfAnsweredQuizzes;
 

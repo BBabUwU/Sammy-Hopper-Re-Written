@@ -4,7 +4,7 @@ using System;
 public class CameraSwitcher : MonoBehaviour
 {
     public static event Action<CameraType> Switch_Camera;
-    public static event Action Switch_DefaultCamera;
+    public static event System.Action Switch_DefaultCamera;
 
     public void SwitchCamera(CameraType _cameraType)
     {

@@ -5,7 +5,7 @@ public class TeleportToBoss : MonoBehaviour
 {
 
     [SerializeField] private Transform pointB;
-    public static event Action Teleported;
+    public static event System.Action Teleported;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

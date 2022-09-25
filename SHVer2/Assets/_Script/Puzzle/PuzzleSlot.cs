@@ -7,6 +7,7 @@ public class PuzzleSlot : MonoBehaviour, IDropHandler
 {
     [HideInInspector] public int puzzleSlotID;
     public RawImage rawImage;
+    public RectTransform rect;
     private PuzzlePiece piecePlaced;
     public bool pieceMatched;
     public static event Action CheckCompletion;
@@ -14,9 +15,13 @@ public class PuzzleSlot : MonoBehaviour, IDropHandler
     private void Awake()
     {
         rawImage = GetComponent<RawImage>();
+        rect = GetComponent<RectTransform>();
     }
+
     public void OnDrop(PointerEventData eventData)
     {
+        Debug.Log("On Drop");
+
         if (eventData.pointerDrag != null)
         {
             piecePlaced = eventData.pointerDrag.GetComponent<PuzzlePiece>();

@@ -15,12 +15,12 @@ public class QuizQuestionBank : MonoBehaviour
 
     private void OnEnable()
     {
-        Quiz.QuestionBank += GetQnA;
+        ExplorationQuiz.QuestionBank += GetQnA;
     }
 
     private void OnDisable()
     {
-        Quiz.QuestionBank -= GetQnA;
+        ExplorationQuiz.QuestionBank -= GetQnA;
     }
 
 }

@@ -6,8 +6,8 @@ public class PlayerNotepad : MonoBehaviour
     private PlayerInput playerInput;
     [SerializeField] private bool isUsing;
     private CameraSwitcher cameraSwitcher;
-    public static event Action TurnOnNotepad;
-    public static event Action TurnOffNotepad;
+    public static event System.Action TurnOnNotepad;
+    public static event System.Action TurnOffNotepad;
 
     private void Awake()
     {

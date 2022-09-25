@@ -28,6 +28,7 @@ public class PuzzlePiece : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         originalPosition = transform.position;
         puzzlePieceID = slot.puzzleSlotID;
         rawImage.texture = slot.rawImage.texture;
+        rectTransform.sizeDelta = slot.rect.sizeDelta;
         this.slot = slot;
         rawImage.enabled = false;
     }

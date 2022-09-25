@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -680.09937, y: 152.09644}
-  m_SizeDelta: {x: 304.1988, y: 304.1988}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6286804680606485642
 CanvasRenderer:
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 2c3527b6cbac6a745b5bc2691f0934c8, type: 3}
+  m_Texture: {fileID: 2800000, guid: dad6611b87dbc4149af5b847744f0b09, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -86,3 +86,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba07d65606f03e74da26ec3c1e1953c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzleSlotID: 0
+  rawImage: {fileID: 0}
+  pieceMatched: 0

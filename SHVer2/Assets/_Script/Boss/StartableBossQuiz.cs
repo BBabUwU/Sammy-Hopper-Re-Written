@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ExplorationQuiz))]
-public class StartableQuiz : Interactable
+[RequireComponent(typeof(BossQuiz))]
+public class StartableBossQuiz : Interactable
 {
-    private ExplorationQuiz quiz;
+    private BossQuiz quiz;
 
     private void Awake()
     {
-        quiz = GetComponent<ExplorationQuiz>();
+        quiz = GetComponent<BossQuiz>();
     }
 
     public override void Interact()

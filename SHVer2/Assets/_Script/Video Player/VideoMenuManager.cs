@@ -5,7 +5,7 @@ using System;
 
 public class VideoMenuManager : MonoBehaviour
 {
-    public static event Action MenuOpened;
+    public static event System.Action MenuOpened;
     public List<VideoSelect> videoButtons;
     private void UnclockVideo(int unlockedIndex)
     {
