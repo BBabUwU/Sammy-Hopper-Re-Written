@@ -26,6 +26,11 @@ public class UIManager : MonoBehaviour
         DisableAllUI();
     }
 
+    private void OnEnable()
+    {
+        Instance = this;
+    }
+
     public void TurnOnUI(UIType _uiType)
     {
         UIController desiredUI = uiControllerList.Find(x => x.uiType == _uiType);
