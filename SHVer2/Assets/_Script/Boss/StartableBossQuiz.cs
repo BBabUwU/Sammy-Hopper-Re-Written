@@ -6,6 +6,7 @@ using UnityEngine;
 public class StartableBossQuiz : Interactable
 {
     private BossQuiz quiz;
+    public List<Chapter1QnATemplate> questionBank;
 
     private void Awake()
     {

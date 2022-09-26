@@ -42,14 +42,14 @@ public class ExplorationQuiz : MonoBehaviour
     {
         questionIndex = UnityEngine.Random.Range(0, QuestionBank().Count);
 
-        while (QuestionBank()[questionIndex].isActive)
+        while (QuestionBank()[questionIndex].NotActive)
         {
             questionIndex = UnityEngine.Random.Range(0, QuestionBank().Count);
         }
 
         questionAnswer1 = QuestionBank()[questionIndex].correctAnswer1;
         questionAnswer2 = QuestionBank()[questionIndex].correctAnswer2;
-        QuestionBank()[questionIndex].isActive = true;
+        QuestionBank()[questionIndex].NotActive = true;
         DisplayQuestion();
     }
 

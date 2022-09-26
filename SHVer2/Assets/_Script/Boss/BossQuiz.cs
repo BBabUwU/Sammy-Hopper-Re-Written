@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+
 
 public class BossQuiz : MonoBehaviour
 {
@@ -11,40 +11,48 @@ public class BossQuiz : MonoBehaviour
     private int questionIndex;
     private string questionAnswer1;
     private string questionAnswer2;
+    public int numberOfQuestions;
+    private int currentQuestionIndex = 1;
+    private int currentScore;
 
     //Delegates
-    //QnA Delegate
-    //Get list of questions from QuizQuestionBank script
-    public static Func<List<Chapter1QnATemplate>> QuestionBank;
-
     //UI Delegate
     public static event Action<UITextType, string> UpdateQuestionText;
     public static event Action ClearInput;
+    public static event Action<int> score;
 
-    private void Start()
+    [NonReorderable]
+    public List<Chapter1QnATemplate> quizBank;
+
+
+    private void OnEnable()
     {
-        RandomizeQuestion();
+        //Inputs
+        InputFieldController.onValueChangeInput += ReadUserInput;
+        InputFieldController.onSubmitAnswer += CheckIfCorrect;
+
     }
 
-    private void RandomizeQuestion()
+    public void RandomizeQuestion()
     {
-        questionIndex = UnityEngine.Random.Range(0, QuestionBank().Count);
+        questionIndex = UnityEngine.Random.Range(0, quizBank.Count);
 
-        while (QuestionBank()[questionIndex].isActive)
+        while (quizBank[questionIndex].NotActive)
         {
-            questionIndex = UnityEngine.Random.Range(0, QuestionBank().Count);
+            questionIndex = UnityEngine.Random.Range(0, quizBank.Count);
         }
 
-        questionAnswer1 = QuestionBank()[questionIndex].correctAnswer1;
-        questionAnswer2 = QuestionBank()[questionIndex].correctAnswer2;
-        QuestionBank()[questionIndex].isActive = true;
+        questionAnswer1 = quizBank[questionIndex].correctAnswer1;
+        questionAnswer2 = quizBank[questionIndex].correctAnswer2;
+        quizBank[questionIndex].NotActive = true;
         DisplayQuestion();
     }
 
     private void DisplayQuestion()
     {
-        UpdateQuestionText?.Invoke(UITextType.QuestionText, QuestionBank()[questionIndex].question);
+        UpdateQuestionText?.Invoke(UITextType.QuestionText, quizBank[questionIndex].question);
     }
+
     public void ReadUserInput(AnswerType _type, string _answer)
     {
         if (_type == AnswerType.Answer1) userInput1 = _answer;
@@ -61,31 +69,44 @@ public class BossQuiz : MonoBehaviour
     {
         if (IsCorrect())
         {
-            ClearInput?.Invoke();
-            UIManager.Instance.TurnOffUI(UIType.QuizUI);
-            GameManager.Instance.UpdateGameState(GameState.BossBattle);
-            Destroy(gameObject);
+            currentScore++;
         }
-
         else
         {
-            Debug.Log("Wrong");
+            quizBank[questionIndex].NotActive = false;
         }
 
-        ClearInput?.Invoke();
+        CheckIfComplete();
     }
 
-    private void OnEnable()
+    private void CheckIfComplete()
     {
-        DisplayQuestion();
 
-        //Events
-        InputFieldController.onValueChangeInput += ReadUserInput;
-        InputFieldController.onSubmitAnswer += CheckIfCorrect;
+        ClearInput?.Invoke();
+
+        if (currentQuestionIndex < numberOfQuestions)
+        {
+            RandomizeQuestion();
+            currentQuestionIndex++;
+        }
+        else
+        {
+            StopQuiz();
+        }
+    }
+
+    public void StopQuiz()
+    {
+        score?.Invoke(currentScore);
+        currentQuestionIndex = 1;
+        currentScore = 0;
+        UIManager.Instance.TurnOffUI(UIType.QuizUI);
+        GameManager.Instance.UpdateGameState(GameState.BossBattle);
     }
 
     private void OnDisable()
     {
+        //Input
         InputFieldController.onValueChangeInput -= ReadUserInput;
         InputFieldController.onSubmitAnswer -= CheckIfCorrect;
     }

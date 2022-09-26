@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.BossBattle:
+                CanvasManager.Instance.SwitchCanvas(CanvasType.GameUI);
+                UIManager.Instance.TurnOnUI(UIType.PlayerUI);
                 UIManager.Instance.TurnOnUI(UIType.BossUI);
                 break;
 
