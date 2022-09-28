@@ -15,7 +15,7 @@ public class ExplorationQuiz : MonoBehaviour
     //Delegates
     //QnA Delegate
     //Get list of questions from QuizQuestionBank script
-    public static Func<List<Chapter1QnATemplate>> QuestionBank;
+    public static Func<List<Stage1QnATemplate>> QuestionBank;
 
     //UI Delegate
     public static event Action<UITextType, string> UpdateQuestionText;

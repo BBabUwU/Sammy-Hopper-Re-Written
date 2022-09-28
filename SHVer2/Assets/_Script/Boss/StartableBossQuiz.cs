@@ -1,21 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-[RequireComponent(typeof(BossQuiz))]
 public class StartableBossQuiz : Interactable
 {
-    private BossQuiz quiz;
-    public List<Chapter1QnATemplate> questionBank;
-
-    private void Awake()
-    {
-        quiz = GetComponent<BossQuiz>();
-    }
-
+    public QuizDiff difficulty;
+    public static event Action<QuizDiff> StartQuiz;
     public override void Interact()
     {
-        GameManager.Instance.UpdateGameState(GameState.AnsweringQuiz);
-        quiz.enabled = true;
+        StartQuiz?.Invoke(difficulty);
+    }
+
+    private void DestroyEssence(QuizDiff diff)
+    {
+        if (diff == difficulty) Destroy(gameObject);
+    }
+
+    private void OnEnable()
+    {
+        BossQuiz.destroyEssence += DestroyEssence;
+    }
+    private void OnDisable()
+    {
+        BossQuiz.destroyEssence -= DestroyEssence;
     }
 }

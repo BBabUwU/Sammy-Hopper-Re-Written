@@ -18,6 +18,13 @@ public class EnemyCollision : MonoBehaviour
     {
         _enemyAttack = GetComponent<EnemyAttack>();
         _enemyHealth = GetComponent<EnemyHealth>();
+        IgnoreCollisions();
+    }
+
+    private void IgnoreCollisions()
+    {
+        //9 = enemy 14 = Essence
+        Physics2D.IgnoreLayerCollision(15, 14);
     }
 
     private Vector2 ObstacleCollisionSize()

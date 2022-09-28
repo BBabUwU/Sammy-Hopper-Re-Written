@@ -3,10 +3,9 @@ using System;
 
 public class BossHealth : MonoBehaviour
 {
-    public float maxHealth = 500f;
-    public float currentHealth = 500f;
+    public float maxHealth = 400f;
+    public float currentHealth = 400f;
     public bool isDead;
-    private int attackMultiplier = 40;
     private Animator bossAnim;
     public static event Action<UIHealthType, float> SetMaxHealthUI;
     public static event Action<UIHealthType, float> SetCurrentHealthUI;
@@ -42,7 +41,7 @@ public class BossHealth : MonoBehaviour
 
     public void Damage(int damage)
     {
-        currentHealth -= damage * attackMultiplier;
+        currentHealth -= damage;
         SetCurrentHealthUI?.Invoke(UIHealthType.BossHealthBar, currentHealth);
         IsDead();
     }
@@ -52,7 +51,6 @@ public class BossHealth : MonoBehaviour
         UIHealthController.SetSliderValue += SetInitialUIvalues;
 
         BossManager.damageBoss += Damage;
-
     }
 
     private void OnDisable()

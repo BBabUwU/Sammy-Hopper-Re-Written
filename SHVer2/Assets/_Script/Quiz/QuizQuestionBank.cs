@@ -6,9 +6,9 @@ public class QuizQuestionBank : MonoBehaviour
 {
     [NonReorderable]
     [SerializeField]
-    private List<Chapter1QnATemplate> questionAndAnswers;
+    private List<Stage1QnATemplate> questionAndAnswers;
 
-    private List<Chapter1QnATemplate> GetQnA()
+    private List<Stage1QnATemplate> GetQnA()
     {
         return questionAndAnswers;
     }

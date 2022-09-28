@@ -2,32 +2,26 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public enum TimerType
-{
-    collectTimer,
-    answerTimer
-}
-
 public class Timer : MonoBehaviour
 {
     [Header("Component")]
     public TextMeshProUGUI timerText;
 
     [Header("Timer settings")]
-    public float GatherTime;
-    public float AnswerTime;
-    public float currentTime;
-    public TimerType timerType;
-
+    public float answerTime;
+    [HideInInspector] public float currentTime;
 
     [Header("Limit Settings")]
     public bool hasLimit;
     public float timerLimit;
-    public static event Action<TimerType> timesUp;
+
+    //Delegate
+    //Sends message that the timer has reached its limit.
+    public static event Action TimesUp;
 
     private void Awake()
     {
-        currentTime = GatherTime;
+        currentTime = answerTime;
     }
 
     void Update()
@@ -42,7 +36,8 @@ public class Timer : MonoBehaviour
         if (hasLimit && currentTime <= timerLimit)
         {
             SetTimerText();
-            timesUp?.Invoke(timerType);
+            timerText.color = Color.red;
+            TimesUp?.Invoke();
             enabled = false;
         }
 

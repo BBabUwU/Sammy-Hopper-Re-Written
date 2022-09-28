@@ -17,7 +17,11 @@ public class EnemyMovement : MonoBehaviour
 
     internal void Patrol()
     {
-
+        if (!_enemyCollision.GroundDetected() && _enemyRigidBody.velocity.y < -0.1)
+        {
+            _enemyRigidBody.velocity = new Vector2(0, _enemyRigidBody.velocity.y);
+            return;
+        }
         anim.SetFloat("walkSpeed", Mathf.Abs(_enemyRigidBody.velocity.x));
 
         if (_enemyCollision.GroundDetected())

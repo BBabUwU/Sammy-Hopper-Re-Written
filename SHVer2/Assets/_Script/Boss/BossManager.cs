@@ -1,26 +1,50 @@
 using System.Collections.Generic;
-using System.Collections;
 using UnityEngine;
 using System;
 
 public class BossManager : MonoBehaviour
 {
-    //Used to instantiate/Create essence gameObjects
-    [SerializeField] private GameObject essencePrefab;
-
-    //Gets the transform where the essence and the boss will drop
+    //Essence drop variables
+    [Header("Essence prefab")]
+    [SerializeField] private GameObject easyEssencePrefab;
+    [SerializeField] private GameObject hardEssencePrefab;
     [SerializeField] private List<Transform> dropPoints = new List<Transform>();
 
-    //Essence left
-    private int essenseCount;
+    [Header("Enemy Prefab")]
+    [SerializeField] private GameObject enemyPrefab;
 
-    //Delegates
-    //Gets questions from the BossQuestionBank
-    public static event Func<List<Chapter1QnATemplate>> questionBank;
+    [Header("Damage options")]
+    [SerializeField] private int easyDamage = 20;
+    [SerializeField] private int hardDamage = 40;
+
+    [Header("Enemy Spawn interval")]
+    [SerializeField] private int enemySpawnInterval = 2;
+    private int currentSpawnIndex = 2;
+
+    //Assigned reference to the instantiated object
+    //Essence
+    private GameObject easyEssence;
+    private GameObject hardEssence;
+
+    //Enemy
+    private GameObject[] enemies = new GameObject[7];
+
+    //Active positions
+    //Essence
+    private int activeEssencePosition_1;
+    private int activeEssencePosition_2;
+
+    //Enemy
+    private Boolean[] activeEnemyPosition = new Boolean[7];
+
+    //Delegate
+    //Damage boss health
     public static event Action<int> damageBoss;
-    public static event Action destroyEssence;
-    public static event Action<TimerType> startTimer;
 
+    //Stops the quiz
+    public static event Action stopQuiz;
+
+    //Components
     private BossQuiz quiz;
 
     private void Awake()
@@ -30,95 +54,135 @@ public class BossManager : MonoBehaviour
 
     private void Start()
     {
-        DropEssence();
+        DropEasyEssence();
+        DropHardEssence();
     }
 
-    private void DropEssence()
-    {
-        //startTimer?.Invoke(TimerType.collectTimer);
-        essenseCount = 0;
+    ///<summary>
+    ///Functions for dropping essence
+    ///</summary>
 
-        for (int i = 0; i < dropPoints.Count; i++)
+    private void DropEasyEssence()
+    {
+
+        activeEssencePosition_1 = RandomSpotIndex();
+
+        while (activeEssencePosition_1 == activeEssencePosition_2)
         {
-            Instantiate(essencePrefab, dropPoints[i].position, Quaternion.identity);
+            activeEssencePosition_1 = RandomSpotIndex();
+        }
+
+        easyEssence = Instantiate(easyEssencePrefab, dropPoints[activeEssencePosition_1].position, Quaternion.identity);
+
+        SpawnEnemy();
+    }
+
+    private void DropHardEssence()
+    {
+        activeEssencePosition_2 = RandomSpotIndex();
+
+        while (activeEssencePosition_2 == activeEssencePosition_1)
+        {
+            activeEssencePosition_2 = RandomSpotIndex();
+        }
+
+        hardEssence = Instantiate(hardEssencePrefab, dropPoints[activeEssencePosition_2].position, Quaternion.identity);
+
+        SpawnEnemy();
+    }
+
+    private int RandomSpotIndex()
+    {
+        return UnityEngine.Random.Range(0, dropPoints.Count);
+    }
+
+    ///<summary>
+    ///Functions for Quiz
+    ///</summary>
+
+    private void CorrectAnswer(QuizDiff diff)
+    {
+        if (diff == QuizDiff.Easy)
+        {
+            DropEasyEssence();
+            damageBoss?.Invoke(easyDamage);
+        }
+
+        else if (diff == QuizDiff.Hard)
+        {
+            DropHardEssence();
+            damageBoss?.Invoke(hardDamage);
         }
     }
 
-    private void EssensePicked()
+    private void StopQuiz()
     {
-        essenseCount++;
+        stopQuiz?.Invoke();
+    }
 
-        if (essenseCount == 5)
+    ///<summary>
+    ///Functions for enemy spawn
+    ///</summary>
+
+    private void SpawnEnemy()
+    {
+        if (AllowSpawn())
         {
-            StartCoroutine(StartQuiz());
-        }
-    }
+            int spawnPosition = RandomSpotIndex();
 
-    IEnumerator StartQuiz()
-    {
-        quiz.enabled = true;
-        quiz.quizBank = questionBank();
-        quiz.numberOfQuestions = essenseCount;
-        GameManager.Instance.UpdateGameState(GameState.AnsweringQuiz);
-        quiz.RandomizeQuestion();
-
-        yield return new WaitForSeconds(1f);
-        //startTimer?.Invoke(TimerType.answerTimer);
-    }
-
-    private void QuizCompleted(int score)
-    {
-        damageBoss?.Invoke(score);
-
-        DropEssence();
-
-        //Debug.Log("Boss attack");
-    }
-
-    private void TimesUp(TimerType timerType)
-    {
-        destroyEssence?.Invoke();
-
-        if (timerType == TimerType.collectTimer)
-        {
-            if (essenseCount > 0)
+            while (activeEnemyPosition[spawnPosition] == true)
             {
-                StartCoroutine(StartQuiz());
+                spawnPosition = RandomSpotIndex();
             }
 
-            else
-            {
-                Debug.Log("Boss attack");
-            }
-
-        }
-
-        else if (timerType == TimerType.answerTimer)
-        {
-            if (quiz.enabled) quiz.StopQuiz();
-            Debug.Log("Here");
+            enemies[spawnPosition] = Instantiate(enemyPrefab, dropPoints[spawnPosition].position, Quaternion.identity);
         }
     }
+
+    private bool AllowSpawn()
+    {
+        //Checks if the enemy position is active or not
+        bool allowSpawn = false;
+
+        for (int i = 0; i < activeEnemyPosition.Length; i++)
+        {
+            if (enemies[i] == null)
+            {
+                activeEnemyPosition[i] = false;
+                allowSpawn = true;
+            }
+        }
+
+        return allowSpawn;
+    }
+
+    ///<summary>
+    ///Functions for timer
+    ///</summary>
+
+    private void TimesUp()
+    {
+        Destroy(easyEssence);
+        Destroy(hardEssence);
+        StopQuiz();
+    }
+
+
+    ///<summary>
+    ///Enable and Disable functions
+    ///</summary>
 
     private void OnEnable()
     {
-        Timer.timesUp += TimesUp;
+        BossQuiz.correctAnswer += CorrectAnswer;
 
-        PickEssence.EssenseCount += EssensePicked;
-
-        BossQuiz.score += QuizCompleted;
-
-        Timer.timesUp += TimesUp;
+        Timer.TimesUp += TimesUp;
     }
 
     private void OnDisable()
     {
-        Timer.timesUp -= TimesUp;
-
-        PickEssence.EssenseCount -= EssensePicked;
-
-        BossQuiz.score -= QuizCompleted;
-
-        Timer.timesUp -= TimesUp;
+        BossQuiz.correctAnswer -= CorrectAnswer;
+        Timer.TimesUp -= TimesUp;
     }
+
 }
