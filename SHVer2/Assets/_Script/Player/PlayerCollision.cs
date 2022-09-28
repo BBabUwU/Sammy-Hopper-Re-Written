@@ -9,7 +9,13 @@ public class PlayerCollision : MonoBehaviour
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
+        IgnoreCollisions();
+    }
+
+    private void IgnoreCollisions()
+    {
         Physics2D.IgnoreLayerCollision(8, 14);
+        Physics2D.IgnoreLayerCollision(8, 15);
     }
 
     public bool IsGrounded()

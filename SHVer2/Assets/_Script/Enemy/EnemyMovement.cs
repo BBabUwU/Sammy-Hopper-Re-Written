@@ -3,18 +3,23 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private float walkSpeed = 5f;
-    [SerializeField] internal bool isFacingRight = true;
+    public bool isFacingRight = true;
     private Rigidbody2D _enemyRigidBody;
     private EnemyCollision _enemyCollision;
+    private Animator anim;
 
     private void Awake()
     {
         _enemyRigidBody = GetComponent<Rigidbody2D>();
         _enemyCollision = GetComponent<EnemyCollision>();
+        anim = GetComponent<Animator>();
     }
 
     internal void Patrol()
     {
+
+        anim.SetFloat("walkSpeed", Mathf.Abs(_enemyRigidBody.velocity.x));
+
         if (_enemyCollision.GroundDetected())
         {
             if (isFacingRight)
