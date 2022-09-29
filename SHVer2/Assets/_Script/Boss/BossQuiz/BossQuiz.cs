@@ -36,6 +36,7 @@ public class BossQuiz : MonoBehaviour
 
     public void RandomizeQuestion()
     {
+        SetInactive();
         questionIndex = UnityEngine.Random.Range(0, questionBank.QnA.Count);
 
         //While not active and not equal to the right difficulty
@@ -61,7 +62,7 @@ public class BossQuiz : MonoBehaviour
     public void ReadUserInput(AnswerType _type, string _answer)
     {
         if (_type == AnswerType.Answer1) userInput1 = _answer;
-        if (_type == AnswerType.Answer2) userInput2 = _answer;
+        else if (_type == AnswerType.Answer2) userInput2 = _answer;
     }
 
     private bool IsCorrect()
@@ -84,6 +85,10 @@ public class BossQuiz : MonoBehaviour
         }
         else
         {
+            Debug.Log("--------------------------");
+            Debug.Log("Wrong");
+            Debug.Log("Input 1: " + userInput1);
+            Debug.Log("Input 2: " + userInput2);
             questionBank.QnA[questionIndex].NotActive = false;
             ClearInput?.Invoke();
         }
@@ -95,6 +100,68 @@ public class BossQuiz : MonoBehaviour
         ClearInput?.Invoke();
         UIManager.Instance.TurnOffUI(UIType.QuizUI);
         GameManager.Instance.UpdateGameState(GameState.BossBattle);
+    }
+
+    ///<summary>
+    ///Inactive check
+    ///</summary>
+
+    private void SetInactive()
+    {
+        if (AllEasyInactive())
+        {
+            foreach (var qna in questionBank.QnA)
+            {
+                if (qna.difficulty == QuizDiff.Easy) qna.NotActive = false;
+            }
+        }
+        else if (AllHardInactive())
+        {
+            foreach (var qna in questionBank.QnA)
+            {
+                if (qna.difficulty == QuizDiff.Hard) qna.NotActive = false;
+            }
+        }
+        else
+        {
+            Debug.Log("There still left");
+        }
+    }
+
+    private bool AllEasyInactive()
+    {
+        bool allInactive = true;
+
+        for (int i = 0; i < questionBank.QnA.Count; i++)
+        {
+            if (questionBank.QnA[i].difficulty == QuizDiff.Easy)
+            {
+                if (questionBank.QnA[i].NotActive == false)
+                {
+                    allInactive = false;
+                }
+            }
+        }
+
+        return allInactive;
+    }
+
+    private bool AllHardInactive()
+    {
+        bool allInactive = true;
+
+        for (int i = 0; i < questionBank.QnA.Count; i++)
+        {
+            if (questionBank.QnA[i].difficulty == QuizDiff.Hard)
+            {
+                if (questionBank.QnA[i].NotActive == false)
+                {
+                    allInactive = false;
+                }
+            }
+        }
+
+        return allInactive;
     }
 
     private void OnEnable()

@@ -870,10 +870,9 @@ MonoBehaviour:
   - {fileID: 283691806}
   - {fileID: 83646619}
   - {fileID: 1556392814}
-  enemyPrefab: {fileID: 2541751760644615315, guid: 23cde15baf9d95b47a56183054e38c15, type: 3}
+  enemyPrefab: {fileID: 213859307362797703, guid: 729a7f56214ea144bbc4e18c3e84426f, type: 3}
   easyDamage: 20
   hardDamage: 40
-  enemySpawnInterval: 2
 --- !u!4 &274483615
 Transform:
   m_ObjectHideFlags: 0
@@ -929,11 +928,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4747923541256366456, guid: 583ec0ba21ffeaf43a3f30157915a2e0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 38
+      value: 38.15
       objectReference: {fileID: 0}
     - target: {fileID: 4747923541256366456, guid: 583ec0ba21ffeaf43a3f30157915a2e0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 32.27
+      value: 32.59
       objectReference: {fileID: 0}
     - target: {fileID: 4747923541256366456, guid: 583ec0ba21ffeaf43a3f30157915a2e0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -993,11 +992,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4747923542300448425, guid: 583ec0ba21ffeaf43a3f30157915a2e0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 38
+      value: 38.15
       objectReference: {fileID: 0}
     - target: {fileID: 4747923542300448425, guid: 583ec0ba21ffeaf43a3f30157915a2e0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 32.27
+      value: 32.59
       objectReference: {fileID: 0}
     - target: {fileID: 4747923542300448425, guid: 583ec0ba21ffeaf43a3f30157915a2e0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1261,7 +1260,7 @@ MonoBehaviour:
     NotActive: 0
     difficulty: 0
   - question: "281 \xD7 10<sup>2</sup>"
-    correctAnswer1: '2.81 '
+    correctAnswer1: 2.81
     correctAnswer2: 4
     NotActive: 0
     difficulty: 0
@@ -1286,12 +1285,12 @@ MonoBehaviour:
     NotActive: 0
     difficulty: 1
   - question: '92100 '
-    correctAnswer1: '9.21 '
+    correctAnswer1: 9.21
     correctAnswer2: 4
     NotActive: 0
     difficulty: 1
   - question: '0.000084 '
-    correctAnswer1: '8.4 '
+    correctAnswer1: 8.4
     correctAnswer2: -5
     NotActive: 0
     difficulty: 1
@@ -1496,7 +1495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1452865934}
-  answerTime: 20
+  answerTime: 5
   currentTime: 0
   hasLimit: 1
   timerLimit: 0
@@ -2947,7 +2946,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2020235453}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 38, y: 30.47, z: 0}
+  m_LocalPosition: {x: 38.15, y: 30.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

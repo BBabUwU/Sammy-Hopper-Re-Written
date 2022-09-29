@@ -15,4 +15,14 @@ public class TimerController : MonoBehaviour
     {
         timer.enabled = true;
     }
+
+    private void OnEnable()
+    {
+        BossManager.StartTimer += StartTimer;
+    }
+
+    private void OnDisable()
+    {
+        BossManager.StartTimer -= StartTimer;
+    }
 }

@@ -17,25 +17,21 @@ public class BossManager : MonoBehaviour
     [SerializeField] private int easyDamage = 20;
     [SerializeField] private int hardDamage = 40;
 
-    [Header("Enemy Spawn interval")]
-    [SerializeField] private int enemySpawnInterval = 2;
-    private int currentSpawnIndex = 2;
+    //Enemies
+    private int enemyCounter = 0;
+    private int enemySpawnLimit = 7;
+    private Boolean[] activeEnemyPosition = new Boolean[7];
+    private GameObject[] activeEnemy = new GameObject[7];
 
     //Assigned reference to the instantiated object
     //Essence
     private GameObject easyEssence;
     private GameObject hardEssence;
 
-    //Enemy
-    private GameObject[] enemies = new GameObject[7];
-
     //Active positions
     //Essence
     private int activeEssencePosition_1;
     private int activeEssencePosition_2;
-
-    //Enemy
-    private Boolean[] activeEnemyPosition = new Boolean[7];
 
     //Delegate
     //Damage boss health
@@ -43,6 +39,12 @@ public class BossManager : MonoBehaviour
 
     //Stops the quiz
     public static event Action stopQuiz;
+
+    //Destroys all enemies
+    public static event Action killEnemy;
+
+    //Start timer 
+    public static event Action StartTimer;
 
     //Components
     private BossQuiz quiz;
@@ -56,6 +58,7 @@ public class BossManager : MonoBehaviour
     {
         DropEasyEssence();
         DropHardEssence();
+        StartTimer?.Invoke();
     }
 
     ///<summary>
@@ -126,34 +129,38 @@ public class BossManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        if (AllowSpawn())
-        {
-            int spawnPosition = RandomSpotIndex();
+        int positionIndex = RandomSpotIndex();
 
-            while (activeEnemyPosition[spawnPosition] == true)
+        if (enemyCounter < enemySpawnLimit)
+        {
+            while (activeEnemyPosition[positionIndex] == true)
             {
-                spawnPosition = RandomSpotIndex();
+                positionIndex = RandomSpotIndex();
+                CheckEnemyNull(positionIndex);
             }
 
-            enemies[spawnPosition] = Instantiate(enemyPrefab, dropPoints[spawnPosition].position, Quaternion.identity);
+            activeEnemy[positionIndex] = Instantiate(enemyPrefab, dropPoints[positionIndex].position, Quaternion.identity);
+
+            activeEnemyPosition[positionIndex] = true;
+            enemyCounter++;
+        }
+        else
+        {
+            Debug.Log("Spawn limit reached");
         }
     }
 
-    private bool AllowSpawn()
+    private void CheckEnemyNull(int i)
     {
-        //Checks if the enemy position is active or not
-        bool allowSpawn = false;
-
-        for (int i = 0; i < activeEnemyPosition.Length; i++)
+        if (activeEnemy[i] == null)
         {
-            if (enemies[i] == null)
-            {
-                activeEnemyPosition[i] = false;
-                allowSpawn = true;
-            }
+            activeEnemyPosition[i] = false;
         }
+    }
 
-        return allowSpawn;
+    private void EnemyKilled()
+    {
+        enemyCounter--;
     }
 
     ///<summary>
@@ -164,6 +171,7 @@ public class BossManager : MonoBehaviour
     {
         Destroy(easyEssence);
         Destroy(hardEssence);
+        //killEnemy?.Invoke();
         StopQuiz();
     }
 
@@ -177,12 +185,17 @@ public class BossManager : MonoBehaviour
         BossQuiz.correctAnswer += CorrectAnswer;
 
         Timer.TimesUp += TimesUp;
+
+        EnemyCounter.enemyKilled += EnemyKilled;
     }
 
     private void OnDisable()
     {
         BossQuiz.correctAnswer -= CorrectAnswer;
+
         Timer.TimesUp -= TimesUp;
+
+        EnemyCounter.enemyKilled -= EnemyKilled;
     }
 
 }

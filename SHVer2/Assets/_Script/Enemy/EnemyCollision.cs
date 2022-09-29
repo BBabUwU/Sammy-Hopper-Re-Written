@@ -23,8 +23,9 @@ public class EnemyCollision : MonoBehaviour
 
     private void IgnoreCollisions()
     {
-        //9 = enemy 14 = Essence
+        //15 = enemy 14 = Essence
         Physics2D.IgnoreLayerCollision(15, 14);
+        Physics2D.IgnoreLayerCollision(15, 15);
     }
 
     private Vector2 ObstacleCollisionSize()
@@ -57,7 +58,6 @@ public class EnemyCollision : MonoBehaviour
         //Gets component of the collided object. E.g. Player projectile object will get component PlayerWeaponProjectile. 
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player hit enemy");
             PlayerHealth _playerHealth = other.GetComponent<PlayerHealth>();
             _playerHealth.DamagePlayer(_enemyAttack.GetEnemyDamage());
         }
