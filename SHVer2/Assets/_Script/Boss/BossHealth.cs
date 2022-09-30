@@ -9,6 +9,7 @@ public class BossHealth : MonoBehaviour
     private Animator bossAnim;
     public static event Action<UIHealthType, float> SetMaxHealthUI;
     public static event Action<UIHealthType, float> SetCurrentHealthUI;
+    public static event Action BossDefeated;
 
 
     private void Awake()
@@ -30,7 +31,7 @@ public class BossHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             isDead = true;
-            bossAnim.SetTrigger("isDead");
+
         }
     }
 

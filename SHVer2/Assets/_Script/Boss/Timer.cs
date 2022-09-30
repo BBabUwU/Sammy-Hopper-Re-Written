@@ -21,12 +21,17 @@ public class Timer : MonoBehaviour
 
     private void Awake()
     {
-        currentTime = answerTime;
+        Init();
     }
 
     void Update()
     {
         RunTimer();
+    }
+
+    public void Init()
+    {
+        currentTime = answerTime;
     }
 
     private void RunTimer()

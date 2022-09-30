@@ -21,12 +21,17 @@ public class UIManager : MonoBehaviour
     List<UIController> uiControllerList;
     private void Awake()
     {
-        Instance = this;
+        CreateInstance();
         uiControllerList = GetComponentsInChildren<UIController>(true).ToList();
         DisableAllUI();
     }
 
     private void OnEnable()
+    {
+        CreateInstance();
+    }
+
+    private void CreateInstance()
     {
         Instance = this;
     }

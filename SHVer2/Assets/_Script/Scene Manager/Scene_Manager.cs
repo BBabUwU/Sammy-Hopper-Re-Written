@@ -12,7 +12,6 @@ public class Scene_Manager : MonoBehaviour
 
     public void LoadScene(ButtonType _buttonType)
     {
-        GameManager.Instance.UpdateGameState(GameState.SceneLoad);
         SceneManager.LoadScene(1);
     }
 

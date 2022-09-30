@@ -20,10 +20,16 @@ public class CanvasManager : MonoBehaviour
     CanvasController lastActiveCanvas;
     private void Awake()
     {
-        Instance = this;
+
+        CreateInstance();
 
         canvasControllerList = GetComponentsInChildren<CanvasController>(true).ToList();
         canvasControllerList.ForEach(x => x.gameObject.SetActive(false));
+    }
+
+    private void CreateInstance()
+    {
+        Instance = this;
     }
 
     public void SwitchCanvas(CanvasType _type)

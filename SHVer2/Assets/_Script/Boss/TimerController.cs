@@ -13,6 +13,7 @@ public class TimerController : MonoBehaviour
 
     private void StartTimer()
     {
+        timer.Init();
         timer.enabled = true;
     }
 

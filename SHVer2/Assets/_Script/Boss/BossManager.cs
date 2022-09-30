@@ -34,6 +34,9 @@ public class BossManager : MonoBehaviour
     private int activeEssencePosition_2;
 
     //Delegate
+    //Message boss turn
+    public static event Action<Boolean> bossTurn;
+
     //Damage boss health
     public static event Action<int> damageBoss;
 
@@ -46,15 +49,15 @@ public class BossManager : MonoBehaviour
     //Start timer 
     public static event Action StartTimer;
 
-    //Components
-    private BossQuiz quiz;
-
-    private void Awake()
+    private void Start()
     {
-        quiz = GetComponent<BossQuiz>();
+        StartAnswerPhase();
     }
 
-    private void Start()
+    ///<summary>
+    ///Starts answer phase
+    ///</summary>
+    private void StartAnswerPhase()
     {
         DropEasyEssence();
         DropHardEssence();
@@ -158,6 +161,14 @@ public class BossManager : MonoBehaviour
         }
     }
 
+    private void SpawnAllEnemies()
+    {
+        for (int i = 0; i < activeEnemy.Length; i++)
+        {
+            SpawnEnemy();
+        }
+    }
+
     private void EnemyKilled()
     {
         enemyCounter--;
@@ -171,8 +182,9 @@ public class BossManager : MonoBehaviour
     {
         Destroy(easyEssence);
         Destroy(hardEssence);
-        //killEnemy?.Invoke();
         StopQuiz();
+        SpawnAllEnemies();
+        bossTurn?.Invoke(true);
     }
 
 
@@ -187,6 +199,8 @@ public class BossManager : MonoBehaviour
         Timer.TimesUp += TimesUp;
 
         EnemyCounter.enemyKilled += EnemyKilled;
+
+        BossAttack.TurnOver += StartAnswerPhase;
     }
 
     private void OnDisable()
@@ -196,6 +210,8 @@ public class BossManager : MonoBehaviour
         Timer.TimesUp -= TimesUp;
 
         EnemyCounter.enemyKilled -= EnemyKilled;
+
+        BossAttack.TurnOver -= StartAnswerPhase;
     }
 
 }
