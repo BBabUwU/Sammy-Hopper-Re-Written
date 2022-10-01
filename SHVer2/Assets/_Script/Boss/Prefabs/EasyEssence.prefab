@@ -11,29 +11,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: EasyEssence
       objectReference: {fileID: 0}
-    - target: {fileID: 4170872977672987688, guid: 278a0c7779291da44afad593f75ae798, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4170872977672987688, guid: 278a0c7779291da44afad593f75ae798, type: 3}
-      propertyPath: m_Color.g
-      value: 0.4627451
-      objectReference: {fileID: 0}
-    - target: {fileID: 4170872977672987688, guid: 278a0c7779291da44afad593f75ae798, type: 3}
-      propertyPath: m_Color.r
-      value: 0.4585048
-      objectReference: {fileID: 0}
     - target: {fileID: 4170872977672987689, guid: 278a0c7779291da44afad593f75ae798, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4170872977672987689, guid: 278a0c7779291da44afad593f75ae798, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.175
       objectReference: {fileID: 0}
     - target: {fileID: 4170872977672987689, guid: 278a0c7779291da44afad593f75ae798, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.576
       objectReference: {fileID: 0}
     - target: {fileID: 4170872977672987689, guid: 278a0c7779291da44afad593f75ae798, type: 3}
       propertyPath: m_LocalPosition.z
@@ -67,45 +55,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6324492225709324153, guid: 278a0c7779291da44afad593f75ae798, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 278a0c7779291da44afad593f75ae798, type: 3}
---- !u!1 &1655191110743460548 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4170872977672987668, guid: 278a0c7779291da44afad593f75ae798, type: 3}
-  m_PrefabInstance: {fileID: 3393885993357995728}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &2685343184137299826
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655191110743460548}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &5876004813761239601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655191110743460548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61e0865e54f62e143aed23d53dc9b221, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  difficulty: 0

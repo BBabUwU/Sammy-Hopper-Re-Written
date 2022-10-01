@@ -50,6 +50,10 @@ public class GameManager : MonoBehaviour
                 UIManager.Instance.TurnOnUI(UIType.BossUI);
                 break;
 
+            case GameState.BossDefeated:
+                CanvasManager.Instance.SwitchCanvas(CanvasType.BossDefeated);
+                break;
+
             case GameState.PlayerDead:
                 UIManager.Instance.TurnOnUI(UIType.PlayerDeathUI);
                 break;
@@ -64,7 +68,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.LevelComplete:
-                Debug.Log("GO TO NEXT LEVEL");
+
                 break;
 
             default:
@@ -90,4 +94,16 @@ public class GameManager : MonoBehaviour
     */
 }
 
-public enum GameState { MainMenu, Exploration, NPCInteraction, VideoPlayer, Puzzle, AnsweringQuiz, BossBattle, PlayerDead, LevelComplete }
+public enum GameState
+{
+    MainMenu,
+    Exploration,
+    NPCInteraction,
+    VideoPlayer,
+    Puzzle,
+    AnsweringQuiz,
+    BossBattle,
+    BossDefeated,
+    PlayerDead,
+    LevelComplete
+}

@@ -31,7 +31,7 @@ public class BossHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             isDead = true;
-
+            BossDefeated?.Invoke();
         }
     }
 

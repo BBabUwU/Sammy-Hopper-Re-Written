@@ -85,10 +85,6 @@ public class BossQuiz : MonoBehaviour
         }
         else
         {
-            Debug.Log("--------------------------");
-            Debug.Log("Wrong");
-            Debug.Log("Input 1: " + userInput1);
-            Debug.Log("Input 2: " + userInput2);
             questionBank.QnA[questionIndex].NotActive = false;
             ClearInput?.Invoke();
         }

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using System;
+using TMPro;
 
 public class BossManager : MonoBehaviour
 {
@@ -16,6 +18,14 @@ public class BossManager : MonoBehaviour
     [Header("Damage options")]
     [SerializeField] private int easyDamage = 20;
     [SerializeField] private int hardDamage = 40;
+
+    [Header("Level Complete UI")]
+    [SerializeField] private TextMeshProUGUI easyCounter;
+    [SerializeField] private TextMeshProUGUI hardCounter;
+
+    //Tracks the number of essence type answered
+    private int easyEssenceCounter = 0;
+    private int hardEssenceCounter = 0;
 
     //Enemies
     private int enemyCounter = 0;
@@ -46,8 +56,9 @@ public class BossManager : MonoBehaviour
     //Destroys all enemies
     public static event Action killEnemy;
 
-    //Start timer 
+    //timer 
     public static event Action StartTimer;
+    public static event Action StopTimer;
 
     private void Start()
     {
@@ -110,12 +121,14 @@ public class BossManager : MonoBehaviour
     {
         if (diff == QuizDiff.Easy)
         {
+            easyEssenceCounter++;
             DropEasyEssence();
             damageBoss?.Invoke(easyDamage);
         }
 
         else if (diff == QuizDiff.Hard)
         {
+            hardEssenceCounter++;
             DropHardEssence();
             damageBoss?.Invoke(hardDamage);
         }
@@ -187,6 +200,35 @@ public class BossManager : MonoBehaviour
         bossTurn?.Invoke(true);
     }
 
+    ///<summary>
+    ///Functions for UI
+    ///</summary>
+
+    private void DisplayResult()
+    {
+        easyCounter.text = easyEssenceCounter.ToString();
+        hardCounter.text = hardEssenceCounter.ToString();
+    }
+
+    ///<summary>
+    ///Functions for Boss Defeated
+    ///</summary>
+
+    private void BossDefeated()
+    {
+        stopQuiz?.Invoke();
+        StopTimer?.Invoke();
+        killEnemy?.Invoke();
+        DisplayResult();
+        StartCoroutine(DelayChangeState());
+    }
+
+    private IEnumerator DelayChangeState()
+    {
+        yield return new WaitForSeconds(0.1f);
+        GameManager.Instance.UpdateGameState(GameState.BossDefeated);
+    }
+
 
     ///<summary>
     ///Enable and Disable functions
@@ -201,6 +243,8 @@ public class BossManager : MonoBehaviour
         EnemyCounter.enemyKilled += EnemyKilled;
 
         BossAttack.TurnOver += StartAnswerPhase;
+
+        BossHealth.BossDefeated += BossDefeated;
     }
 
     private void OnDisable()
@@ -212,6 +256,8 @@ public class BossManager : MonoBehaviour
         EnemyCounter.enemyKilled -= EnemyKilled;
 
         BossAttack.TurnOver -= StartAnswerPhase;
+
+        BossHealth.BossDefeated -= BossDefeated;
     }
 
 }

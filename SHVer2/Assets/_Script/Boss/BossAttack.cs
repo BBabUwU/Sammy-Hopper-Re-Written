@@ -48,8 +48,6 @@ public class BossAttack : MonoBehaviour
 
     private void BossTurnOver()
     {
-        Debug.Log("Here");
-
         if (BossTurn)
         {
             if (EnemiesKilled == 6)

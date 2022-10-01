@@ -8,6 +8,7 @@ public enum CanvasType
     MainMenu,
     GameUI,
     Notepad,
+    BossDefeated,
     VideoPlayer,
     EndScreen,
     Puzzle
