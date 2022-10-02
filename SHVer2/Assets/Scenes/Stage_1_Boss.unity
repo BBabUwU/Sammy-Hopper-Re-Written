@@ -6231,12 +6231,72 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 597202979, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
-      propertyPath: m_Name
-      value: Boss Defeated
+    - target: {fileID: 239689075, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.70400006
       objectReference: {fileID: 0}
-    - target: {fileID: 597202979, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 239689075, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.624
+      objectReference: {fileID: 0}
+    - target: {fileID: 239689075, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.2934789
+      objectReference: {fileID: 0}
+    - target: {fileID: 239689075, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.4861111
+      objectReference: {fileID: 0}
+    - target: {fileID: 239689075, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -94.922424
+      objectReference: {fileID: 0}
+    - target: {fileID: 239689075, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -76.7327
+      objectReference: {fileID: 0}
+    - target: {fileID: 239689075, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 239689075, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 239689078, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_Value
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 239689078, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_FillRect
+      value: 
+      objectReference: {fileID: 1335248538803151899}
+    - target: {fileID: 239689078, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_MaxValue
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192045294030209306, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192045294030209306, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192045294030209306, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192045294030209306, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192045294030209306, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192045294030209306, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6734742102881113170, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
@@ -6327,13 +6387,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas - Stage 1 Boss phase
       objectReference: {fileID: 0}
-    - target: {fileID: 6734742103423901057, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
-      propertyPath: m_AnchorMax.x
+    - target: {fileID: 7566897515762331928, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_Color.b
+      value: 0.57035965
+      objectReference: {fileID: 0}
+    - target: {fileID: 7566897515762331928, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_Color.g
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6734742103423901057, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
+    - target: {fileID: 7566897515762331928, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_Color.r
+      value: 0.764151
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+--- !u!224 &1335248538803151899 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3192045294030209306, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+  m_PrefabInstance: {fileID: 1335248538803151898}
+  m_PrefabAsset: {fileID: 0}

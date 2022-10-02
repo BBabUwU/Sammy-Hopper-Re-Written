@@ -8,23 +8,9 @@ public class ProgressManager : MonoBehaviour
     [SerializeField] private GameObject blockedArea;
     public int answeredQuizzes = 0;
     List<Quest> questList = new List<Quest>();
-    public static event Action<int> VideoUnlocked;
-
     private void QuestComplete(Quest quest)
     {
         questList.Add(quest);
-    }
-
-    private void CheckUnlockedVideo()
-    {
-        int i = 0;
-        foreach (var item in questList)
-        {
-            if (item.completed && item.VideoNumber == i)
-            {
-                VideoUnlocked?.Invoke(i);
-            }
-        }
     }
 
     private void QuizCompleted()
@@ -49,8 +35,6 @@ public class ProgressManager : MonoBehaviour
         ExplorationQuiz.QuizComplete += QuizCompleted;
 
         PuzzleManager.quizzesAnswered += GetNumberOfAnsweredQuizzes;
-
-        VideoMenuManager.MenuOpened += CheckUnlockedVideo;
     }
 
     private void OnDisable()
@@ -60,7 +44,5 @@ public class ProgressManager : MonoBehaviour
         ExplorationQuiz.QuizComplete -= QuizCompleted;
 
         PuzzleManager.quizzesAnswered -= GetNumberOfAnsweredQuizzes;
-
-        VideoMenuManager.MenuOpened -= CheckUnlockedVideo;
     }
 }

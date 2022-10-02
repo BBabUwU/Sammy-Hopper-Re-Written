@@ -6,10 +6,9 @@ public class Quest
 {
     public int questID;
     [HideInInspector] public bool completed;
-    public string title;
     public string description;
     public Goal goal;
-    public int VideoNumber;
+    public string Reward;
 
     public void Evaluate()
     {

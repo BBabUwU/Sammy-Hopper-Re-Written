@@ -4,6 +4,7 @@ using System.Collections;
 public class NonPlayableCharacter : MonoBehaviour
 {
     //Components
+    private SpriteRenderer spriteRenderer;
     private GameObject _playerObj;
     private PlayerInput _playerInput;
     private Transform _playerPosition;
@@ -12,12 +13,11 @@ public class NonPlayableCharacter : MonoBehaviour
 
     private void Awake()
     {
-        //Sets the Initial direction where the NPC is facing.
-        LookAtDirection();
         //Last direction of where the NPC is looking at.
         defaultDirection = isFacingRight;
         _playerObj = GameObject.FindGameObjectWithTag("Player");
         _playerPosition = _playerObj.GetComponent<Transform>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void SwitchDirection()
@@ -36,12 +36,14 @@ public class NonPlayableCharacter : MonoBehaviour
     {
         if (isFacingRight)
         {
-            transform.eulerAngles = new Vector3(0, 0, 0);
+            //transform.eulerAngles = new Vector3(0, 0, 0);
+            spriteRenderer.flipX = false;
         }
 
         else if (!isFacingRight)
         {
-            transform.eulerAngles = new Vector3(0, -180, 0);
+            //transform.eulerAngles = new Vector3(0, -180, 0);
+            spriteRenderer.flipX = true;
         }
     }
 

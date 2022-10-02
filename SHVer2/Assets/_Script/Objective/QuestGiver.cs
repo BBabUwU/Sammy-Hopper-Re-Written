@@ -5,24 +5,6 @@ public class QuestGiver : MonoBehaviour
 {
     public Quest quest;
 
-    private void OnEnable()
-    {
-        GatherQuest.itemCollected += AddGatherCounter;
-        KillQuest.enemyKilled += AddKillCounter;
-
-        GatherQuest.itemCollected += CheckIfFinish;
-        KillQuest.enemyKilled += CheckIfFinish;
-    }
-
-    private void OnDisable()
-    {
-        GatherQuest.itemCollected -= AddGatherCounter;
-        KillQuest.enemyKilled -= AddKillCounter;
-
-        GatherQuest.itemCollected -= CheckIfFinish;
-        KillQuest.enemyKilled -= CheckIfFinish;
-    }
-
     private void AddKillCounter(int questNumber)
     {
         if (questNumber == quest.questID)

@@ -39,6 +39,6 @@ public class Player : MonoBehaviour
         _playerNotepad.SwitchToNotepad();
 
         //Video player
-        _playerInventory.OpenVideoPlayer();
+        _playerInventory.OpenInventory();
     }
 }

@@ -12,11 +12,10 @@ GameObject:
   - component: {fileID: 3280664605335936599}
   - component: {fileID: 3280664605335936596}
   - component: {fileID: 3280664605335936597}
-  - component: {fileID: 3280664605335936598}
   - component: {fileID: 3280664605335936594}
-  - component: {fileID: 3280664605335936595}
+  - component: {fileID: 3280664605335936598}
   m_Layer: 0
-  m_Name: Non-playable Character - Quest
+  m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,18 +127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFacingRight: 1
---- !u!114 &3280664605335936598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3280664605335936593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ead52369bc5a4e4794f3e1615d0d538, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3280664605335936594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,10 +144,8 @@ MonoBehaviour:
   textSpeed: 0.05
   doneTalking: 0
   hasQuest: 0
-  questCompleteLines:
-  - 
-  - 
---- !u!114 &3280664605335936595
+  questCompleteLines: []
+--- !u!114 &3280664605335936598
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -169,15 +154,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3280664605335936593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4bab997bf17a5c488217153b5d1e72c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ead52369bc5a4e4794f3e1615d0d538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quest:
-    questID: 0
-    completed: 0
-    title: 
-    description: 
-    goal:
-      goalType: 0
-      requiredAmount: 5
-      currentAmount: 0

@@ -32,8 +32,8 @@ public class PlayerInput : MonoBehaviour
         return Input.GetKeyDown(KeyCode.F);
     }
 
-    public bool VideoPlayerButton()
+    public bool InventoryButton()
     {
-        return Input.GetKeyDown(KeyCode.V);
+        return Input.GetKeyDown(KeyCode.I);
     }
 }

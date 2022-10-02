@@ -9,6 +9,7 @@ public enum CanvasType
     GameUI,
     Notepad,
     BossDefeated,
+    Inventory,
     VideoPlayer,
     EndScreen,
     Puzzle

@@ -12,7 +12,10 @@ public enum UIType
     BossUI,
     QuizResult,
     VideoMenu,
-    VideoPlayer
+    VideoPlayer,
+    TutorialWindow,
+    TutorialPage,
+    ObjectivePage
 }
 
 public class UIManager : MonoBehaviour
