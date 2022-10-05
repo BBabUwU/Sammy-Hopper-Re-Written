@@ -30,6 +30,10 @@ public class InteractionDialogue : MonoBehaviour
     public static event Func<UITextType, string> currentUIText;
     public static event Action<UITextType, string> updateUIText;
 
+    //Add quest
+    public static event Action<QuestGiver> addToList;
+    private bool HasAdded = false;
+
     private void Awake()
     {
         if (hasQuest)
@@ -44,6 +48,9 @@ public class InteractionDialogue : MonoBehaviour
 
         if (questGiver != null)
         {
+
+            questGiver.CheckIfFinish(questGiver.quest.questID);
+
             if (questGiver.quest.completed)
             {
                 currentLines = questCompleteLines;
@@ -94,6 +101,18 @@ public class InteractionDialogue : MonoBehaviour
         }
         else
         {
+            if (hasQuest && !HasAdded)
+            {
+                addToList?.Invoke(questGiver);
+                HasAdded = true;
+            }
+
+            if (hasQuest)
+            {
+                questGiver.quest.Evaluate();
+            }
+
+
             doneTalking = true;
             UIManager.Instance.TurnOffUI(UIType.DialogueUI);
             GameManager.Instance.UpdateGameState(GameState.Exploration);

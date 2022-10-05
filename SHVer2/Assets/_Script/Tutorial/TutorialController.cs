@@ -19,8 +19,7 @@ public class TutorialController : MonoBehaviour
         previousSlide.onClick.AddListener(PreviousSlide);
         close.onClick.AddListener(ReturnTutorialSelect);
     }
-
-    private void Start()
+    private void OnEnable()
     {
         imageTexture.sprite = currentTutorial.images[currentPage];
     }
@@ -57,6 +56,7 @@ public class TutorialController : MonoBehaviour
 
     private void ReturnTutorialSelect()
     {
+        currentPage = 0;
         imageTexture.sprite = currentTutorial.images[0];
         UIManager.Instance.TurnOffUI(UIType.TutorialWindow);
     }

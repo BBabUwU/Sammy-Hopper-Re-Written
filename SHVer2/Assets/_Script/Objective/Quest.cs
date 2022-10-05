@@ -9,6 +9,7 @@ public class Quest
     public string description;
     public Goal goal;
     public string Reward;
+    public static event Action CheckClear;
 
     public void Evaluate()
     {
@@ -16,5 +17,7 @@ public class Quest
         {
             completed = true;
         }
+
+        CheckClear?.Invoke();
     }
 }

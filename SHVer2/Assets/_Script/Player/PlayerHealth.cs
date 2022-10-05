@@ -29,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void DamagePlayer(float damage)
     {
-        //currentHealth -= damage;
+        currentHealth -= damage;
         if (currentHealth <= 0) currentHealth = 0;
         SetCurrentHealthUI?.Invoke(UIHealthType.PlayerHealthBar, currentHealth);
     }

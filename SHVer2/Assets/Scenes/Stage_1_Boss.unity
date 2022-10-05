@@ -4043,8 +4043,8 @@ MonoBehaviour:
   - {fileID: 83646619}
   - {fileID: 1556392814}
   enemyPrefab: {fileID: 213859307362797703, guid: 729a7f56214ea144bbc4e18c3e84426f, type: 3}
-  easyDamage: 50
-  hardDamage: 100
+  easyDamage: 20
+  hardDamage: 40
   easyCounter: {fileID: 1471529534}
   hardCounter: {fileID: 1935432799}
 --- !u!4 &274483615
@@ -4370,7 +4370,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 607018696}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.78, y: 32.24, z: 0.07783726}
+  m_LocalPosition: {x: -20.78, y: 32.97, z: 0.07783726}
   m_LocalScale: {x: 0.07, y: 0.07, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4471,7 +4471,7 @@ Animator:
   m_GameObject: {fileID: 607018696}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6b12fda12133f76428df6a6e5cd13476, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4684,6 +4684,11 @@ Transform:
   m_Father: {fileID: 1321936227}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &873834914 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 35281432522555205, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+  m_PrefabInstance: {fileID: 1335248538803151898}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &994070271
 GameObject:
   m_ObjectHideFlags: 0
@@ -4792,7 +4797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1868709037}
-  answerTime: 90
+  answerTime: 60
   currentTime: 0
   hasLimit: 1
   timerLimit: 0
@@ -6233,27 +6238,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 239689075, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.70400006
+      value: 0.69200003
       objectReference: {fileID: 0}
     - target: {fileID: 239689075, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.624
+      value: 0.71666676
       objectReference: {fileID: 0}
     - target: {fileID: 239689075, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.2934789
+      value: 0.3054643
       objectReference: {fileID: 0}
     - target: {fileID: 239689075, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.4861111
+      value: 0.61666673
       objectReference: {fileID: 0}
     - target: {fileID: 239689075, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -94.922424
+      value: -48.922424
       objectReference: {fileID: 0}
     - target: {fileID: 239689075, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -76.7327
+      value: -35.732697
       objectReference: {fileID: 0}
     - target: {fileID: 239689075, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -6261,7 +6266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 239689075, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 10
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 239689078, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
       propertyPath: m_Value
@@ -6274,6 +6279,14 @@ PrefabInstance:
     - target: {fileID: 239689078, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
       propertyPath: m_MaxValue
       value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 35281432522555205, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 35281432522555205, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3192045294030209306, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6398,6 +6411,18 @@ PrefabInstance:
     - target: {fileID: 7566897515762331928, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
       propertyPath: m_Color.r
       value: 0.764151
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854734154479149987, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9187187386052054083, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_FillRect
+      value: 
+      objectReference: {fileID: 873834914}
+    - target: {fileID: 9187187386052054083, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}
+      propertyPath: m_MaxValue
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7724e3219ddd51c4fb3eec93e5e09cbc, type: 3}

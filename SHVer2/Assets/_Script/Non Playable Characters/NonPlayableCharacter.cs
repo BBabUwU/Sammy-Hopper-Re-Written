@@ -37,13 +37,13 @@ public class NonPlayableCharacter : MonoBehaviour
         if (isFacingRight)
         {
             //transform.eulerAngles = new Vector3(0, 0, 0);
-            spriteRenderer.flipX = false;
+            spriteRenderer.flipX = true;
         }
 
         else if (!isFacingRight)
         {
             //transform.eulerAngles = new Vector3(0, -180, 0);
-            spriteRenderer.flipX = true;
+            spriteRenderer.flipX = false;
         }
     }
 

@@ -7,24 +7,26 @@ public class BossAttack : MonoBehaviour
 {
 
     public bool BossTurn;
+    private Animator anim;
     public GameObject projectTilePrefab;
     public Transform projectilePoint;
 
-    public float atkCoolDownTime = 2f;
+    public float atkCoolDownTime = 5f;
     private float nextFireTime = 0;
     private int EnemiesKilled;
-
     public static event Action TurnOver;
 
     private void Awake()
     {
         BossTurn = false;
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
         if (BossTurn && !AtkOnCooldown())
         {
+            anim.SetTrigger("Throw");
             AttackPlayer();
             nextFireTime = Time.time + atkCoolDownTime;
         }

@@ -21,11 +21,23 @@ public class QuestGiver : MonoBehaviour
         }
     }
 
-    private void CheckIfFinish(int questNumber)
+    public void CheckIfFinish(int questNumber)
     {
         if (questNumber == quest.questID)
         {
             quest.Evaluate();
         }
+    }
+
+    private void OnEnable()
+    {
+        KillQuest.enemyKilled += AddKillCounter;
+        GatherQuest.itemCollected += AddGatherCounter;
+    }
+
+    private void OnDisable()
+    {
+        KillQuest.enemyKilled -= AddKillCounter;
+        GatherQuest.itemCollected -= AddGatherCounter;
     }
 }

@@ -6,6 +6,7 @@ public class BossProjectile : MonoBehaviour
 {
 
     [SerializeField] private float fireSpeed;
+    [SerializeField] private float damage = 20f;
     private Transform player;
     private Vector2 moveDirection;
     private Rigidbody2D rb;
@@ -27,6 +28,7 @@ public class BossProjectile : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            other.GetComponent<PlayerHealth>().DamagePlayer(damage);
             DestroyProjectile();
         }
     }

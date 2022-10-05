@@ -51,6 +51,9 @@ public class ExplorationQuiz : MonoBehaviour
         questionAnswer2 = QuestionBank()[questionIndex].correctAnswer2;
         QuestionBank()[questionIndex].NotActive = true;
         DisplayQuestion();
+
+        Debug.Log("Answer 1: " + QuestionBank()[questionIndex].correctAnswer1);
+        Debug.Log("Answer 2: " + QuestionBank()[questionIndex].correctAnswer2);
     }
 
     private void DisplayQuestion()

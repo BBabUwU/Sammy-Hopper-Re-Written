@@ -5,44 +5,110 @@ using System;
 
 public class ProgressManager : MonoBehaviour
 {
-    [SerializeField] private GameObject blockedArea;
-    public int answeredQuizzes = 0;
-    List<Quest> questList = new List<Quest>();
-    private void QuestComplete(Quest quest)
+    public List<QuestGiver> QuestList;
+
+    //First part
+    [SerializeField] private GameObject Blocked_area_1;
+    private int answeredQuizzes = 0;
+    [SerializeField] private GameObject Blocked_area_2;
+
+    //Determines if the first part is completed
+    private bool FirstPart;
+
+    ///<Summary>
+    ///Check part if complete
+    ///</Summary>
+
+    private void FirstPartComplete()
     {
-        questList.Add(quest);
+        FirstPart = true;
+        Destroy(Blocked_area_2);
     }
 
-    private void QuizCompleted()
-    {
-        answeredQuizzes++;
-    }
 
-    private void PuzzleCompleted()
-    {
-        Destroy(blockedArea);
-    }
+    ///<Summary>
+    ///Puzzle Tracker
+    ///</Summary>
 
-    private int GetNumberOfAnsweredQuizzes()
+    private int GetAnsweredQuiz()
     {
         return answeredQuizzes;
     }
 
+    private void IncrementQuiz()
+    {
+        answeredQuizzes++;
+    }
+
+    ///<Summary>
+    ///Blocked area functions
+    ///</Summary>
+
+    private void CheckClear()
+    {
+        Area_1_clear();
+    }
+
+    private void Area_1_clear()
+    {
+        bool objective_1 = false;
+        bool objective_2 = false;
+
+        if (QuestList != null)
+            foreach (var item in QuestList)
+            {
+                if (item.quest.questID == 1 && item.quest.completed) objective_1 = true;
+                if (item.quest.questID == 2 && item.quest.completed) objective_2 = true;
+            }
+
+        if (objective_1 && objective_2) Destroy(Blocked_area_1);
+    }
+
+    ///<Summary>
+    ///Quest related functions
+    ///</Summary>
+
+    private void AddQuest(QuestGiver quest)
+    {
+        QuestList.Add(quest);
+    }
+
+    private List<QuestGiver> GetQuest()
+    {
+        return QuestList;
+    }
+
     private void OnEnable()
     {
-        PuzzleManager.PuzzleIsComplete += PuzzleCompleted;
+        ObjectiveManager.ListQuest += GetQuest;
 
-        ExplorationQuiz.QuizComplete += QuizCompleted;
+        Tutorial.ListQuest += GetQuest;
 
-        PuzzleManager.quizzesAnswered += GetNumberOfAnsweredQuizzes;
+        InteractionDialogue.addToList += AddQuest;
+
+        Quest.CheckClear += CheckClear;
+
+        PuzzleManager.quizzesAnswered += GetAnsweredQuiz;
+
+        ExplorationQuiz.QuizComplete += IncrementQuiz;
+
+        PuzzleManager.PuzzleIsComplete += FirstPartComplete;
     }
 
     private void OnDisable()
     {
-        PuzzleManager.PuzzleIsComplete -= PuzzleCompleted;
+        ObjectiveManager.ListQuest -= GetQuest;
 
-        ExplorationQuiz.QuizComplete -= QuizCompleted;
+        Tutorial.ListQuest -= GetQuest;
 
-        PuzzleManager.quizzesAnswered -= GetNumberOfAnsweredQuizzes;
+        InteractionDialogue.addToList -= AddQuest;
+
+        Quest.CheckClear -= CheckClear;
+
+        PuzzleManager.quizzesAnswered -= GetAnsweredQuiz;
+
+        ExplorationQuiz.QuizComplete -= IncrementQuiz;
+
+        PuzzleManager.PuzzleIsComplete -= FirstPartComplete;
     }
 }

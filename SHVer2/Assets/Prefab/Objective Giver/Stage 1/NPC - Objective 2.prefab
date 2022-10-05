@@ -1,0 +1,157 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &378804456333057567
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3280664605335936592, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936592, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.036374677
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936592, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.036374677
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936592, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 65.077545
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936592, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -31.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936592, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.904
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936592, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.030233257
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936592, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936592, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936592, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936592, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936592, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936592, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936592, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936593, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_Name
+      value: NPC - Objective 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936594, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: npcName
+      value: John
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936594, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: hasQuest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936594, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936594, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: lines.Array.data[0]
+      value: My pages are gone!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936594, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: lines.Array.data[1]
+      value: help me find them
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936594, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: questCompleteLines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936594, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: questCompleteLines.Array.data[0]
+      value: OK thanks
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936594, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: questCompleteLines.Array.data[1]
+      value: I'll help you
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936596, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_Size.x
+      value: 67.80332
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936596, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_Size.y
+      value: 67.736305
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936596, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_Offset.x
+      value: -2.012021
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936596, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.588665
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936596, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 54
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936596, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 3280664605335936599, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b78253cc9ffa41f4ea4c32159e7dc0ed, type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+--- !u!1 &2938189424182149198 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3280664605335936593, guid: 507a5aa534b44294198d2cd15828400e, type: 3}
+  m_PrefabInstance: {fileID: 378804456333057567}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6031647926310952892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2938189424182149198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4bab997bf17a5c488217153b5d1e72c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest:
+    questID: 2
+    completed: 0
+    description: Help find the pages
+    goal:
+      goalType: 1
+      requiredAmount: 5
+      currentAmount: 0
+    Reward: Video Tutorial 2
