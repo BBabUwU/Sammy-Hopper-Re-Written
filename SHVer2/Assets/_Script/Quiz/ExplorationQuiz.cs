@@ -12,17 +12,16 @@ public class ExplorationQuiz : MonoBehaviour
     private string questionAnswer1;
     private string questionAnswer2;
 
-    //Delegates
-    //QnA Delegate
-    //Get list of questions from QuizQuestionBank script
-    public static Func<List<Stage1QnATemplate>> QuestionBank;
+    [SerializeField] private int QuizPart;
+    [SerializeField] private QuizQuestionBank questionBank;
 
+    //Delegate
     //UI Delegate
     public static event Action<UITextType, string> UpdateQuestionText;
     public static event Action ClearInput;
 
     //Sends message that the quiz is complete to the puzzle manager
-    public static event Action QuizComplete;
+    public static event Action<int> QuizComplete;
 
     private void Start()
     {
@@ -40,25 +39,25 @@ public class ExplorationQuiz : MonoBehaviour
 
     private void RandomizeQuestion()
     {
-        questionIndex = UnityEngine.Random.Range(0, QuestionBank().Count);
+        questionIndex = UnityEngine.Random.Range(0, questionBank.qna.Count);
 
-        while (QuestionBank()[questionIndex].NotActive)
+        while (questionBank.qna[questionIndex].NotActive)
         {
-            questionIndex = UnityEngine.Random.Range(0, QuestionBank().Count);
+            questionIndex = UnityEngine.Random.Range(0, questionBank.qna.Count);
         }
 
-        questionAnswer1 = QuestionBank()[questionIndex].correctAnswer1;
-        questionAnswer2 = QuestionBank()[questionIndex].correctAnswer2;
-        QuestionBank()[questionIndex].NotActive = true;
+        questionAnswer1 = questionBank.qna[questionIndex].correctAnswer1;
+        questionAnswer2 = questionBank.qna[questionIndex].correctAnswer2;
+        questionBank.qna[questionIndex].NotActive = true;
         DisplayQuestion();
 
-        Debug.Log("Answer 1: " + QuestionBank()[questionIndex].correctAnswer1);
-        Debug.Log("Answer 2: " + QuestionBank()[questionIndex].correctAnswer2);
+        Debug.Log("Answer 1: " + questionBank.qna[questionIndex].correctAnswer1);
+        Debug.Log("Answer 2: " + questionBank.qna[questionIndex].correctAnswer2);
     }
 
     private void DisplayQuestion()
     {
-        UpdateQuestionText?.Invoke(UITextType.QuestionText, QuestionBank()[questionIndex].question);
+        UpdateQuestionText?.Invoke(UITextType.QuestionText, questionBank.qna[questionIndex].question);
     }
     public void ReadUserInput(AnswerType _type, string _answer)
     {
@@ -79,7 +78,7 @@ public class ExplorationQuiz : MonoBehaviour
             ClearInput?.Invoke();
             UIManager.Instance.TurnOffUI(UIType.QuizUI);
             GameManager.Instance.UpdateGameState(GameState.Exploration);
-            QuizComplete?.Invoke();
+            QuizComplete?.Invoke(QuizPart);
             Destroy(gameObject);
         }
 

@@ -5,15 +5,17 @@ using System;
 public class Tutorial : MonoBehaviour
 {
     public List<Sprite> images;
-    public int pageID;
+    private Image image;
+    public int questID;
     public bool isUnlocked = false;
+    public bool hasRead = false;
     private Button button;
     public TutorialController tutorialSlider;
-
     public static event Func<List<QuestGiver>> ListQuest;
 
     private void Awake()
     {
+        image = GetComponent<Image>();
         button = GetComponent<Button>();
         button.onClick.AddListener(ButtonClicked);
     }
@@ -25,11 +27,17 @@ public class Tutorial : MonoBehaviour
 
     private void CheckUnlock()
     {
+        image.enabled = false;
+
         if (ListQuest != null)
         {
             foreach (var item in ListQuest())
             {
-                if (pageID == item.quest.questID && item.quest.completed) isUnlocked = true;
+                if (questID == item.quest.questID && item.quest.completed)
+                {
+                    image.enabled = true;
+                    isUnlocked = true;
+                }
             }
         }
     }

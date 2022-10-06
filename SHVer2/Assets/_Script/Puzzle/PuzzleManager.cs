@@ -5,6 +5,7 @@ using System;
 
 public class PuzzleManager : MonoBehaviour
 {
+    [SerializeField] private int puzzleNumber;
     [SerializeField] private List<PuzzleSlot> slotPrefabs;
     [SerializeField] private PuzzlePiece piecePrefab;
     [SerializeField] private Transform slotParent, pieceParent;
@@ -17,40 +18,31 @@ public class PuzzleManager : MonoBehaviour
     List<PuzzlePiece> currentPieces = new List<PuzzlePiece>();
 
     //Use to signal that the puzzle is complete
-    public static event Action PuzzleIsComplete;
+    public static event Action<int> PuzzleIsComplete;
 
     //Random unique number
     List<int> PuzzlePiecePositionIndex = new List<int>();
 
     //Gets the number of quizzes the player answered
-    public static Func<int> quizzesAnswered;
+    [SerializeField] private AnswerTracker answerTracker;
     private void Start()
     {
         RandomizePiecesPosition();
         Spawn();
-        InitialPieces();
     }
 
     private void RandomizePiecesPosition()
     {
-        List<int> values = new List<int>() { 0, 1, 2, 3, 4, 5, 6 };
+        List<int> values = new List<int>() { 0, 1, 2, 3, 4 };
 
         System.Random rand = new System.Random();
 
         PuzzlePiecePositionIndex = values.OrderBy(_ => rand.Next()).ToList();
     }
 
-    private void InitialPieces()
-    {
-        for (int i = 4; i < 7; i++)
-        {
-            currentPieces[PuzzlePiecePositionIndex[i]].rawImage.enabled = true;
-        }
-    }
-
     private void EnablePuzzlePiece()
     {
-        for (int i = 0; i < quizzesAnswered(); i++)
+        for (int i = 0; i < answerTracker.answeredQuestions; i++)
         {
             currentPieces[PuzzlePiecePositionIndex[i]].rawImage.enabled = true;
         }
@@ -98,9 +90,9 @@ public class PuzzleManager : MonoBehaviour
 
         if (isComplete)
         {
-            Debug.Log("Puzzle Complete");
+            UIManager.Instance.DisableAllUI();
             GameManager.Instance.UpdateGameState(GameState.Exploration);
-            PuzzleIsComplete?.Invoke();
+            PuzzleIsComplete?.Invoke(puzzleNumber);
         }
         else
         {

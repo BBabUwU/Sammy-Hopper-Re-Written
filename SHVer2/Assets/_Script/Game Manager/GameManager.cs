@@ -64,11 +64,9 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.Puzzle:
-                CanvasManager.Instance.SwitchCanvas(CanvasType.Puzzle);
                 break;
 
             case GameState.LevelComplete:
-
                 break;
 
             default:

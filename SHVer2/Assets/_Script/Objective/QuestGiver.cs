@@ -4,6 +4,12 @@ using System;
 public class QuestGiver : MonoBehaviour
 {
     public Quest quest;
+    public GameObject blockedPath;
+
+    private void DestroyPath(int id)
+    {
+        if (id == quest.questID) Destroy(blockedPath);
+    }
 
     private void AddKillCounter(int questNumber)
     {
@@ -33,11 +39,13 @@ public class QuestGiver : MonoBehaviour
     {
         KillQuest.enemyKilled += AddKillCounter;
         GatherQuest.itemCollected += AddGatherCounter;
+        Quest.clearPath += DestroyPath;
     }
 
     private void OnDisable()
     {
         KillQuest.enemyKilled -= AddKillCounter;
         GatherQuest.itemCollected -= AddGatherCounter;
+        Quest.clearPath -= DestroyPath;
     }
 }

@@ -17,6 +17,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (playerInput.InteractionButtonPressed())
             CheckInteraction();
+
     }
 
     public void OpenInteractableIcon()

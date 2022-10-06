@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class StartablePuzzle : Interactable
 {
+    public UIType puzzleNumber;
+
     public override void Interact()
     {
-        GameManager.Instance.UpdateGameState(GameState.Puzzle);
+        CanvasManager.Instance.SwitchCanvas(CanvasType.Puzzle);
+        UIManager.Instance.TurnOnUI(puzzleNumber);
     }
 }

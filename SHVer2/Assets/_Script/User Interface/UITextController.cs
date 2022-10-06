@@ -4,32 +4,31 @@ using TMPro;
 public enum UITextType
 {
     QuestionText,
-    TimeText,
     DialogueText,
     NameText,
-    ScoreText,
-    MessageText
 }
 
 public class UITextController : MonoBehaviour
 {
     [SerializeField] private UITextType textType;
-    private TMP_Text textUI;
+    private TextMeshProUGUI textUI;
 
     private void Awake()
     {
-        textUI = GetComponent<TMP_Text>();
+        textUI = GetComponent<TextMeshProUGUI>();
     }
 
     public string GetText(UITextType _type)
     {
+        string currentText = null;
+
         if (textType == _type)
         {
-            string currentText = textUI.text;
+            currentText = textUI.text;
             return currentText;
         }
 
-        return null;
+        return currentText;
     }
 
     private void UpdateText(UITextType _type, string _text)

@@ -13,6 +13,7 @@ public class UIButtonReturnExploration : MonoBehaviour
 
     private void ReturnExploration()
     {
+        UIManager.Instance.DisableAllUI();
         GameManager.Instance.UpdateGameState(GameState.Exploration);
     }
 }

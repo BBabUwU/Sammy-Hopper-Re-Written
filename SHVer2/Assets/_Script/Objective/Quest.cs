@@ -9,15 +9,14 @@ public class Quest
     public string description;
     public Goal goal;
     public string Reward;
-    public static event Action CheckClear;
+    public static event Action<int> clearPath;
 
     public void Evaluate()
     {
         if (goal.IsReached())
         {
             completed = true;
+            clearPath?.Invoke(questID);
         }
-
-        CheckClear?.Invoke();
     }
 }

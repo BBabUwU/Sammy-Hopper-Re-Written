@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class TutorialController : MonoBehaviour
 {
@@ -24,6 +25,14 @@ public class TutorialController : MonoBehaviour
         imageTexture.sprite = currentTutorial.images[currentPage];
     }
 
+    private void HasRead()
+    {
+        if (currentPage == currentTutorial.images.Count - 1)
+        {
+            currentTutorial.hasRead = true;
+        }
+    }
+
     private void NextSlide()
     {
         currentPage++;
@@ -31,6 +40,7 @@ public class TutorialController : MonoBehaviour
         if (currentPage != currentTutorial.images.Count)
         {
             imageTexture.sprite = currentTutorial.images[currentPage];
+            HasRead();
         }
         else
         {

@@ -30,7 +30,7 @@ TagManager:
   - Essence
   - IgnoreCol
   - InteractEssence
-  - 
+  - PuzzlePiece
   - 
   - 
   - 
@@ -54,6 +54,9 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 2893441673
+    locked: 0
+  - name: Foreground 2
+    uniqueID: 3905233219
     locked: 0
   - name: Ground
     uniqueID: 52879469

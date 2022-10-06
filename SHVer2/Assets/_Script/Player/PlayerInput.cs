@@ -19,7 +19,7 @@ public class PlayerInput : MonoBehaviour
 
     public bool WeaponFirePressed()
     {
-        return Input.GetButton("Fire1");
+        return Input.GetButtonDown("Fire1");
     }
 
     public bool NotepadButtonPressed()

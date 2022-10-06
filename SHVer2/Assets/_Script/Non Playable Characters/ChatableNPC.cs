@@ -1,10 +1,9 @@
 using UnityEngine;
-using System.Collections;
 
 [RequireComponent(typeof(InteractionDialogue))]
-[RequireComponent(typeof(NonPlayableCharacter))]
 public class ChatableNPC : Interactable
 {
+    [SerializeField] private bool isPerson;
     private bool isTalking = false;
     private InteractionDialogue dialogue;
     private NonPlayableCharacter npcScript;
@@ -12,16 +11,22 @@ public class ChatableNPC : Interactable
     private void Awake()
     {
         dialogue = GetComponent<InteractionDialogue>();
-        npcScript = GetComponent<NonPlayableCharacter>();
+        if (isPerson) npcScript = GetComponent<NonPlayableCharacter>();
     }
     public override void Interact()
     {
+
         if (!isTalking)
         {
             isTalking = true;
-            StopAllCoroutines();
-            npcScript.SwitchDirection();
-            npcScript.LookAtDirection();
+
+            if (isPerson)
+            {
+                StopAllCoroutines();
+                npcScript.SwitchDirection();
+                npcScript.LookAtDirection();
+            }
+
             dialogue.StartDialogue();
         }
 
@@ -37,7 +42,7 @@ public class ChatableNPC : Interactable
 
         if (!isTalking && dialogue.doneTalking)
         {
-            StartCoroutine(npcScript.LookBackAtDefaultDirection());
+            if (isPerson) StartCoroutine(npcScript.LookBackAtDefaultDirection());
         }
     }
 }

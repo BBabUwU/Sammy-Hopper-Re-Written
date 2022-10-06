@@ -15,7 +15,9 @@ public enum UIType
     VideoPlayer,
     TutorialWindow,
     TutorialPage,
-    ObjectivePage
+    ObjectivePage,
+    puzzle_1,
+    puzzle_2
 }
 
 public class UIManager : MonoBehaviour
