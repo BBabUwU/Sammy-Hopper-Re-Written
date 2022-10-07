@@ -6,16 +6,18 @@ public class PlayerInteraction : MonoBehaviour
 {
     public GameObject interactIcon;
     private PlayerInput playerInput;
+    private PlayerCollision playerCollision;
     private Vector2 boxSize = new Vector2(1f, 1f);
 
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
+        playerCollision = GetComponent<PlayerCollision>();
     }
 
     private void Update()
     {
-        if (playerInput.InteractionButtonPressed())
+        if (playerInput.InteractionButtonPressed() && playerCollision.IsGrounded())
             CheckInteraction();
 
     }

@@ -17,11 +17,13 @@ public class AnswerTracker : MonoBehaviour
 
     private void OnEnable()
     {
+        Actions.incrementQuiz += IncrementQuiz;
         ExplorationQuiz.QuizComplete += IncrementQuiz;
     }
 
     private void OnDisable()
     {
+        Actions.incrementQuiz += IncrementQuiz;
         ExplorationQuiz.QuizComplete -= IncrementQuiz;
     }
 }
