@@ -41,8 +41,8 @@ public class Timer : MonoBehaviour
         if (hasLimit && currentTime <= timerLimit)
         {
             SetTimerText();
-            timerText.color = Color.red;
             TimesUp?.Invoke();
+            Actions.timesUp?.Invoke();
             enabled = false;
         }
 

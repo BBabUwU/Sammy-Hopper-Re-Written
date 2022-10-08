@@ -28,4 +28,33 @@ public static class Actions
     //Update Text
     public static Action<string, UITextType> updateText;
 
+    //Boss related
+    //timer
+    public static Action timesUp;
+    public static Action startTime;
+    public static Action stopTime;
+
+    //Spawn Enemy
+    public static Action spawnEnemy;
+    public static Action decreaseEnemyCounter;
+
+    //Decrease projectile counter
+    public static Action decreaseProjectileCounter;
+
+    //Stop and start quiz
+    public static Action startQuiz;
+    public static Action stopQuiz;
+
+    //Start attack phase
+    public static Action bossTurn;
+
+    //Player Turn
+    public static Action playerTurn;
+
+    //Damage boss
+    public static Action<int> damageBoss;
+
+    //Boss defeated
+    public static Action bossDefeated;
+
 }

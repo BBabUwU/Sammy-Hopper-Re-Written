@@ -32,6 +32,7 @@ public class BossHealth : MonoBehaviour
         {
             isDead = true;
             BossDefeated?.Invoke();
+            Actions.bossDefeated?.Invoke();
         }
     }
 
@@ -52,6 +53,8 @@ public class BossHealth : MonoBehaviour
         UIHealthController.SetSliderValue += SetInitialUIvalues;
 
         BossManager.damageBoss += Damage;
+
+        Actions.damageBoss += Damage;
     }
 
     private void OnDisable()
@@ -59,5 +62,7 @@ public class BossHealth : MonoBehaviour
         UIHealthController.SetSliderValue -= SetInitialUIvalues;
 
         BossManager.damageBoss -= Damage;
+
+        Actions.damageBoss -= Damage;
     }
 }

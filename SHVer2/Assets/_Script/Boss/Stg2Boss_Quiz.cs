@@ -4,12 +4,12 @@ using UnityEngine;
 using System;
 using System.Linq;
 
-public class Stage2_Quiz : MonoBehaviour
+public class Stg2Boss_Quiz : MonoBehaviour
 {
     [SerializeField] private Stg2_QuestionBank Qbank;
     [SerializeField] private List<BoxCollider2D> interactCollider;
     [SerializeField] private GameObject canvasObj;
-    public int quizNumber;
+    [SerializeField] private int damageBoss;
     private string currentAnswer;
     private int questionIndex;
     private List<int> randomChoiceIndex = new List<int>();
@@ -19,6 +19,18 @@ public class Stage2_Quiz : MonoBehaviour
         canvasObj.SetActive(true);
         RandomizeQuestion();
         EnableInteraction();
+    }
+
+    private void StartQuiz()
+    {
+        EnableInteraction();
+        canvasObj.SetActive(true);
+    }
+
+    private void StopQuiz()
+    {
+        DisableInteraction();
+        canvasObj.SetActive(false);
     }
 
     private void EnableInteraction()
@@ -39,6 +51,8 @@ public class Stage2_Quiz : MonoBehaviour
 
     private void RandomizeQuestion()
     {
+        SetInactive();
+
         questionIndex = UnityEngine.Random.Range(0, Qbank.qna.Count);
 
         while (Qbank.qna[questionIndex].notActive)
@@ -50,7 +64,6 @@ public class Stage2_Quiz : MonoBehaviour
         currentAnswer = Qbank.qna[questionIndex].answer;
 
         Debug.Log(currentAnswer);
-
         RandomizeChoices();
         DisplayQuestion();
     }
@@ -92,28 +105,60 @@ public class Stage2_Quiz : MonoBehaviour
     {
         if (currentAnswer == answer)
         {
-            Debug.Log("Correct");
-            Actions.incrementQuiz?.Invoke(quizNumber);
-            DisableInteraction();
-            canvasObj.SetActive(false);
-            this.enabled = false;
+            Debug.Log("Right");
+            RandomizeQuestion();
+            Actions.spawnEnemy?.Invoke();
+            Actions.damageBoss?.Invoke(damageBoss);
         }
         else
         {
             Debug.Log("Wrong");
+            Actions.spawnEnemy?.Invoke();
             Actions.punish?.Invoke(answer);
             Qbank.qna[questionIndex].notActive = false;
             RandomizeQuestion();
         }
     }
 
+    private void SetInactive()
+    {
+        if (AllActive())
+        {
+            foreach (var qbank in Qbank.qna)
+            {
+                qbank.notActive = false;
+            }
+        }
+    }
+
+    private bool AllActive()
+    {
+        bool allActive = true;
+
+        for (int i = 0; i < Qbank.qna.Count; i++)
+        {
+            if (Qbank.qna[i].notActive == false)
+            {
+                allActive = false;
+            }
+        }
+
+        return allActive;
+    }
+
     private void OnEnable()
     {
         Actions.answer += CheckCorrect;
+        Actions.startQuiz += StartQuiz;
+        Actions.stopQuiz += StopQuiz;
+        Actions.startTime += StartQuiz;
     }
 
     private void OnDisable()
     {
         Actions.answer -= CheckCorrect;
+        Actions.startQuiz -= StartQuiz;
+        Actions.stopQuiz -= StopQuiz;
+        Actions.startTime -= StartQuiz;
     }
 }

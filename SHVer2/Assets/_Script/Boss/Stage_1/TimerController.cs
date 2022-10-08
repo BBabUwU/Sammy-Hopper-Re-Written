@@ -26,11 +26,17 @@ public class TimerController : MonoBehaviour
     {
         BossManager.StartTimer += StartTimer;
         BossManager.StopTimer += StopTimer;
+
+        Actions.startTime += StartTimer;
+        Actions.stopTime += StopTimer;
     }
 
     private void OnDisable()
     {
         BossManager.StartTimer -= StartTimer;
         BossManager.StopTimer -= StopTimer;
+
+        Actions.startTime -= StartTimer;
+        Actions.stopTime -= StopTimer;
     }
 }
