@@ -36,4 +36,9 @@ public class PlayerInput : MonoBehaviour
     {
         return Input.GetKeyDown(KeyCode.I);
     }
+
+    public bool ParryButton()
+    {
+        return Input.GetMouseButtonDown(1);
+    }
 }

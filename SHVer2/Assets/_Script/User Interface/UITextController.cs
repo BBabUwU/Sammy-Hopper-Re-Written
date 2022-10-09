@@ -58,6 +58,8 @@ public class UITextController : MonoBehaviour
         ExplorationQuiz.UpdateQuestionText += UpdateText;
 
         BossQuiz.UpdateQuestionText += UpdateText;
+
+        Actions.UpdateQuestionText += UpdateText;
     }
 
     private void OnDisable()
@@ -71,5 +73,7 @@ public class UITextController : MonoBehaviour
         ExplorationQuiz.UpdateQuestionText -= UpdateText;
 
         BossQuiz.UpdateQuestionText -= UpdateText;
+
+        Actions.UpdateQuestionText -= UpdateText;
     }
 }

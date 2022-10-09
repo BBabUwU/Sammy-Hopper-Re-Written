@@ -1,5 +1,5 @@
 using System;
-
+using UnityEngine;
 public static class Actions
 {
     ///<summary>---------------|
@@ -56,5 +56,24 @@ public static class Actions
 
     //Boss defeated
     public static Action bossDefeated;
+
+    ///<summary>---------------|
+    /// Stage 3 Delegates      |
+    ///</summary>--------------|
+
+    //Quiz mechanic
+    public static Action<bool> disableParry;
+    public static Action parried;
+    public static Action NoAnswer;
+    public static Action correctGraph;
+    public static Action incorrectGraph;
+    public static Action correctAnswer;
+    public static Action resumeParry;
+
+
+    //UI delegate
+    public static Action<UITextType, string> UpdateQuestionText;
+    public static Action ClearInput;
+    public static Func<Canvas> canvas;
 
 }

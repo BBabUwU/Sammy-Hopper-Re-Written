@@ -59,10 +59,12 @@ public class CanvasManager : MonoBehaviour
     private void OnEnable()
     {
         PuzzlePiece.canvas += GetCanvas;
+        Actions.canvas += GetCanvas;
     }
 
     private void OnDisable()
     {
         PuzzlePiece.canvas -= GetCanvas;
+        Actions.canvas -= GetCanvas;
     }
 }

@@ -63,6 +63,8 @@ public class InputFieldController : MonoBehaviour
         ExplorationQuiz.ClearInput += ClearInputField;
 
         BossQuiz.ClearInput += ClearInputField;
+
+        Actions.ClearInput += ClearInputField;
     }
 
     private void OnDisable()
@@ -70,6 +72,8 @@ public class InputFieldController : MonoBehaviour
         ExplorationQuiz.ClearInput -= ClearInputField;
 
         BossQuiz.ClearInput -= ClearInputField;
+
+        Actions.ClearInput -= ClearInputField;
     }
 }
 

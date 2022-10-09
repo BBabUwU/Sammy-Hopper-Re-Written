@@ -7,7 +7,6 @@ public class Stg2_BossAttack : MonoBehaviour
     public List<Transform> firePoints = new List<Transform>();
     public GameObject projPrefab;
     public bool BossTurn = false;
-    private float nextFireTime = 0;
     public int fireNTimes;
     private int fireCount = 0;
     private int projectilesActive = 0;
@@ -59,12 +58,6 @@ public class Stg2_BossAttack : MonoBehaviour
     private void SetTurn()
     {
         BossTurn = true;
-    }
-
-    private bool AtkOnCooldown()
-    {
-        bool atkOnCooldown = Time.time > nextFireTime ? false : true;
-        return atkOnCooldown;
     }
 
     private void OnEnable()

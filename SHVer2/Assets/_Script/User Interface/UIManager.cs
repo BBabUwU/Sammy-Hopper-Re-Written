@@ -17,7 +17,8 @@ public enum UIType
     TutorialPage,
     ObjectivePage,
     puzzle_1,
-    puzzle_2
+    puzzle_2,
+    GraphingUI
 }
 
 public class UIManager : MonoBehaviour
