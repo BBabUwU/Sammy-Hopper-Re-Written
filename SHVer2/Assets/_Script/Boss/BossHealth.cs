@@ -5,6 +5,8 @@ public class BossHealth : MonoBehaviour
 {
     public float maxHealth = 400f;
     public float currentHealth = 400f;
+    public float damageLimit;
+    private float damageInflicted;
     public bool isDead;
     private Animator bossAnim;
     public static event Action<UIHealthType, float> SetMaxHealthUI;
@@ -43,6 +45,14 @@ public class BossHealth : MonoBehaviour
 
     public void Damage(int damage)
     {
+        damageInflicted += damage;
+
+        if (damageLimit < damageInflicted)
+        {
+            Actions.damageLimitReached?.Invoke();
+            damageInflicted = 0;
+        }
+
         currentHealth -= damage;
         SetCurrentHealthUI?.Invoke(UIHealthType.BossHealthBar, currentHealth);
         IsDead();

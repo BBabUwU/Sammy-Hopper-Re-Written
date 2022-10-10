@@ -5,7 +5,7 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject projectilePrefab;
     private Player _playerScript;
-    public float fireDamage;
+    public int fireDamage;
     public float fireSpeed;
     public float weaponCoolDownTime = 2f;
     [SerializeField] private bool allowedToFire = true;

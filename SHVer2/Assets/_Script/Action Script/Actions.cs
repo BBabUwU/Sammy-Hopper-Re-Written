@@ -69,6 +69,10 @@ public static class Actions
     public static Action incorrectGraph;
     public static Action correctAnswer;
     public static Action resumeParry;
+    public static Action<bool> switchShield;
+    public static Action damageLimitReached;
+    public static Action meteorAtkOver;
+    public static Action inCorrect;
 
 
     //UI delegate

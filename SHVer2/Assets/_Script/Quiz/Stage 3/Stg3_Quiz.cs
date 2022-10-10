@@ -5,14 +5,14 @@ using System;
 
 public class Stg3_Quiz : MonoBehaviour
 {
-
     //Variables
     private string userInput1;
     private string userInput2;
-    public int questionIndex;
+    [HideInInspector] public int questionIndex;
     private string questionAnswer1;
     private string questionAnswer2;
     public Stg3_QuestionBank questionBank;
+    public GameState returnGamestate;
 
     private void OnEnable()
     {
@@ -96,6 +96,7 @@ public class Stg3_Quiz : MonoBehaviour
 
     private void Incorrect()
     {
+        Actions.inCorrect?.Invoke();
         ReturnWorld();
         this.enabled = false;
     }
@@ -105,8 +106,7 @@ public class Stg3_Quiz : MonoBehaviour
         Actions.ClearInput?.Invoke();
         UIManager.Instance.TurnOffUI(UIType.QuizUI);
         UIManager.Instance.TurnOffUI(UIType.GraphingUI);
-        GameManager.Instance.UpdateGameState(GameState.Exploration);
-        Actions.resumeParry?.Invoke();
+        GameManager.Instance.UpdateGameState(returnGamestate);
     }
 
     private void CheckIfCorrect()

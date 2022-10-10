@@ -12,7 +12,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
         _enemyCollision = GetComponent<EnemyCollision>();
     }
 
-    public void Damage(float damageAmount)
+    public void Damage(int damageAmount)
     {
         currentHealth -= damageAmount;
     }

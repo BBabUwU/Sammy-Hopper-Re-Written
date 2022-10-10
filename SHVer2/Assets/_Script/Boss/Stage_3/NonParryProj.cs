@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowProjectile : MonoBehaviour, IDamageable
+public class NonParryProj : MonoBehaviour
 {
-    [SerializeField] private float projHealth = 40;
+
     [SerializeField] private float fireSpeed;
     [SerializeField] private float damage = 20f;
     private Transform player;
@@ -17,25 +17,12 @@ public class FollowProjectile : MonoBehaviour, IDamageable
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
-    private void Update()
+    private void Start()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.position, fireSpeed * Time.deltaTime);
-        transform.up = player.position - transform.position;
+        moveDirection = (player.position - transform.position).normalized * fireSpeed;
+        rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
+        Destroy(gameObject, 5f);
     }
-
-    public void Damage(int damage)
-    {
-        projHealth -= damage;
-
-        if (projHealth <= 0)
-        {
-            DestroyProjectile();
-        }
-    }
-
-    //moveDirection = (player.position - transform.position).normalized * fireSpeed;
-    //rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
-    //Destroy(gameObject, 5f);
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -48,7 +35,6 @@ public class FollowProjectile : MonoBehaviour, IDamageable
 
     private void DestroyProjectile()
     {
-        Actions.decreaseProjectileCounter?.Invoke();
         Destroy(gameObject);
     }
 }

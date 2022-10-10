@@ -13,6 +13,7 @@ TagManager:
   - QuestManager
   - PracticalProblem1
   - ParryBlock
+  - Meteor
   layers:
   - Default
   - TransparentFX
@@ -34,8 +35,8 @@ TagManager:
   - PuzzlePiece
   - Interact
   - ParryBlock
-  - 
-  - 
+  - Boss
+  - Shield
   - 
   - 
   - 

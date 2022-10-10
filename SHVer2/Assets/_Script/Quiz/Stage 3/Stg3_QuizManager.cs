@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Stg3_QuizManager : MonoBehaviour
 {
-    [SerializeField] private GameObject blockedPath;
+    [SerializeField] private GameObject entrancePath;
+    [SerializeField] private GameObject exitPath;
     private Stg3_Quiz quiz;
     private ShootProj attacker;
     [SerializeField] private int maxScore;
@@ -32,7 +33,8 @@ public class Stg3_QuizManager : MonoBehaviour
         if (quizCounter == maxScore)
         {
             attacker.enabled = false;
-            Destroy(blockedPath);
+            Destroy(exitPath);
+            this.enabled = false;
         }
     }
 
@@ -55,8 +57,8 @@ public class Stg3_QuizManager : MonoBehaviour
         Actions.resumeParry += ResumeParry;
 
         attacker.enabled = true;
+        entrancePath.SetActive(true);
         Actions.disableParry?.Invoke(false);
-
     }
 
     private void OnDisable()
