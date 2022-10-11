@@ -3598,9 +3598,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2000917507}
     - target: {fileID: 951981791, guid: 7ace245a7c9a0e1448495d67aeebfa8b, type: 3}
+      propertyPath: blockTop
+      value: 
+      objectReference: {fileID: 300708552}
+    - target: {fileID: 951981791, guid: 7ace245a7c9a0e1448495d67aeebfa8b, type: 3}
       propertyPath: blockTime
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 951981791, guid: 7ace245a7c9a0e1448495d67aeebfa8b, type: 3}
+      propertyPath: blockFront
+      value: 
+      objectReference: {fileID: 2000917507}
     - target: {fileID: 951981791, guid: 7ace245a7c9a0e1448495d67aeebfa8b, type: 3}
       propertyPath: parryCoolDownTime
       value: 1.5
@@ -3665,11 +3673,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7132152200005277447, guid: 7ace245a7c9a0e1448495d67aeebfa8b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ace245a7c9a0e1448495d67aeebfa8b, type: 3}
 --- !u!4 &300708551 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3231086845190866588, guid: 7ace245a7c9a0e1448495d67aeebfa8b, type: 3}
+  m_PrefabInstance: {fileID: 300708550}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &300708552 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7132152200005277447, guid: 7ace245a7c9a0e1448495d67aeebfa8b, type: 3}
   m_PrefabInstance: {fileID: 300708550}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &302865400
@@ -9191,8 +9208,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b3e3d3e8f911349b4ded1b05c1c721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBoss: 0
   questionIndex: 0
   questionBank: {fileID: 32337920}
+  returnGamestate: 0
 --- !u!114 &821594675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16089,7 +16108,7 @@ GameObject:
   - component: {fileID: 1630443888}
   - component: {fileID: 1630443891}
   - component: {fileID: 1630443892}
-  - component: {fileID: 1630443890}
+  - component: {fileID: 1630443894}
   - component: {fileID: 1630443893}
   - component: {fileID: 1630443889}
   m_Layer: 0
@@ -16178,20 +16197,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac88bf9209c4b9448fff281383e439f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1630443890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1630443886}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6b3e3d3e8f911349b4ded1b05c1c721, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  questionIndex: 0
-  questionBank: {fileID: 441274919}
 --- !u!61 &1630443891
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16251,6 +16256,22 @@ MonoBehaviour:
   entrancePath: {fileID: 603075303}
   exitPath: {fileID: 1827535332}
   maxScore: 2
+--- !u!114 &1630443894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630443886}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b3e3d3e8f911349b4ded1b05c1c721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBoss: 0
+  questionIndex: 0
+  questionBank: {fileID: 441274919}
+  returnGamestate: 1
 --- !u!1 &1633034367
 GameObject:
   m_ObjectHideFlags: 0
@@ -17089,7 +17110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choicePrefab: {fileID: 923972790256751367, guid: b61198e76a2761244959864dc6af9605, type: 3}
-  quiz: {fileID: 1630443890}
+  quiz: {fileID: 1630443894}
   parentTransform: {fileID: 1441885268}
   pieceParent: {fileID: 320799699}
 --- !u!1 &1779832037
@@ -18821,7 +18842,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 52879469
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.004999995, y: 0.0029411912, z: 0}

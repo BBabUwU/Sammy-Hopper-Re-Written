@@ -6,6 +6,7 @@ using System;
 public class Stg3_Quiz : MonoBehaviour
 {
     //Variables
+    [SerializeField] private bool isBoss;
     private string userInput1;
     private string userInput2;
     [HideInInspector] public int questionIndex;
@@ -107,6 +108,8 @@ public class Stg3_Quiz : MonoBehaviour
         UIManager.Instance.TurnOffUI(UIType.QuizUI);
         UIManager.Instance.TurnOffUI(UIType.GraphingUI);
         GameManager.Instance.UpdateGameState(returnGamestate);
+
+        if (!isBoss) Actions.resumeParry?.Invoke();
     }
 
     private void CheckIfCorrect()

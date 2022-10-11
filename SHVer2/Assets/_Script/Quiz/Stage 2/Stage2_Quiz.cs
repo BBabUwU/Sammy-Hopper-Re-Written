@@ -9,6 +9,9 @@ public class Stage2_Quiz : MonoBehaviour
     [SerializeField] private Stg2_QuestionBank Qbank;
     [SerializeField] private List<BoxCollider2D> interactCollider;
     [SerializeField] private GameObject canvasObj;
+    [SerializeField] private int numberOfQuestions;
+    [SerializeField] private GameObject blockedPath;
+    private int questionCounter = 0;
     public int quizNumber;
     private string currentAnswer;
     private int questionIndex;
@@ -90,21 +93,36 @@ public class Stage2_Quiz : MonoBehaviour
 
     private void CheckCorrect(string answer)
     {
+
         if (currentAnswer == answer)
         {
             Debug.Log("Correct");
-            Actions.incrementQuiz?.Invoke(quizNumber);
-            DisableInteraction();
-            canvasObj.SetActive(false);
-            this.enabled = false;
+            questionCounter++;
         }
         else
         {
             Debug.Log("Wrong");
             Actions.punish?.Invoke(answer);
             Qbank.qna[questionIndex].notActive = false;
+        }
+
+        if (stillHasQuestion())
+        {
             RandomizeQuestion();
         }
+        else
+        {
+            Destroy(blockedPath);
+            questionCounter = 0;
+            DisableInteraction();
+            canvasObj.SetActive(false);
+            this.enabled = false;
+        }
+    }
+
+    private bool stillHasQuestion()
+    {
+        return numberOfQuestions > questionCounter;
     }
 
     private void OnEnable()

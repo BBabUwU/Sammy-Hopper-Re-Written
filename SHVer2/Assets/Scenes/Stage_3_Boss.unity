@@ -3047,8 +3047,8 @@ MonoBehaviour:
   - {fileID: 1669036435}
   atkCoolDownTime: 3
   canShoot: 1
-  specialAtkCoolDownTime: 5
-  nextSpecialAtkFireTime: 5
+  specialAtkCoolDownTime: 20
+  nextSpecialAtkFireTime: 20
 --- !u!114 &271842364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18763,6 +18763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b3e3d3e8f911349b4ded1b05c1c721, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBoss: 1
   questionIndex: 0
   questionBank: {fileID: 620678197}
   returnGamestate: 6
@@ -20291,7 +20292,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 52879469
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.0029411912, y: 0.0029411912, z: 0}

@@ -23,6 +23,7 @@ public class Stg3_QuizManager : MonoBehaviour
 
         if (attacker.parryCounter == 3)
         {
+            attacker.enabled = false;
             GameManager.Instance.UpdateGameState(GameState.AnsweringQuiz);
             quiz.enabled = true;
         }
@@ -40,9 +41,9 @@ public class Stg3_QuizManager : MonoBehaviour
 
     private void ResumeParry()
     {
-        QuizOver();
+        attacker.enabled = true;
         attacker.parryCounter = 0;
-
+        QuizOver();
     }
 
     private void IncreaseQuizCounter()
