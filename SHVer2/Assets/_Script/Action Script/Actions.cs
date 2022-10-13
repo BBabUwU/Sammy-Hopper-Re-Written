@@ -101,4 +101,7 @@ public static class Actions
 
     //Add quest to the list
     public static Action<QuestGiver> addToList;
+
+    //Audio
+    public static Action<string> playAudio;
 }

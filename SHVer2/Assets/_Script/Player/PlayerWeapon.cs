@@ -26,6 +26,7 @@ public class PlayerWeapon : MonoBehaviour
 
         if (_playerInput.WeaponFirePressed() && !WeaponOnCooldown())
         {
+            Actions.playAudio?.Invoke("Fire");
             ShootWeapon();
             _playerAnimation.SetTrigger("WeaponShoot");
             nextFireTime = Time.time + weaponCoolDownTime;
