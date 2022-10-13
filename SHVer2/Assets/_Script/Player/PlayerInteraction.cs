@@ -19,7 +19,6 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (playerInput.InteractionButtonPressed() && playerCollision.IsGrounded())
             CheckInteraction();
-
     }
 
     public void OpenInteractableIcon()
@@ -32,7 +31,7 @@ public class PlayerInteraction : MonoBehaviour
         interactIcon.SetActive(false);
     }
 
-    private void CheckInteraction()
+    public void CheckInteraction()
     {
         RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, boxSize, 0, Vector2.zero);
 

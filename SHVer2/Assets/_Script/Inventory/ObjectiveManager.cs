@@ -7,7 +7,6 @@ using System;
 public class ObjectiveManager : MonoBehaviour
 {
     List<ObjectiveController> objectivePanels;
-    public static event Func<List<QuestGiver>> ListQuest;
 
     private void Awake()
     {
@@ -16,14 +15,14 @@ public class ObjectiveManager : MonoBehaviour
 
     private void OnEnable()
     {
-        if (ListQuest != null) AddObjective();
+        if (Actions.ListQuest != null) AddObjective();
     }
 
     private void AddObjective()
     {
         int i = 0;
 
-        foreach (var quest in ListQuest())
+        foreach (var quest in Actions.ListQuest())
         {
             if (quest == null)
             {

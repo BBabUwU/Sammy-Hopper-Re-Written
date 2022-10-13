@@ -1,29 +1,39 @@
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.UI;
 
 public class VideoPlayerController : MonoBehaviour
 {
     private VideoPlayer videoPlayer;
-    private VideoClip vidClip;
+    [SerializeField] private Button playButton;
+    [SerializeField] private Button pauseButton;
+    [SerializeField] private Button closeButton;
 
     private void Awake()
     {
         videoPlayer = GetComponent<VideoPlayer>();
-        videoPlayer.clip = vidClip;
+        playButton.onClick.AddListener(OnClickPlay);
+        pauseButton.onClick.AddListener(OnClickPause);
+        closeButton.onClick.AddListener(OnClickClose);
     }
 
-    private void OnButtonClicked(VideoButtonType _videoButtonType)
+    private void OnClickPlay()
     {
-        if (_videoButtonType == VideoButtonType.PlayButton) videoPlayer.Play();
-        if (_videoButtonType == VideoButtonType.PauseButton) videoPlayer.Pause();
-        if (_videoButtonType == VideoButtonType.CloseButton)
-        {
-            videoPlayer.Stop();
-            UIManager.Instance.TurnOnUI(UIType.VideoMenu);
-            UIManager.Instance.TurnOffUI(UIType.VideoPlayer);
-        }
-
+        videoPlayer.Play();
     }
+
+    private void OnClickPause()
+    {
+        videoPlayer.Pause();
+    }
+
+    private void OnClickClose()
+    {
+        videoPlayer.Stop();
+        UIManager.Instance.TurnOffUI(UIType.VideoPlayer);
+        GameManager.Instance.UpdateGameState(GameState.Exploration);
+    }
+
 
     private VideoPlayer GetVideoPlayerComponent()
     {
@@ -32,16 +42,11 @@ public class VideoPlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        VideoButtonController.videoButton += OnButtonClicked;
-        VideoProgressController.videoPlayer += GetVideoPlayerComponent;
-        VideoVolumeController.videoPlayer += GetVideoPlayerComponent;
-        VideoSetup.videoPlayer += GetVideoPlayerComponent;
+        Actions.videoPlayer += GetVideoPlayerComponent;
     }
 
     private void OnDisable()
     {
-        VideoButtonController.videoButton -= OnButtonClicked;
-        VideoVolumeController.videoPlayer -= GetVideoPlayerComponent;
-        VideoSetup.videoPlayer -= GetVideoPlayerComponent;
+        Actions.videoPlayer += GetVideoPlayerComponent;
     }
 }

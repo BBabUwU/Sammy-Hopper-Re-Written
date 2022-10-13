@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public abstract class Interactable : MonoBehaviour
 {
-
+    [SerializeField] private bool forceDialogue;
     //This function makes sure that the collider trigger is set to true.
     private void Reset()
     {
@@ -20,7 +20,16 @@ public abstract class Interactable : MonoBehaviour
     {
         //In order to enable and disable the interactable icon.
         if (other.CompareTag("Player"))
+        {
             other.GetComponent<PlayerInteraction>().OpenInteractableIcon();
+
+
+            if (forceDialogue)
+            {
+                other.GetComponent<PlayerInteraction>().CheckInteraction();
+                forceDialogue = false;
+            }
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

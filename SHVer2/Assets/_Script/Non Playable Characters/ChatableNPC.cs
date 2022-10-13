@@ -15,7 +15,6 @@ public class ChatableNPC : Interactable
     }
     public override void Interact()
     {
-
         if (!isTalking)
         {
             isTalking = true;

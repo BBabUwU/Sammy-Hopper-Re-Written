@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.Video;
+using System.Collections.Generic;
 public static class Actions
 {
     ///<summary>---------------|
@@ -75,9 +77,28 @@ public static class Actions
     public static Action inCorrect;
 
 
+    ///<summary>---------------|
+    /// In general             |
+    ///</summary>--------------|
+
     //UI delegate
     public static Action<UITextType, string> UpdateQuestionText;
     public static Action ClearInput;
     public static Func<Canvas> canvas;
 
+    //Dialogue UI
+    public static Action<UITextType, string> nameText;
+    public static Action<UITextType, string> dialogueText;
+    public static Action<char> updateDialogueText;
+    public static Func<string> getDialoguetUIText;
+    public static Action<UITextType, string> updateUIText;
+
+    //Video player
+    public static Func<VideoPlayer> videoPlayer;
+
+    //Objective Manager
+    public static Func<List<QuestGiver>> ListQuest;
+
+    //Add quest to the list
+    public static Action<QuestGiver> addToList;
 }

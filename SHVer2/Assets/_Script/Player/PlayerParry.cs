@@ -19,7 +19,8 @@ public class PlayerParry : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         Physics2D.IgnoreLayerCollision(6, 19);
     }
-    private void Update()
+
+    public void PlayerParryFeature()
     {
         if (playerInput.ParryButton() && !isDisabled && !ParryOnCooldown())
         {

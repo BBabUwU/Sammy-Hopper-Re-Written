@@ -11,6 +11,8 @@ public class Stg2_Choices : Interactable
     private BoxCollider2D interactCol;
     private BoxCollider2D col;
     public bool allowAnswer;
+    public Transform teleportPoint;
+    public Transform playerTransform;
     private void Awake()
     {
         allowAnswer = true;
@@ -46,8 +48,9 @@ public class Stg2_Choices : Interactable
 
     IEnumerator enableCollision()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         col.enabled = true;
+        playerTransform.position = teleportPoint.position;
     }
 
     private void OnEnable()

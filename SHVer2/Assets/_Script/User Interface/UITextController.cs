@@ -18,19 +18,6 @@ public class UITextController : MonoBehaviour
         textUI = GetComponent<TextMeshProUGUI>();
     }
 
-    public string GetText(UITextType _type)
-    {
-        string currentText = null;
-
-        if (textType == _type)
-        {
-            currentText = textUI.text;
-            return currentText;
-        }
-
-        return currentText;
-    }
-
     private void UpdateText(UITextType _type, string _text)
     {
         if (textType == _type)
@@ -49,11 +36,10 @@ public class UITextController : MonoBehaviour
 
     private void OnEnable()
     {
-        InteractionDialogue.nameText += UpdateText;
-        InteractionDialogue.dialogueText += UpdateText;
-        InteractionDialogue.updateDialogueText += UpdateDialogue;
-        InteractionDialogue.currentUIText += GetText;
-        InteractionDialogue.updateUIText += UpdateText;
+        Actions.nameText += UpdateText;
+        Actions.dialogueText += UpdateText;
+        Actions.updateDialogueText += UpdateDialogue;
+        Actions.updateUIText += UpdateText;
 
         ExplorationQuiz.UpdateQuestionText += UpdateText;
 
@@ -64,11 +50,10 @@ public class UITextController : MonoBehaviour
 
     private void OnDisable()
     {
-        InteractionDialogue.nameText -= UpdateText;
-        InteractionDialogue.dialogueText -= UpdateText;
-        InteractionDialogue.updateDialogueText -= UpdateDialogue;
-        InteractionDialogue.currentUIText -= GetText;
-        InteractionDialogue.updateUIText -= UpdateText;
+        Actions.nameText -= UpdateText;
+        Actions.dialogueText -= UpdateText;
+        Actions.updateDialogueText -= UpdateDialogue;
+        Actions.updateUIText -= UpdateText;
 
         ExplorationQuiz.UpdateQuestionText -= UpdateText;
 

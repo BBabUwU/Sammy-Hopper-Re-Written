@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //stops the player from moving when he is not allowed to move.
             _playerRigidBody.velocity = new Vector2(0, _playerRigidBody.velocity.y);
+            if (_playerCollision.IsGrounded()) _playerAnimation.SetBool("Grounded", true);
             return;
         }
 

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using System;
-using TMPro;
 
 public class InteractionDialogue : MonoBehaviour
 {
@@ -28,16 +27,6 @@ public class InteractionDialogue : MonoBehaviour
     [SerializeField] private List<string> completeWhoIsTalking;
     [SerializeField] private List<string> questCompleteLines;
 
-    //Events 
-    public static event Action<UITextType, string> nameText;
-    public static event Action<UITextType, string> dialogueText;
-    public static event Action<char> updateDialogueText;
-    public static event Func<UITextType, string> currentUIText;
-    public TextMeshProUGUI currentTextUI;
-    public static event Action<UITextType, string> updateUIText;
-
-    //Add quest
-    public static event Action<QuestGiver> addToList;
     private bool HasAdded = false;
 
     private void Awake()
@@ -57,6 +46,11 @@ public class InteractionDialogue : MonoBehaviour
         currentName = whoIsTalking;
         currentLines = lines;
 
+        SetQuestGiver();
+    }
+
+    private void SetQuestGiver()
+    {
         if (questGiver != null)
         {
 
@@ -75,29 +69,28 @@ public class InteractionDialogue : MonoBehaviour
         GameManager.Instance.UpdateGameState(GameState.NPCInteraction);
         SetLines();
         doneTalking = false;
-        dialogueText?.Invoke(UITextType.DialogueText, string.Empty);
+        Actions.dialogueText?.Invoke(UITextType.DialogueText, string.Empty);
         currentLineIndex = 0;
         StartCoroutine(TypeLine());
     }
 
     IEnumerator TypeLine()
     {
-        nameText?.Invoke(UITextType.NameText, currentName[currentLineIndex]);
+        Actions.nameText?.Invoke(UITextType.NameText, currentName[currentLineIndex]);
 
         foreach (char c in currentLines[currentLineIndex].ToCharArray())
         {
-            updateDialogueText?.Invoke(c);
+            Actions.updateDialogueText?.Invoke(c);
             yield return new WaitForSeconds(textSpeed);
         }
     }
 
     public void SkipText()
     {
-        //currentUIText(UITextType.DialogueText)
-        if (currentTextUI.text != currentLines[currentLineIndex])
+        if (Actions.getDialoguetUIText() != currentLines[currentLineIndex])
         {
             StopAllCoroutines();
-            updateUIText?.Invoke(UITextType.DialogueText, currentLines[currentLineIndex]);
+            Actions.updateUIText?.Invoke(UITextType.DialogueText, currentLines[currentLineIndex]);
         }
         else
         {
@@ -109,7 +102,7 @@ public class InteractionDialogue : MonoBehaviour
     {
         if (StillHasLines())
         {
-            updateUIText?.Invoke(UITextType.DialogueText, string.Empty);
+            Actions.updateUIText?.Invoke(UITextType.DialogueText, string.Empty);
             currentLineIndex++;
             StartCoroutine(TypeLine());
         }
@@ -117,7 +110,7 @@ public class InteractionDialogue : MonoBehaviour
         {
             if (hasQuest && !HasAdded)
             {
-                addToList?.Invoke(questGiver);
+                Actions.addToList?.Invoke(questGiver);
                 HasAdded = true;
             }
 

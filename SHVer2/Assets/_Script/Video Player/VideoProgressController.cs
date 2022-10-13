@@ -1,14 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.Video;
-using System;
 
 public class VideoProgressController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     private Slider slider;
     private bool usingSlider;
-    public static event Func<VideoPlayer> videoPlayer;
 
     private void Awake()
     {
@@ -17,9 +14,9 @@ public class VideoProgressController : MonoBehaviour, IPointerDownHandler, IPoin
 
     private void Update()
     {
-        if (!usingSlider && videoPlayer().isPlaying)
+        if (!usingSlider && Actions.videoPlayer().isPlaying)
         {
-            slider.value = (float)videoPlayer().frame / (float)videoPlayer().frameCount;
+            slider.value = (float)Actions.videoPlayer().frame / (float)Actions.videoPlayer().frameCount;
         }
     }
 
@@ -30,8 +27,8 @@ public class VideoProgressController : MonoBehaviour, IPointerDownHandler, IPoin
 
     public void OnPointerUp(PointerEventData a)
     {
-        float frame = (float)slider.value * (float)videoPlayer().frameCount;
-        videoPlayer().frame = (long)frame;
+        float frame = (float)slider.value * (float)Actions.videoPlayer().frameCount;
+        Actions.videoPlayer().frame = (long)frame;
         usingSlider = false;
     }
 }
