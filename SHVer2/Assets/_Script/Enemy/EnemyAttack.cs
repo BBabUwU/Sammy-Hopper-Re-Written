@@ -8,5 +8,4 @@ public class EnemyAttack : MonoBehaviour
     {
         return attackDamage;
     }
-
 }

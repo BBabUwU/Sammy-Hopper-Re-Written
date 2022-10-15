@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        Play("stg1_bgmusic");
+        //Play("stg1_bgmusic");
     }
 
     public void Play(string name)

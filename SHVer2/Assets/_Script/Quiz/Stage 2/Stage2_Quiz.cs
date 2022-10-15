@@ -102,7 +102,7 @@ public class Stage2_Quiz : MonoBehaviour
         else
         {
             Debug.Log("Wrong");
-            Actions.punish?.Invoke(answer);
+            Actions.punish?.Invoke(answer, quizNumber);
             Qbank.qna[questionIndex].notActive = false;
         }
 

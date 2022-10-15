@@ -10,6 +10,7 @@ public class Stg2Boss_Quiz : MonoBehaviour
     [SerializeField] private List<BoxCollider2D> interactCollider;
     [SerializeField] private GameObject canvasObj;
     [SerializeField] private int damageBoss;
+    public int quizNumber;
     private string currentAnswer;
     private int questionIndex;
     private List<int> randomChoiceIndex = new List<int>();
@@ -113,8 +114,9 @@ public class Stg2Boss_Quiz : MonoBehaviour
         else
         {
             Debug.Log("Wrong");
+            Actions.addEveluation?.Invoke("mistake");
             Actions.spawnEnemy?.Invoke();
-            Actions.punish?.Invoke(answer);
+            Actions.punish?.Invoke(answer, quizNumber);
             Qbank.qna[questionIndex].notActive = false;
             RandomizeQuestion();
         }

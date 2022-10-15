@@ -15,6 +15,7 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     public void Damage(int damageAmount)
     {
         currentHealth -= damageAmount;
+        IsDead();
     }
 
     public void IsDead()

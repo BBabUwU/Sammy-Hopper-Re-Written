@@ -12,7 +12,8 @@ public enum CanvasType
     Inventory,
     VideoPlayer,
     EndScreen,
-    Puzzle
+    Puzzle,
+    BossTransition
 }
 
 public class CanvasManager : MonoBehaviour

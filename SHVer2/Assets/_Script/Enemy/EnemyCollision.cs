@@ -6,9 +6,11 @@ public class EnemyCollision : MonoBehaviour
     [SerializeField] private Transform groundDetection;
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask blockedPathLayer;
     [SerializeField] private float groundRayDistance = 1f;
     [SerializeField] private float boxWidth = 1f;
     [SerializeField] private float boxHeight = 1f;
+    [SerializeField] private bool showDetectionGizmo;
 
     //Enemy attack script
     private EnemyAttack _enemyAttack;
@@ -35,7 +37,7 @@ public class EnemyCollision : MonoBehaviour
 
     internal bool ObstacleDetected()
     {
-        RaycastHit2D collisionHasDetected = Physics2D.BoxCast(obstacleDetection.position, ObstacleCollisionSize(), 0, Vector2.right, 0, wallLayer | groundLayer);
+        RaycastHit2D collisionHasDetected = Physics2D.BoxCast(obstacleDetection.position, ObstacleCollisionSize(), 0, Vector2.right, 0, wallLayer | groundLayer | blockedPathLayer);
         return collisionHasDetected.collider != null;
     }
 
@@ -47,11 +49,14 @@ public class EnemyCollision : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
-        //Display Obstacle
-        Gizmos.DrawWireCube(obstacleDetection.position, ObstacleCollisionSize());
-        //Display Ground ray
-        Gizmos.DrawRay(groundDetection.position, Vector2.down * groundRayDistance);
+        if (showDetectionGizmo)
+        {
+            Gizmos.color = Color.blue;
+            //Display Obstacle
+            Gizmos.DrawWireCube(obstacleDetection.position, ObstacleCollisionSize());
+            //Display Ground ray
+            Gizmos.DrawRay(groundDetection.position, Vector2.down * groundRayDistance);
+        }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -17,7 +17,7 @@ public static class Actions
     public static Action quizStarted;
 
     //Used to send a message to punish the player for answering wrong
-    public static Action<string> punish;
+    public static Action<string, int> punish;
 
     //Increments number of quiz answered for the puzzle pieces
     public static Action<int> incrementQuiz;
@@ -104,4 +104,19 @@ public static class Actions
 
     //Audio
     public static Action<string> playAudio;
+
+    //Set Controls
+    //Allow movement
+    public static Action<bool> setMovement;
+    public static Action<bool> setWeapon;
+    public static Action<bool> setNotepad;
+    public static Action<bool> setInventory;
+
+    //Button delegate
+    public static Action GoNextScene;
+    public static Action GoMainMenu;
+
+    //Add
+    public static Action<string> addEveluation;
+
 }

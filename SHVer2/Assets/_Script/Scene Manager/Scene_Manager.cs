@@ -10,9 +10,14 @@ public class Scene_Manager : MonoBehaviour
         CreateSingleton();
     }
 
-    public void LoadScene(ButtonType _buttonType)
+    public void LoadNextScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     private void CreateSingleton()
@@ -30,11 +35,13 @@ public class Scene_Manager : MonoBehaviour
 
     private void OnEnable()
     {
-        UIButtonController.Button_Clicked += LoadScene;
+        Actions.GoNextScene += LoadNextScene;
+        Actions.GoMainMenu += LoadMainMenu;
     }
 
     private void OnDisable()
     {
-        UIButtonController.Button_Clicked -= LoadScene;
+        Actions.GoNextScene -= LoadNextScene;
+        Actions.GoMainMenu -= LoadMainMenu;
     }
 }

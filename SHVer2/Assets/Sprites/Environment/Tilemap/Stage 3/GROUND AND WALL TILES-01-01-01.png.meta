@@ -1,0 +1,415 @@
+fileFormatVersion: 2
+guid: a5447f57c06a9d240ab3af122f4fd921
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 415
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: GROUND AND WALL TILES-01-01-01_5
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 565
+        width: 419
+        height: 419
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4bf58ef65384ee45997477622637a6d
+      internalID: -506917249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GROUND AND WALL TILES-01-01-01_10
+      rect:
+        serializedVersion: 2
+        x: 1882
+        y: 562
+        width: 417
+        height: 418
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64c27367816b572409505099116d3463
+      internalID: 830067367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GROUND AND WALL TILES-01-01-01_11
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 580
+        width: 420
+        height: 419
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a22ce3a463fb44f4cbd4878c727a0c60
+      internalID: -1967201153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GROUND AND WALL TILES-01-01-01_37
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 75
+        width: 420
+        height: 420
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63baa81ad73275647bf959fc8a616a2c
+      internalID: 2133303352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GROUND AND WALL TILES-01-01-01_42
+      rect:
+        serializedVersion: 2
+        x: 724
+        y: 61
+        width: 418
+        height: 418
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc55aa14bb94a8d408a17cb60fa981fe
+      internalID: -189276956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GROUND AND WALL TILES-01-01-01_44
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 62
+        width: 419
+        height: 419
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5902d98712fefaf4ab73ab3a7346bbd2
+      internalID: 530546293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GROUND AND WALL TILES-01-01-01_47
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 75
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29133a934d3874b42a5b6406c2e17384
+      internalID: 981983000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GROUND AND WALL TILES-01-01-01_48
+      rect:
+        serializedVersion: 2
+        x: 1881
+        y: 57
+        width: 420
+        height: 419
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45155b296e1a4cf4195c98254f432306
+      internalID: -274912805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GROUND AND WALL TILES-01-01-01_49
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 62
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4fa29941ae3b31439367aa5793c0184
+      internalID: -1594428056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GROUND AND WALL TILES-01-01-01_52
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 51
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a155006dd25a6e4c9c31dd534002ffa
+      internalID: -2029353288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GROUND AND WALL TILES-01-01-01_0
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 563
+        width: 419
+        height: 420
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b27115f516f3c934d9439e0b339ef9f8
+      internalID: 1722338396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      GROUND AND WALL TILES-01-01-01_34: 1412220404
+      GROUND AND WALL TILES-01-01-01_22: 1074991928
+      GROUND AND WALL TILES-01-01-01_61: -1123110907
+      GROUND AND WALL TILES-01-01-01_20: 121305343
+      GROUND AND WALL TILES-01-01-01_24: -110162792
+      GROUND AND WALL TILES-01-01-01_58: -912822428
+      GROUND AND WALL TILES-01-01-01_52: -2029353288
+      GROUND AND WALL TILES-01-01-01_7: 1147999910
+      GROUND AND WALL TILES-01-01-01_41: -2129332097
+      GROUND AND WALL TILES-01-01-01_16: -706876987
+      GROUND AND WALL TILES-01-01-01_10: 830067367
+      GROUND AND WALL TILES-01-01-01_45: 2052278762
+      GROUND AND WALL TILES-01-01-01_46: 2094983981
+      GROUND AND WALL TILES-01-01-01_27: 2080676371
+      GROUND AND WALL TILES-01-01-01_18: -1867201931
+      GROUND AND WALL TILES-01-01-01_23: -1937413056
+      GROUND AND WALL TILES-01-01-01_13: -488563611
+      GROUND AND WALL TILES-01-01-01_42: -189276956
+      GROUND AND WALL TILES-01-01-01_35: -246428364
+      GROUND AND WALL TILES-01-01-01_43: 1398291270
+      GROUND AND WALL TILES-01-01-01_33: 1677303635
+      GROUND AND WALL TILES-01-01-01_28: -402839858
+      GROUND AND WALL TILES-01-01-01_14: 1097709732
+      GROUND AND WALL TILES-01-01-01_19: -54562593
+      GROUND AND WALL TILES-01-01-01_44: 530546293
+      GROUND AND WALL TILES-01-01-01_2: 521940234
+      GROUND AND WALL TILES-01-01-01_6: 1349122688
+      GROUND AND WALL TILES-01-01-01_21: 1331801730
+      GROUND AND WALL TILES-01-01-01_32: -1482170090
+      GROUND AND WALL TILES-01-01-01_26: -1374481396
+      GROUND AND WALL TILES-01-01-01_47: 981983000
+      GROUND AND WALL TILES-01-01-01_30: -917556178
+      GROUND AND WALL TILES-01-01-01_1: 1602770442
+      GROUND AND WALL TILES-01-01-01_48: -274912805
+      GROUND AND WALL TILES-01-01-01_15: 310485175
+      GROUND AND WALL TILES-01-01-01_25: -1952067124
+      GROUND AND WALL TILES-01-01-01_38: 2023657164
+      GROUND AND WALL TILES-01-01-01_54: 877513298
+      GROUND AND WALL TILES-01-01-01_60: -1079371003
+      GROUND AND WALL TILES-01-01-01_40: -2022419039
+      GROUND AND WALL TILES-01-01-01_8: -1907240339
+      GROUND AND WALL TILES-01-01-01_37: 2133303352
+      GROUND AND WALL TILES-01-01-01_55: 757735801
+      GROUND AND WALL TILES-01-01-01_59: 475765510
+      GROUND AND WALL TILES-01-01-01_36: 1791445107
+      GROUND AND WALL TILES-01-01-01_4: 687914353
+      GROUND AND WALL TILES-01-01-01_17: 662686274
+      GROUND AND WALL TILES-01-01-01_9: -1656147100
+      GROUND AND WALL TILES-01-01-01_29: -58690135
+      GROUND AND WALL TILES-01-01-01_51: 611073666
+      GROUND AND WALL TILES-01-01-01_12: 1924522530
+      GROUND AND WALL TILES-01-01-01_31: -1963667115
+      GROUND AND WALL TILES-01-01-01_3: 1062395992
+      GROUND AND WALL TILES-01-01-01_0: 1722338396
+      GROUND AND WALL TILES-01-01-01_53: -876893759
+      GROUND AND WALL TILES-01-01-01_5: -506917249
+      GROUND AND WALL TILES-01-01-01_57: 440496724
+      GROUND AND WALL TILES-01-01-01_49: -1594428056
+      GROUND AND WALL TILES-01-01-01_50: -1484639187
+      GROUND AND WALL TILES-01-01-01_56: 1543011529
+      GROUND AND WALL TILES-01-01-01_11: -1967201153
+      GROUND AND WALL TILES-01-01-01_39: -106888971
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

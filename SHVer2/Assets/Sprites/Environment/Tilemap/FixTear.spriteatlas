@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FixTear
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 2
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 7b0063c1cc36fc448954dcd527cbe6ce, type: 3}
+    - {fileID: 2800000, guid: 68e0883fc0477b44e90d79deb634cacf, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 991645641, guid: 7b0063c1cc36fc448954dcd527cbe6ce, type: 3}
+  - {fileID: -674837063, guid: 7b0063c1cc36fc448954dcd527cbe6ce, type: 3}
+  - {fileID: -1798893936, guid: 7b0063c1cc36fc448954dcd527cbe6ce, type: 3}
+  - {fileID: 1966924421, guid: 7b0063c1cc36fc448954dcd527cbe6ce, type: 3}
+  - {fileID: 1521887386, guid: 68e0883fc0477b44e90d79deb634cacf, type: 3}
+  - {fileID: 1768635796, guid: 68e0883fc0477b44e90d79deb634cacf, type: 3}
+  - {fileID: 490252510, guid: 68e0883fc0477b44e90d79deb634cacf, type: 3}
+  - {fileID: 2137631780, guid: 68e0883fc0477b44e90d79deb634cacf, type: 3}
+  - {fileID: -1812583555, guid: 68e0883fc0477b44e90d79deb634cacf, type: 3}
+  - {fileID: -1523363920, guid: 68e0883fc0477b44e90d79deb634cacf, type: 3}
+  - {fileID: 1658900254, guid: 68e0883fc0477b44e90d79deb634cacf, type: 3}
+  - {fileID: 1333198164, guid: 68e0883fc0477b44e90d79deb634cacf, type: 3}
+  - {fileID: 822214876, guid: 68e0883fc0477b44e90d79deb634cacf, type: 3}
+  - {fileID: -1376887753, guid: 68e0883fc0477b44e90d79deb634cacf, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - GROUNDTILES 3 (with outline)Asset 5_3
+  - GROUNDTILES 3 (with outline)Asset 5_2
+  - GROUNDTILES 3 (with outline)Asset 5_1
+  - GROUNDTILES 3 (with outline)Asset 5_0
+  - Crate
+  - STAGE 2 Sample TexturesArtboard 1_9
+  - STAGE 2 Sample TexturesArtboard 1_1
+  - Stg2_Ground_4
+  - Stg2_Ground_5
+  - Stg2_Ground_1
+  - Stg2_Ground_2
+  - Stg2_Ground_3
+  - Sewage_1
+  - Stg2_platform
+  m_RenderDataMap: {}
+  m_Tag: FixTear
+  m_IsVariant: 0

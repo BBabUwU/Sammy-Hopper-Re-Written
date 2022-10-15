@@ -24,6 +24,10 @@ public class Stg2_BossManager : MonoBehaviour
         KillAllEnemy();
         Actions.stopQuiz?.Invoke();
         Actions.stopTime?.Invoke();
+        Actions.setMovement?.Invoke(false);
+        Actions.setWeapon?.Invoke(false);
+        Actions.setNotepad?.Invoke(false);
+        CanvasManager.Instance.SwitchCanvas(CanvasType.BossDefeated);
     }
 
     private int RandomSpotIndex()

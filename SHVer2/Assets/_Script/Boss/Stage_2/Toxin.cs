@@ -8,6 +8,11 @@ public class Toxin : MonoBehaviour
     private float nextDamageTime = 0;
     public float damage;
 
+    private void Awake()
+    {
+        Physics2D.IgnoreLayerCollision(12, 23);
+    }
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -17,6 +22,11 @@ public class Toxin : MonoBehaviour
                 other.GetComponent<PlayerHealth>().DamagePlayer(damage);
                 nextDamageTime = Time.time + damageCoolDownTime;
             }
+        }
+
+        if (other.CompareTag("Enemy"))
+        {
+            Destroy(other.gameObject);
         }
     }
     private bool OnCooldown()

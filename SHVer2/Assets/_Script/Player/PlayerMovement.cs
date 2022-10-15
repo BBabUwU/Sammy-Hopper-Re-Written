@@ -75,15 +75,22 @@ public class PlayerMovement : MonoBehaviour
         _playerAnimation.SetFloat("RunSpeed", Mathf.Abs(_playerRigidBody.velocity.x));
     }
 
+    private void SetMovement(bool x)
+    {
+        allowedToMove = x;
+    }
+
     //Event functions
     //Listening to game manager.
     private void OnEnable()
     {
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
+        Actions.setMovement += SetMovement;
     }
     private void OnDisable()
     {
         GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
+        Actions.setMovement -= SetMovement;
     }
 
     private void GameManagerOnGameStateChanged(GameState state)

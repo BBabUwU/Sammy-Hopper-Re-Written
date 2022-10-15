@@ -8,7 +8,7 @@ public class PlayerWeapon : MonoBehaviour
     public int fireDamage;
     public float fireSpeed;
     public float weaponCoolDownTime = 2f;
-    [SerializeField] private bool allowedToFire = true;
+    public bool allowedToFire = true;
     private PlayerInput _playerInput;
     private float nextFireTime = 0;
     private Animator _playerAnimation;
@@ -44,15 +44,22 @@ public class PlayerWeapon : MonoBehaviour
         Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
     }
 
+    private void SetWeapon(bool x)
+    {
+        allowedToFire = x;
+    }
+
     //Event functions
     //Listening to game manager.
     private void OnEnable()
     {
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
+        Actions.setWeapon += SetWeapon;
     }
     private void OnDisable()
     {
         GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
+        Actions.setWeapon -= SetWeapon;
     }
 
     private void GameManagerOnGameStateChanged(GameState state)

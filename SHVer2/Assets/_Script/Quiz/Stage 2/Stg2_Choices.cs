@@ -6,8 +6,8 @@ public enum Choice { A, B, C, D }
 public class Stg2_Choices : Interactable
 {
     public Choice choice;
+    public int quizNumber;
     private string choiceAnswer;
-    private bool quizStarted = false;
     private BoxCollider2D interactCol;
     private BoxCollider2D col;
     public bool allowAnswer;
@@ -37,9 +37,9 @@ public class Stg2_Choices : Interactable
         Actions.answer?.Invoke(choiceAnswer);
     }
 
-    private void Punish(string answer)
+    private void Punish(string answer, int quizNum)
     {
-        if (choiceAnswer == answer)
+        if (choiceAnswer == answer && quizNum == quizNumber)
         {
             col.enabled = false;
             StartCoroutine(enableCollision());
@@ -48,9 +48,18 @@ public class Stg2_Choices : Interactable
 
     IEnumerator enableCollision()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         col.enabled = true;
+        Actions.setMovement(false);
         playerTransform.position = teleportPoint.position;
+        Debug.Log(allowAnswer);
+        StartCoroutine(TempStopMovement());
+    }
+
+    IEnumerator TempStopMovement()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Actions.setMovement(true);
     }
 
     private void OnEnable()
