@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 73bf013ea6aceac4284aa407afc54e57, type: 2}
     - target: {fileID: 2541751760644615315, guid: 23cde15baf9d95b47a56183054e38c15, type: 3}
       propertyPath: m_Name
-      value: Enemy - Quest_1
+      value: Enemy - Quest_1 #2
       objectReference: {fileID: 0}
     - target: {fileID: 2541751760644615319, guid: 23cde15baf9d95b47a56183054e38c15, type: 3}
       propertyPath: m_Sprite
@@ -37,11 +37,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2541751760644615400, guid: 23cde15baf9d95b47a56183054e38c15, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -53.15265
+      value: -48.49
       objectReference: {fileID: 0}
     - target: {fileID: 2541751760644615400, guid: 23cde15baf9d95b47a56183054e38c15, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.426973
+      value: -14.39
       objectReference: {fileID: 0}
     - target: {fileID: 2541751760644615400, guid: 23cde15baf9d95b47a56183054e38c15, type: 3}
       propertyPath: m_LocalPosition.z

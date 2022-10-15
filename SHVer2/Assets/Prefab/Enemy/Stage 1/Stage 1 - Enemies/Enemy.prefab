@@ -343,9 +343,13 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  blockedPathLayer:
+    serializedVersion: 2
+    m_Bits: 0
   groundRayDistance: 0.32
   boxWidth: 0.2
   boxHeight: 1.04
+  showDetectionGizmo: 0
 --- !u!114 &2541751760644615406
 MonoBehaviour:
   m_ObjectHideFlags: 0
