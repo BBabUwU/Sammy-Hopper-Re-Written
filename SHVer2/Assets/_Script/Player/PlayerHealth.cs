@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System;
 
 public class PlayerHealth : MonoBehaviour
@@ -8,6 +9,12 @@ public class PlayerHealth : MonoBehaviour
     public bool isDead = false;
     public static event Action<UIHealthType, float> SetMaxHealthUI;
     public static event Action<UIHealthType, float> SetCurrentHealthUI;
+    private SpriteRenderer theRenderer;
+
+    private void Awake()
+    {
+        theRenderer = GetComponent<SpriteRenderer>();
+    }
 
     public void SetInitialUIvalues(UIHealthType _sliderType)
     {
@@ -29,6 +36,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void DamagePlayer(float damage)
     {
+        StartCoroutine(HurtIndicator());
         currentHealth -= damage;
         if (currentHealth <= 0) currentHealth = 0;
         SetCurrentHealthUI?.Invoke(UIHealthType.PlayerHealthBar, currentHealth);
@@ -39,6 +47,13 @@ public class PlayerHealth : MonoBehaviour
         currentHealth += heal;
         if (currentHealth > maxHealth) currentHealth = maxHealth;
         SetCurrentHealthUI?.Invoke(UIHealthType.PlayerHealthBar, currentHealth);
+    }
+
+    IEnumerator HurtIndicator()
+    {
+        theRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        theRenderer.color = Color.white;
     }
 
     private void InstantKill()

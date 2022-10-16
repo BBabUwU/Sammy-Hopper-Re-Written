@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerParry : MonoBehaviour
 {
-    [SerializeField] private GameObject blockTop;
-    [SerializeField] private GameObject blockFront;
+    [SerializeField] private GameObject block;
     [SerializeField] private float blockTime;
     private PlayerInput playerInput;
     public bool isDisabled = true;
@@ -14,8 +13,7 @@ public class PlayerParry : MonoBehaviour
 
     private void Awake()
     {
-        blockTop.SetActive(false);
-        blockFront.SetActive(false);
+        block.SetActive(false);
         playerInput = GetComponent<PlayerInput>();
         Physics2D.IgnoreLayerCollision(6, 19);
     }
@@ -42,11 +40,9 @@ public class PlayerParry : MonoBehaviour
 
     private IEnumerator Parry()
     {
-        blockTop.SetActive(true);
-        blockFront.SetActive(true);
+        block.SetActive(true);
         yield return new WaitForSeconds(blockTime);
-        blockTop.SetActive(false);
-        blockFront.SetActive(false);
+        block.SetActive(false);
     }
 
     private void OnEnable()
@@ -60,5 +56,4 @@ public class PlayerParry : MonoBehaviour
         Actions.disableParry -= AllowParry;
         Actions.setAllControls -= AllowParry;
     }
-
 }

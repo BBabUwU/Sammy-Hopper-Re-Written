@@ -23,6 +23,7 @@ public class Stg3_QuizManager : MonoBehaviour
 
         if (attacker.parryCounter == 3)
         {
+            attacker.StopAllCoroutines();
             attacker.enabled = false;
             GameManager.Instance.UpdateGameState(GameState.AnsweringQuiz);
             quiz.enabled = true;

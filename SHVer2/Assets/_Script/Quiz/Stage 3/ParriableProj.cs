@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class ParriableProj : MonoBehaviour
 {
 
     [SerializeField] private float fireSpeed;
@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
     private Transform player;
     private Vector2 moveDirection;
     private Rigidbody2D rb;
+    [SerializeField] private bool parriable;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class Projectile : MonoBehaviour
     {
         moveDirection = (player.position - transform.position).normalized * fireSpeed;
         rb.velocity = new Vector2(moveDirection.x, moveDirection.y);
+        transform.up = player.position - transform.position;
         Destroy(gameObject, 5f);
     }
 
@@ -34,8 +36,11 @@ public class Projectile : MonoBehaviour
 
         if (other.CompareTag("ParryBlock"))
         {
-            Actions.parried?.Invoke();
-            DestroyProjectile();
+            if (parriable)
+            {
+                Actions.parried?.Invoke();
+                DestroyProjectile();
+            }
         }
     }
 

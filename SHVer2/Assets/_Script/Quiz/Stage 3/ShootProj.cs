@@ -4,32 +4,39 @@ using UnityEngine;
 
 public class ShootProj : MonoBehaviour
 {
-    [SerializeField] private GameObject quizProjPrefab;
+    [SerializeField] private GameObject parriableProjPrefab;
+    [SerializeField] private GameObject nonParriableProjPrefab;
     [SerializeField] private List<Transform> firePoints;
-    public float atkCoolDownTime = 3f;
-    private float nextFireTime = 0;
     private bool canShoot = true;
     public int parryCounter = 0;
+    float randomTime;
 
     private void Update()
     {
-        if (canShoot && !AtkOnCooldown() && parryCounter != 3)
+        if (canShoot && parryCounter != 3)
         {
-            AttackPlayer();
-            nextFireTime = Time.time + atkCoolDownTime;
+            randomTime = Random.Range(1f, 6f);
+            StartCoroutine(AttackPlayer());
+            canShoot = false;
         }
     }
 
-    private void AttackPlayer()
+    IEnumerator AttackPlayer()
     {
+        yield return new WaitForSeconds(randomTime);
+
         int spawnIndex = UnityEngine.Random.Range(0, firePoints.Count);
+        int typeIndex = UnityEngine.Random.Range(0, 2);
 
-        Instantiate(quizProjPrefab, firePoints[spawnIndex].position, Quaternion.identity);
-    }
+        if (typeIndex == 0)
+        {
+            Instantiate(parriableProjPrefab, firePoints[spawnIndex].position, Quaternion.identity);
+        }
+        else if (typeIndex == 1)
+        {
+            Instantiate(nonParriableProjPrefab, firePoints[spawnIndex].position, Quaternion.identity);
+        }
 
-    private bool AtkOnCooldown()
-    {
-        bool atkOnCooldown = Time.time > nextFireTime ? false : true;
-        return atkOnCooldown;
+        canShoot = true;
     }
 }
