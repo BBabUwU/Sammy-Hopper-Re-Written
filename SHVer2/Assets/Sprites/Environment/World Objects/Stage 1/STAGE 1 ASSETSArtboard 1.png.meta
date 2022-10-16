@@ -125,10 +125,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: STAGE 1 ASSETSArtboard 1_1
+      name: Wardrobe
       rect:
         serializedVersion: 2
-        x: 457
+        x: 455
         y: 789
         width: 327
         height: 282
@@ -146,7 +146,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: STAGE 1 ASSETSArtboard 1_2
+      name: Stairs
       rect:
         serializedVersion: 2
         x: 801
@@ -188,7 +188,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: STAGE 1 ASSETSArtboard 1_4
+      name: Chand
       rect:
         serializedVersion: 2
         x: 43
@@ -209,7 +209,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: STAGE 1 ASSETSArtboard 1_5
+      name: stair-front
       rect:
         serializedVersion: 2
         x: 433
@@ -230,7 +230,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: STAGE 1 ASSETSArtboard 1_6
+      name: Chair
       rect:
         serializedVersion: 2
         x: 913
@@ -251,7 +251,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: STAGE 1 ASSETSArtboard 1_7
+      name: Pillar
       rect:
         serializedVersion: 2
         x: 40
@@ -272,7 +272,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: STAGE 1 ASSETSArtboard 1_8
+      name: Banner
       rect:
         serializedVersion: 2
         x: 910
@@ -293,7 +293,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: STAGE 1 ASSETSArtboard 1_9
+      name: Painting
       rect:
         serializedVersion: 2
         x: 1286
@@ -314,7 +314,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: STAGE 1 ASSETSArtboard 1_10
+      name: Door
       rect:
         serializedVersion: 2
         x: 1577
@@ -335,7 +335,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: STAGE 1 ASSETSArtboard 1_11
+      name: Hanging_shield
       rect:
         serializedVersion: 2
         x: 550
@@ -356,7 +356,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: STAGE 1 ASSETSArtboard 1_12
+      name: Smallpot
       rect:
         serializedVersion: 2
         x: 64
@@ -377,7 +377,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: STAGE 1 ASSETSArtboard 1_13
+      name: Pot
       rect:
         serializedVersion: 2
         x: 246
@@ -398,7 +398,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: STAGE 1 ASSETSArtboard 1_14
+      name: Hanger
       rect:
         serializedVersion: 2
         x: 1745
@@ -419,13 +419,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: STAGE 1 ASSETSArtboard 1_15
+      name: Clock
       rect:
         serializedVersion: 2
-        x: 1695
+        x: 1697
         y: 572
-        width: 185
-        height: 174
+        width: 183
+        height: 173
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -451,21 +451,21 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Stage 1 - Train exit: -396080164
-      STAGE 1 ASSETSArtboard 1_6: 1973041714
-      STAGE 1 ASSETSArtboard 1_13: 1305067762
-      STAGE 1 ASSETSArtboard 1_4: 1899213957
-      STAGE 1 ASSETSArtboard 1_12: 380322483
-      STAGE 1 ASSETSArtboard 1_5: -729504573
-      STAGE 1 ASSETSArtboard 1_8: 1079151710
-      STAGE 1 ASSETSArtboard 1_11: -656077456
+      Chair: 1973041714
+      Stairs: 1666379405
+      Hanger: 390230910
+      Pot: 1305067762
+      Door: -135377988
+      Chand: 1899213957
+      Clock: 207435717
+      Painting: -400383059
       Stage 1 - Window: -583237778
-      STAGE 1 ASSETSArtboard 1_2: 1666379405
-      STAGE 1 ASSETSArtboard 1_15: 207435717
-      STAGE 1 ASSETSArtboard 1_1: -699246305
-      STAGE 1 ASSETSArtboard 1_10: -135377988
-      STAGE 1 ASSETSArtboard 1_14: 390230910
-      STAGE 1 ASSETSArtboard 1_7: 73527760
-      STAGE 1 ASSETSArtboard 1_9: -400383059
+      Banner: 1079151710
+      Pillar: 73527760
+      Hanging_shield: -656077456
+      stair-front: -729504573
+      Wardrobe: -699246305
+      Smallpot: 380322483
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

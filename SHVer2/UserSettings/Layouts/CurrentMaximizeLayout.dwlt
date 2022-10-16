@@ -223,10 +223,10 @@ MonoBehaviour:
     m_SaveData: []
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 00220900
-      m_LastClickedID: 598528
-      m_ExpandedIDs: d60bfdff6a74fdfff279fdfff08efdff0099fdff38d3fdff84defdff6cebfdff9282ffff1e87ffff8e94ffff169dffff02b0ffff70baffffb6c4fffffae5ffff12fbffffdab7000030b800009a2401003c780100d4e40600184a07002ef00700c8f0070072f1070068140800ea1a0800ec200900f020090046210900
+      scrollPos: {x: 0, y: 2358}
+      m_SelectedIDs: d6d3ffff
+      m_LastClickedID: -11306
+      m_ExpandedIDs: 9ab3feff221effffb6d4ffffc8dbffffc4e6ffffb8ecffff12fbffff88630000e46500002e7c0000a27c0000fa940000429500005a950000b0950000b4950000e49500000a9600009c960000369700001a980000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -524,9 +524,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -72.960335, y: 2.3392506, z: -0.28367338}
+    m_Target: {x: -62.427322, y: 8.973213, z: 0.08245622}
     speed: 2
-    m_Value: {x: -72.960335, y: 2.3392506, z: -0.28367338}
+    m_Value: {x: -62.427322, y: 8.973213, z: 0.08245622}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -577,9 +577,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 13.894695
+    m_Target: 4.443472
     speed: 2
-    m_Value: 13.894695
+    m_Value: 4.443472
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -632,7 +632,7 @@ MonoBehaviour:
   - {fileID: 12}
   - {fileID: 13}
   m_Selected: 0
-  m_LastSelected: 3
+  m_LastSelected: 1
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -674,22 +674,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Sprites/Environment/Tilemap/Stage 1
+    - Assets/_Script/Player
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Sprites/Environment/Tilemap/Stage 1
+  - Assets/_Script/Player
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Pamilee\Documents\GitHub\Sammy-Hopper-Re-Written\SHVer2
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 259}
-    m_SelectedIDs: ac240900
-    m_LastClickedID: 599212
-    m_ExpandedIDs: 00000000b46b0000b66b0000b86b0000ba6b0000bc6b0000be6b0000c06b0000c46b0000c66b0000c86b0000cc6b0000ce6b0000d46b0000da6b0000426c00004e6c0000ce55080000ca9a3b
+    scrollPos: {x: 0, y: 319}
+    m_SelectedIDs: 9ab10000
+    m_LastClickedID: 45466
+    m_ExpandedIDs: 0000000046700000487000004a7000004c7000004e70000050700000527000005470000056700000587000005a7000005c7000005e70000060700000627000006a7000007a70000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -717,7 +717,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000b46b0000b66b0000b86b0000ba6b0000bc6b0000be6b0000c06b0000c46b0000c66b0000c86b0000ce6b0000d46b0000da6b0000426c0000ce55080000ca9a3b
+    m_ExpandedIDs: 0000000046700000487000004a7000004c7000004e70000050700000527000005470000056700000587000005a7000005c7000005e70000060700000627000007a70000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -742,10 +742,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 00220900
-    m_LastClickedInstanceID: 598528
-    m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000cc7e0000
+    m_SelectedInstanceIDs: d6d3ffff
+    m_LastClickedInstanceID: -11306
+    m_HadKeyboardFocusLastEvent: 0
+    m_ExpandedInstanceIDs: c6230000cc7e00005e6f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -769,7 +769,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 18}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
@@ -997,7 +997,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 598884
+  m_LastSelectedObjectID: -11176
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1017,8 +1017,8 @@ MonoBehaviour:
     y: 0
     width: 321
     height: 645
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
