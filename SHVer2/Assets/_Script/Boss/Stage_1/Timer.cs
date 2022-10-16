@@ -53,4 +53,19 @@ public class Timer : MonoBehaviour
     {
         timerText.text = currentTime.ToString("0");
     }
+
+    private float GetTime()
+    {
+        return currentTime;
+    }
+
+    private void OnEnable()
+    {
+        Actions.timeLeft += GetTime;
+    }
+
+    private void OnDisable()
+    {
+        Actions.timeLeft -= GetTime;
+    }
 }

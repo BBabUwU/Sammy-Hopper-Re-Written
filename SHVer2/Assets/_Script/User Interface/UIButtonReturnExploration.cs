@@ -15,5 +15,6 @@ public class UIButtonReturnExploration : MonoBehaviour
     {
         UIManager.Instance.DisableAllUI();
         GameManager.Instance.UpdateGameState(GameState.Exploration);
+        Actions.setAllControls(true);
     }
 }

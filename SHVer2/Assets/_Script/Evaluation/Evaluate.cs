@@ -11,13 +11,11 @@ public class Evaluate : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI hitsText;
     [SerializeField] private TextMeshProUGUI mistakesText;
-    [SerializeField] private TextMeshProUGUI easyQText;
     [SerializeField] private TextMeshProUGUI hardQText;
     [SerializeField] private TextMeshProUGUI result;
 
     public int hitsTaken;
     public int mistakes;
-    public int easyQ;
     public int hardQ;
     private int overallGrade = 0;
 
@@ -25,7 +23,6 @@ public class Evaluate : MonoBehaviour
     {
         if (type == "hit") hitsTaken++;
         else if (type == "mistake") mistakes++;
-        else if (type == "easy") easyQ++;
         else if (type == "hard") hardQ++;
         else Debug.Log("Evaluation does not exist");
     }
@@ -35,9 +32,8 @@ public class Evaluate : MonoBehaviour
         hitsText.text += " " + hitsTaken;
         mistakesText.text += " " + mistakes;
 
-        if (easyQText != null && hardQText != null)
+        if (hardQText != null)
         {
-            easyQText.text += " " + easyQ;
             hardQText.text += " " + hardQ;
         }
 
@@ -47,7 +43,7 @@ public class Evaluate : MonoBehaviour
         //25 = C
         //30 = D
 
-        overallGrade = hitsTaken + mistakes;
+        overallGrade = hitsTaken + mistakes - hardQ;
 
         if (overallGrade <= 10)
         {
@@ -76,6 +72,7 @@ public class Evaluate : MonoBehaviour
             result.text = "D";
         }
     }
+
 
     private void OnEnable()
     {

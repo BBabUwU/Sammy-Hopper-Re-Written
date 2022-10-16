@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        //Play("stg1_bgmusic");
+        Play("stg1_bgmusic");
     }
 
     public void Play(string name)
@@ -48,13 +48,28 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 
+    public void PauseSound(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+
+        s.source.Pause();
+    }
+
     private void OnEnable()
     {
         Actions.playAudio += Play;
+        Actions.pauseAudio += PauseSound;
     }
 
     private void OnDisable()
     {
         Actions.playAudio -= Play;
+        Actions.pauseAudio -= PauseSound;
     }
 }

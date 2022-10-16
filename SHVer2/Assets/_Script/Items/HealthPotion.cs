@@ -1,7 +1,5 @@
 using UnityEngine;
 using System;
-
-[RequireComponent(typeof(CircleCollider2D))]
 public class HealthPotion : MonoBehaviour, IPickable
 {
     [SerializeField] private float health;

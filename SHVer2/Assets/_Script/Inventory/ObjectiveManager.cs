@@ -1,48 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using System.Linq;
 using System;
 
 public class ObjectiveManager : MonoBehaviour
 {
-    List<ObjectiveController> objectivePanels;
 
-    private void Awake()
-    {
-        objectivePanels = GetComponentsInChildren<ObjectiveController>(true).ToList();
-    }
+    [SerializeField] private TextMeshProUGUI currentQuestText;
+    [SerializeField] private TextMeshProUGUI currentDescriptionText;
+    [SerializeField] private TextMeshProUGUI currentProgressText;
+    [SerializeField] private TextMeshProUGUI currentRewardText;
 
     private void OnEnable()
     {
-        if (Actions.ListQuest != null) AddObjective();
+        if (Actions.ListQuest().Count != 0)
+        {
+            UpdateQuest();
+        }
     }
 
-    private void AddObjective()
+    private void UpdateQuest()
     {
-        int i = 0;
+        QuestGiver currentQuest = Actions.ListQuest()[Actions.ListQuest().Count - 1];
 
-        foreach (var quest in Actions.ListQuest())
-        {
-            if (quest == null)
-            {
-                Debug.Log("Null");
-                i++;
-            }
-            else
-            {
+        currentQuestText.text = "CURRENT QUEST";
 
-                foreach (var item in objectivePanels)
-                {
-                    if (item.objectiveNumber == quest.quest.questID)
-                    {
-                        item.questGiver = quest;
-                        item.gameObject.SetActive(true);
-                        i++;
-                    }
-                }
-            }
-        }
+        currentDescriptionText.text = "DESCRIPTION: " + currentQuest.quest.description;
 
+        int currentCounter = currentQuest.quest.goal.currentAmount;
+        int requiredCounter = currentQuest.quest.goal.requiredAmount;
+
+        if (currentCounter < requiredCounter)
+            currentProgressText.text = "PROGRESS: " + String.Format("{0} / {1}", currentCounter, requiredCounter);
+        else if (currentCounter == requiredCounter && !currentQuest.quest.completed)
+            currentProgressText.text = "PROGRESS " + String.Format("{0} / {1}", currentCounter, requiredCounter) + " GOAL REACHED!";
+        else if (currentCounter == requiredCounter && currentQuest.quest.completed)
+            currentProgressText.text = "QUEST COMPLETE!";
+
+
+        currentRewardText.text = "REWARD " + currentQuest.quest.Reward;
     }
 }

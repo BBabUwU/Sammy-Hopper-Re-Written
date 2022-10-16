@@ -23,18 +23,16 @@ public class ExplorationQuiz : MonoBehaviour
     //Sends message that the quiz is complete to the puzzle manager
     public static event Action<int> QuizComplete;
 
-    private void Start()
-    {
-        RandomizeQuestion();
-    }
-
     private void OnEnable()
     {
+        RandomizeQuestion();
         DisplayQuestion();
 
         //Events
         InputFieldController.onValueChangeInput += ReadUserInput;
         InputFieldController.onSubmitAnswer += CheckIfCorrect;
+
+        Actions.leaveQuiz += LeaveQuiz;
     }
 
     private void RandomizeQuestion()
@@ -84,16 +82,28 @@ public class ExplorationQuiz : MonoBehaviour
 
         else
         {
-            Debug.Log("Wrong");
+            RandomizeQuestion();
+            questionBank.qna[questionIndex].NotActive = false;
         }
 
         ClearInput?.Invoke();
+    }
+
+    private void LeaveQuiz()
+    {
+        questionBank.qna[questionIndex].NotActive = false;
+        ClearInput?.Invoke();
+        UIManager.Instance.TurnOffUI(UIType.QuizUI);
+        GameManager.Instance.UpdateGameState(GameState.Exploration);
+        this.enabled = false;
     }
 
     private void OnDisable()
     {
         InputFieldController.onValueChangeInput -= ReadUserInput;
         InputFieldController.onSubmitAnswer -= CheckIfCorrect;
+
+        Actions.leaveQuiz -= LeaveQuiz;
     }
 
 }

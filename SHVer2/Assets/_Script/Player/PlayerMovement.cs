@@ -86,11 +86,13 @@ public class PlayerMovement : MonoBehaviour
     {
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
         Actions.setMovement += SetMovement;
+        Actions.setAllControls += SetMovement;
     }
     private void OnDisable()
     {
         GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
         Actions.setMovement -= SetMovement;
+        Actions.setAllControls -= SetMovement;
     }
 
     private void GameManagerOnGameStateChanged(GameState state)

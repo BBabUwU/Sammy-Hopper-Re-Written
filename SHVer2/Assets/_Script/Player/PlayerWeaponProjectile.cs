@@ -34,7 +34,6 @@ public class PlayerWeaponProjectile : MonoBehaviour
         Physics2D.IgnoreLayerCollision(12, 17); //Ignore puzzle piece
         Physics2D.IgnoreLayerCollision(12, 18); //Ignore interact
         Physics2D.IgnoreLayerCollision(12, 24); //Ignore flip enemy layer
-        Physics2D.IgnoreLayerCollision(12, 25); //Ignore interact layer
     }
 
     private void ProjectileTravel()

@@ -4,6 +4,13 @@ using UnityEngine.Video;
 using System.Collections.Generic;
 public static class Actions
 {
+
+    ///<summary>---------------|
+    /// Stage 1 Delegates      |
+    ///</summary>--------------|
+    public static Action<QuizDiff> wrongAnswer;
+    public static Func<float> timeLeft;
+
     ///<summary>---------------|
     /// Stage 2 Delegates      |
     ///</summary>--------------|
@@ -104,6 +111,7 @@ public static class Actions
 
     //Audio
     public static Action<string> playAudio;
+    public static Action<string> pauseAudio;
 
     //Set Controls
     //Allow movement
@@ -111,6 +119,7 @@ public static class Actions
     public static Action<bool> setWeapon;
     public static Action<bool> setNotepad;
     public static Action<bool> setInventory;
+    public static Action<bool> setAllControls;
 
     //Button delegate
     public static Action GoNextScene;
@@ -118,5 +127,8 @@ public static class Actions
 
     //Add
     public static Action<string> addEveluation;
+
+    //Quiz
+    public static Action leaveQuiz;
 
 }

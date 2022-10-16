@@ -51,11 +51,13 @@ public class PlayerInventory : MonoBehaviour
     {
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
         Actions.setInventory += SetInventory;
+        Actions.setAllControls += SetInventory;
     }
 
     private void OnDisable()
     {
         GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
         Actions.setInventory -= SetInventory;
+        Actions.setAllControls -= SetInventory;
     }
 }

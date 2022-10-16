@@ -85,9 +85,19 @@ public class BossQuiz : MonoBehaviour
         }
         else
         {
-            questionBank.QnA[questionIndex].NotActive = false;
-            ClearInput?.Invoke();
+            WrongAnswer();
         }
+    }
+
+    private void WrongAnswer()
+    {
+        questionBank.QnA[questionIndex].NotActive = false;
+        destroyEssence?.Invoke(difficulty);
+        Actions.wrongAnswer?.Invoke(difficulty);
+        ClearInput?.Invoke();
+        GameManager.Instance.UpdateGameState(GameState.BossBattle);
+        UIManager.Instance.TurnOffUI(UIType.QuizUI);
+        enabled = false;
     }
 
     public void StopQuiz()
@@ -165,6 +175,8 @@ public class BossQuiz : MonoBehaviour
         //Inputs
         InputFieldController.onValueChangeInput += ReadUserInput;
         InputFieldController.onSubmitAnswer += CheckIfCorrect;
+
+        Actions.leaveQuiz += WrongAnswer;
     }
 
     private void OnDisable()
@@ -172,5 +184,7 @@ public class BossQuiz : MonoBehaviour
         //Input
         InputFieldController.onValueChangeInput -= ReadUserInput;
         InputFieldController.onSubmitAnswer -= CheckIfCorrect;
+
+        Actions.leaveQuiz -= WrongAnswer;
     }
 }

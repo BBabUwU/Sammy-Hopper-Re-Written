@@ -19,14 +19,6 @@ public class BossManager : MonoBehaviour
     [SerializeField] private int easyDamage = 20;
     [SerializeField] private int hardDamage = 40;
 
-    [Header("Level Complete UI")]
-    [SerializeField] private TextMeshProUGUI easyCounter;
-    [SerializeField] private TextMeshProUGUI hardCounter;
-
-    //Tracks the number of essence type answered
-    private int easyEssenceCounter = 0;
-    private int hardEssenceCounter = 0;
-
     //Enemies
     private int enemyCounter = 0;
     private int enemySpawnLimit = 7;
@@ -121,16 +113,29 @@ public class BossManager : MonoBehaviour
     {
         if (diff == QuizDiff.Easy)
         {
-            easyEssenceCounter++;
+            Actions.addEveluation?.Invoke("easy");
             DropEasyEssence();
             damageBoss?.Invoke(easyDamage);
         }
 
         else if (diff == QuizDiff.Hard)
         {
-            hardEssenceCounter++;
+            Actions.addEveluation?.Invoke("hard");
             DropHardEssence();
             damageBoss?.Invoke(hardDamage);
+        }
+    }
+
+    private void WrongAnswer(QuizDiff diff)
+    {
+        if (diff == QuizDiff.Easy)
+        {
+            DropEasyEssence();
+        }
+
+        else if (diff == QuizDiff.Hard)
+        {
+            DropHardEssence();
         }
     }
 
@@ -201,16 +206,6 @@ public class BossManager : MonoBehaviour
     }
 
     ///<summary>
-    ///Functions for UI
-    ///</summary>
-
-    private void DisplayResult()
-    {
-        easyCounter.text = easyEssenceCounter.ToString();
-        hardCounter.text = hardEssenceCounter.ToString();
-    }
-
-    ///<summary>
     ///Functions for Boss Defeated
     ///</summary>
 
@@ -219,13 +214,12 @@ public class BossManager : MonoBehaviour
         stopQuiz?.Invoke();
         StopTimer?.Invoke();
         killEnemy?.Invoke();
-        DisplayResult();
         StartCoroutine(DelayChangeState());
     }
 
     private IEnumerator DelayChangeState()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
         GameManager.Instance.UpdateGameState(GameState.BossDefeated);
     }
 
@@ -245,6 +239,8 @@ public class BossManager : MonoBehaviour
         BossAttack.TurnOver += StartAnswerPhase;
 
         BossHealth.BossDefeated += BossDefeated;
+
+        Actions.wrongAnswer += WrongAnswer;
     }
 
     private void OnDisable()
@@ -258,6 +254,8 @@ public class BossManager : MonoBehaviour
         BossAttack.TurnOver -= StartAnswerPhase;
 
         BossHealth.BossDefeated -= BossDefeated;
+
+        Actions.wrongAnswer -= WrongAnswer;
     }
 
 }

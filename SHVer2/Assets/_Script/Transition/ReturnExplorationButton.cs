@@ -13,10 +13,7 @@ public class ReturnExplorationButton : MonoBehaviour
 
     private void ReturnExploration()
     {
-        Actions.setMovement?.Invoke(true);
-        Actions.setWeapon?.Invoke(true);
-        Actions.setNotepad?.Invoke(true);
-        Actions.setInventory?.Invoke(true);
+        Actions.setAllControls(true);
         GameManager.Instance.UpdateGameState(GameState.Exploration);
     }
 }

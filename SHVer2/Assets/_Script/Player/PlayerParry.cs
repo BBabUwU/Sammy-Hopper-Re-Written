@@ -52,11 +52,13 @@ public class PlayerParry : MonoBehaviour
     private void OnEnable()
     {
         Actions.disableParry += AllowParry;
+        Actions.setAllControls += AllowParry;
     }
 
     private void OnDisable()
     {
         Actions.disableParry -= AllowParry;
+        Actions.setAllControls -= AllowParry;
     }
 
 }

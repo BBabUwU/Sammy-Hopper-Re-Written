@@ -30,6 +30,7 @@ public class VideoPlayerController : MonoBehaviour
     private void OnClickClose()
     {
         videoPlayer.Stop();
+        Actions.playAudio?.Invoke("stg1_bgmusic");
         UIManager.Instance.TurnOffUI(UIType.VideoPlayer);
         GameManager.Instance.UpdateGameState(GameState.Exploration);
     }
@@ -42,6 +43,7 @@ public class VideoPlayerController : MonoBehaviour
 
     private void OnEnable()
     {
+        Actions.pauseAudio?.Invoke("stg1_bgmusic");
         Actions.videoPlayer += GetVideoPlayerComponent;
     }
 

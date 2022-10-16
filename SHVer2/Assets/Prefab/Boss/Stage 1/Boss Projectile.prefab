@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3475769529186701706}
   - component: {fileID: 3475769529186701707}
   - component: {fileID: 256455206005216512}
+  - component: {fileID: 6472714883044701278}
   m_Layer: 0
   m_Name: Boss Projectile
   m_TagString: Untagged
@@ -159,3 +160,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireSpeed: 20
   damage: 10
+--- !u!114 &6472714883044701278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3475769529186701708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fed745a5c9fef84ba31f740fb8fb9bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

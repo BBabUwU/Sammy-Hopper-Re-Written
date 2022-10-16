@@ -5,6 +5,7 @@ public class BossHealth : MonoBehaviour
 {
     public float maxHealth = 400f;
     public float currentHealth = 400f;
+    public bool enableDamageLimit = false;
     public float damageLimit;
     private float damageInflicted;
     public bool isDead;
@@ -46,8 +47,9 @@ public class BossHealth : MonoBehaviour
     public void Damage(int damage)
     {
         damageInflicted += damage;
+        bossAnim.SetTrigger("Hurt");
 
-        if (damageLimit < damageInflicted)
+        if (damageLimit < damageInflicted && enableDamageLimit)
         {
             Actions.damageLimitReached?.Invoke();
             damageInflicted = 0;

@@ -23,6 +23,8 @@ public class InteractionDialogue : MonoBehaviour
     [Header("Quest complete lines")]
     [Header("Only set if NPC has quest")]
     [SerializeField] private bool hasQuest;
+    [SerializeField] private bool hasInitialBlockArea = false;
+    [SerializeField] private GameObject initialBarrier;
     private QuestGiver questGiver;
     [SerializeField] private List<string> completeWhoIsTalking;
     [SerializeField] private List<string> questCompleteLines;
@@ -117,6 +119,12 @@ public class InteractionDialogue : MonoBehaviour
             if (hasQuest)
             {
                 questGiver.quest.Evaluate();
+            }
+
+            if (hasInitialBlockArea)
+            {
+                Destroy(initialBarrier);
+                hasInitialBlockArea = false;
             }
 
             doneTalking = true;

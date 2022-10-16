@@ -46,10 +46,12 @@ public class PlayerNotepad : MonoBehaviour
     private void OnEnable()
     {
         Actions.setNotepad += SetNotepad;
+        Actions.setAllControls += SetNotepad;
     }
 
     private void OnDisable()
     {
         Actions.setNotepad -= SetNotepad;
+        Actions.setAllControls -= SetNotepad;
     }
 }

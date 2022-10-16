@@ -55,11 +55,13 @@ public class PlayerWeapon : MonoBehaviour
     {
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
         Actions.setWeapon += SetWeapon;
+        Actions.setAllControls += SetWeapon;
     }
     private void OnDisable()
     {
         GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
         Actions.setWeapon -= SetWeapon;
+        Actions.setAllControls -= SetWeapon;
     }
 
     private void GameManagerOnGameStateChanged(GameState state)

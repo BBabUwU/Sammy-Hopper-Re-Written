@@ -21,6 +21,8 @@ public class Toxin : MonoBehaviour
             {
                 other.GetComponent<PlayerHealth>().DamagePlayer(damage);
                 nextDamageTime = Time.time + damageCoolDownTime;
+
+                Actions.addEveluation?.Invoke("hit");
             }
         }
 
