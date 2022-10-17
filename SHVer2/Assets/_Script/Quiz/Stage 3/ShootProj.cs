@@ -7,7 +7,7 @@ public class ShootProj : MonoBehaviour
     [SerializeField] private GameObject parriableProjPrefab;
     [SerializeField] private GameObject nonParriableProjPrefab;
     [SerializeField] private List<Transform> firePoints;
-    private bool canShoot = true;
+    public bool canShoot = true;
     public int parryCounter = 0;
     float randomTime;
 
@@ -15,7 +15,7 @@ public class ShootProj : MonoBehaviour
     {
         if (canShoot && parryCounter != 3)
         {
-            randomTime = Random.Range(1f, 6f);
+            randomTime = Random.Range(1f, 3f);
             StartCoroutine(AttackPlayer());
             canShoot = false;
         }

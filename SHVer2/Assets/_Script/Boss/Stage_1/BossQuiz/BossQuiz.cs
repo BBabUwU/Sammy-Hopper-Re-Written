@@ -52,7 +52,7 @@ public class BossQuiz : MonoBehaviour
 
     private void DisplayQuestion()
     {
-        UpdateQuestionText?.Invoke(UITextType.QuestionText, questionBank.QnA[questionIndex].question);
+        UpdateQuestionText?.Invoke(UITextType.QuestionText_1, questionBank.QnA[questionIndex].question);
 
         Debug.Log("-------------------------------------");
         Debug.Log("Correct Answer 1: " + questionAnswer1);

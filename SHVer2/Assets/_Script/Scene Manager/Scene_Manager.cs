@@ -3,34 +3,29 @@ using UnityEngine.SceneManagement;
 
 public class Scene_Manager : MonoBehaviour
 {
-    public static Scene_Manager Instance;
-
-    private void Awake()
-    {
-        CreateSingleton();
-    }
-
     public void LoadNextScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void Load_Stage_1()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void Load_Stage_2()
+    {
+        SceneManager.LoadScene(5);
+    }
+
+    public void Load_Stage_3()
+    {
+        SceneManager.LoadScene(8);
+    }
+
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(0);
-    }
-
-    private void CreateSingleton()
-    {
-        if (Instance == null)
-        {
-            DontDestroyOnLoad(gameObject);
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void OnEnable()

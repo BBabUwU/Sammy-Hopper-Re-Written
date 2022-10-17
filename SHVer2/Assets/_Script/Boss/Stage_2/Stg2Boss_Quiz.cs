@@ -71,7 +71,7 @@ public class Stg2Boss_Quiz : MonoBehaviour
 
     private void DisplayQuestion()
     {
-        Actions.updateText(Qbank.qna[questionIndex].question, UITextType.QuestionText);
+        Actions.updateText(Qbank.qna[questionIndex].question, UITextType.QuestionText_1);
     }
 
     private void RandomizeChoices()

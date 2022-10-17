@@ -14,7 +14,8 @@ public enum LinearTopic
 public class Stage3QnA
 {
     public LinearTopic topic;
-    public string question;
+    public string question_1;
+    public string question_2;
     public string answer1;
     public string answer2;
     public bool noSolution;

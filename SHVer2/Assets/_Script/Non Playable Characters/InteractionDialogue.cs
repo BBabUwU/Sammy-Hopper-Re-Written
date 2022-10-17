@@ -11,6 +11,7 @@ public class InteractionDialogue : MonoBehaviour
     [HideInInspector] public bool doneTalking;
     private BoxCollider2D col;
     private SpriteRenderer sprite;
+    [SerializeField] private Sprite spriteTexture;
 
     /// <Summary>
     /// Tells what line number the dialogue is at.
@@ -23,6 +24,7 @@ public class InteractionDialogue : MonoBehaviour
     [Header("Quest complete lines")]
     [Header("Only set if NPC has quest")]
     [SerializeField] private bool hasQuest;
+    [SerializeField] private bool canChangeForm = false;
     [SerializeField] private bool hasInitialBlockArea = false;
     [SerializeField] private GameObject initialBarrier;
     private QuestGiver questGiver;
@@ -74,6 +76,11 @@ public class InteractionDialogue : MonoBehaviour
         Actions.dialogueText?.Invoke(UITextType.DialogueText, string.Empty);
         currentLineIndex = 0;
         StartCoroutine(TypeLine());
+
+        if (canChangeForm && questGiver.quest.completed)
+        {
+            sprite.sprite = spriteTexture;
+        }
     }
 
     IEnumerator TypeLine()

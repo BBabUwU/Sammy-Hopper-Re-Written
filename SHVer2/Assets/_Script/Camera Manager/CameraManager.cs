@@ -6,7 +6,8 @@ using System.Linq;
 public enum CameraType
 {
     PlayerCamera,
-    NotepadCamera
+    NotepadCamera,
+    Graphing
 }
 
 public class CameraManager : MonoBehaviour

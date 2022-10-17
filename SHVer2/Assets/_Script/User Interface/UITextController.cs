@@ -3,7 +3,8 @@ using TMPro;
 
 public enum UITextType
 {
-    QuestionText,
+    QuestionText_1,
+    QuestionText_2,
     DialogueText,
     NameText,
 }

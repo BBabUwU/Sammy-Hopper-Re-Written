@@ -47,7 +47,9 @@ public class Stg3_Quiz : MonoBehaviour
 
     private void DisplayQuestion()
     {
-        Actions.UpdateQuestionText?.Invoke(UITextType.QuestionText, questionBank.Qbank[questionIndex].question);
+        Actions.UpdateQuestionText?.Invoke(UITextType.QuestionText_1, questionBank.Qbank[questionIndex].question_1);
+
+        Actions.UpdateQuestionText?.Invoke(UITextType.QuestionText_2, questionBank.Qbank[questionIndex].question_2);
     }
     public void ReadUserInput(AnswerType _type, string _answer)
     {

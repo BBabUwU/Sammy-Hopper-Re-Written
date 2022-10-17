@@ -320,23 +320,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51683644}
   m_CullTransparentMesh: 1
---- !u!1 &92419870 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2298345453954383060, guid: b7630d205b06754448a80e5fe787ccec, type: 3}
-  m_PrefabInstance: {fileID: 2298345454046776266}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &92419876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 92419870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05cbc201d94900f4a9599d61eedb0341, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &93317603
 GameObject:
   m_ObjectHideFlags: 0
@@ -14321,7 +14304,7 @@ PrefabInstance:
     - target: {fileID: 951981791, guid: 7ace245a7c9a0e1448495d67aeebfa8b, type: 3}
       propertyPath: blockTop
       value: 
-      objectReference: {fileID: 1828211058}
+      objectReference: {fileID: 0}
     - target: {fileID: 951981791, guid: 7ace245a7c9a0e1448495d67aeebfa8b, type: 3}
       propertyPath: blockFront
       value: 
@@ -14419,11 +14402,6 @@ PrefabInstance:
 --- !u!1 &1828211057 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2000917507, guid: 7ace245a7c9a0e1448495d67aeebfa8b, type: 3}
-  m_PrefabInstance: {fileID: 1828211056}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1828211058 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7132152200005277447, guid: 7ace245a7c9a0e1448495d67aeebfa8b, type: 3}
   m_PrefabInstance: {fileID: 1828211056}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1855754934
@@ -18166,13 +18144,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1220088440}
     m_Modifications:
-    - target: {fileID: 2298345452523495955, guid: b7630d205b06754448a80e5fe787ccec, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -1057.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2298345452523495955, guid: b7630d205b06754448a80e5fe787ccec, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -476.37
+    - target: {fileID: 92419876, guid: b7630d205b06754448a80e5fe787ccec, type: 3}
+      propertyPath: unlockStage
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2298345453376041392, guid: b7630d205b06754448a80e5fe787ccec, type: 3}
       propertyPath: m_Pivot.x
@@ -18184,7 +18158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2298345453376041392, guid: b7630d205b06754448a80e5fe787ccec, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2298345453376041392, guid: b7630d205b06754448a80e5fe787ccec, type: 3}
       propertyPath: m_AnchorMax.x
@@ -18262,32 +18236,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss Defeated
       objectReference: {fileID: 0}
-    - target: {fileID: 2298345453376041395, guid: b7630d205b06754448a80e5fe787ccec, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 7838043861178364957, guid: b7630d205b06754448a80e5fe787ccec, type: 3}
+      propertyPath: unlockStage
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 2298345453933672900, guid: b7630d205b06754448a80e5fe787ccec, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -1057.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2298345453933672900, guid: b7630d205b06754448a80e5fe787ccec, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -476.37
-      objectReference: {fileID: 0}
-    - target: {fileID: 2298345453933672901, guid: b7630d205b06754448a80e5fe787ccec, type: 3}
-      propertyPath: m_text
-      value: 'Wrong answered:'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2298345453933672903, guid: b7630d205b06754448a80e5fe787ccec, type: 3}
-      propertyPath: m_Name
-      value: Wrong answers
-      objectReference: {fileID: 0}
-    - target: {fileID: 2298345453933672903, guid: b7630d205b06754448a80e5fe787ccec, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2298345453954383082, guid: b7630d205b06754448a80e5fe787ccec, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7630d205b06754448a80e5fe787ccec, type: 3}
 --- !u!1001 &9028449569139620891
 PrefabInstance:

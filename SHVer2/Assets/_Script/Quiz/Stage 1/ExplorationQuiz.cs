@@ -55,7 +55,7 @@ public class ExplorationQuiz : MonoBehaviour
 
     private void DisplayQuestion()
     {
-        UpdateQuestionText?.Invoke(UITextType.QuestionText, questionBank.qna[questionIndex].question);
+        UpdateQuestionText?.Invoke(UITextType.QuestionText_1, questionBank.qna[questionIndex].question);
     }
     public void ReadUserInput(AnswerType _type, string _answer)
     {

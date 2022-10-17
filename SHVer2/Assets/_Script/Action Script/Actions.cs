@@ -83,6 +83,11 @@ public static class Actions
     public static Action meteorAtkOver;
     public static Action inCorrect;
 
+    //Graphing
+    public static Func<GraphState> TheGraphState;
+    public static Action<int, int> xAxis;
+    public static Action<int, int> yAxis;
+
 
     ///<summary>---------------|
     /// In general             |

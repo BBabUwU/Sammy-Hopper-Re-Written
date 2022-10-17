@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        AudioListener.volume = PlayerPrefs.GetFloat("Music_volume");
         UpdateGameState(gameState);
     }
 
@@ -28,7 +29,6 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case GameState.MainMenu:
-                CanvasManager.Instance.SwitchCanvas(CanvasType.MainMenu);
                 break;
 
             case GameState.Exploration:

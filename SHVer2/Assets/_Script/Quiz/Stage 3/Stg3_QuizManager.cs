@@ -43,6 +43,7 @@ public class Stg3_QuizManager : MonoBehaviour
     private void ResumeParry()
     {
         attacker.enabled = true;
+        attacker.canShoot = true;
         attacker.parryCounter = 0;
         QuizOver();
     }
@@ -50,6 +51,7 @@ public class Stg3_QuizManager : MonoBehaviour
     private void IncreaseQuizCounter()
     {
         quizCounter++;
+        ResumeParry();
     }
 
     private void OnEnable()

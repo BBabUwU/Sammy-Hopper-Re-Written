@@ -536,8 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c692ad02fe6c14bb8b8e1f4d3c9776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockTop: {fileID: 0}
-  blockFront: {fileID: 2000917507}
+  block: {fileID: 2000917507}
   blockTime: 0.3
   isDisabled: 1
   parryCoolDownTime: 1.5
