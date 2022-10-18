@@ -15,6 +15,7 @@ public class PointController : MonoBehaviour
 
     private void PlotPoint()
     {
-
+        Debug.Log("X value: " + xValue);
+        Debug.Log("Y value: " + yValue);
     }
 }

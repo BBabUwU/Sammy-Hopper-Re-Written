@@ -57,3 +57,15 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     source: {fileID: 0}
+  - name: explosion
+    clip: {fileID: 8300000, guid: f5db108697c9c0e4586a1c834d481822, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: monster_sound
+    clip: {fileID: 8300000, guid: 509997b03613929478a3f21505b6081a, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

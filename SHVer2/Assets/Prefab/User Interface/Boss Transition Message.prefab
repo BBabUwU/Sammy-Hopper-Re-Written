@@ -69,8 +69,8 @@ MonoBehaviour:
   m_text: 'You can''t access youre learning materials from this point. Are you sure
     you want to continue to the boss? '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dfba9c00fd0a57a4a8dd8bb24e02e162, type: 2}
-  m_sharedMaterial: {fileID: -6964389546787964870, guid: dfba9c00fd0a57a4a8dd8bb24e02e162, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 50939a2ce2601db428c6e575ad2e87fc, type: 2}
+  m_sharedMaterial: {fileID: -7552079431905498620, guid: 50939a2ce2601db428c6e575ad2e87fc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -616,8 +616,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Proceed to Boss
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dfba9c00fd0a57a4a8dd8bb24e02e162, type: 2}
-  m_sharedMaterial: {fileID: -6964389546787964870, guid: dfba9c00fd0a57a4a8dd8bb24e02e162, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 50939a2ce2601db428c6e575ad2e87fc, type: 2}
+  m_sharedMaterial: {fileID: -7552079431905498620, guid: 50939a2ce2601db428c6e575ad2e87fc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -641,7 +641,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.55
+  m_fontSize: 33.7
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -751,8 +751,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Return Exploration
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dfba9c00fd0a57a4a8dd8bb24e02e162, type: 2}
-  m_sharedMaterial: {fileID: -6964389546787964870, guid: dfba9c00fd0a57a4a8dd8bb24e02e162, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 50939a2ce2601db428c6e575ad2e87fc, type: 2}
+  m_sharedMaterial: {fileID: -7552079431905498620, guid: 50939a2ce2601db428c6e575ad2e87fc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -776,7 +776,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 38.65
+  m_fontSize: 29.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

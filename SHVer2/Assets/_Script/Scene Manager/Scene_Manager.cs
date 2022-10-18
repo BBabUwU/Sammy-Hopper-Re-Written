@@ -10,7 +10,7 @@ public class Scene_Manager : MonoBehaviour
 
     public void Load_Stage_1()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
     public void Load_Stage_2()

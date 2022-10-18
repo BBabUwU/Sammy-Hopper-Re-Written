@@ -136,4 +136,7 @@ public static class Actions
     //Quiz
     public static Action leaveQuiz;
 
+    //Player position
+    public static Func<Transform> playerPos;
+
 }

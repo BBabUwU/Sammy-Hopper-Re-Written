@@ -46,4 +46,19 @@ public class Player : MonoBehaviour
         //Parry for stage 3
         _playerParry.PlayerParryFeature();
     }
+
+    private Transform GetTransform()
+    {
+        return transform;
+    }
+
+    private void OnEnable()
+    {
+        Actions.playerPos += GetTransform;
+    }
+
+    private void OnDisable()
+    {
+        Actions.playerPos -= GetTransform;
+    }
 }

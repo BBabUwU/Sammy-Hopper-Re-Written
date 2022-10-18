@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+    //Make it visible toggalable
+    private void Start() { }
     public float HorizontalAxis()
     {
         return Input.GetAxisRaw("Horizontal");
