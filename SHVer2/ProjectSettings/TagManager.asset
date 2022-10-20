@@ -14,6 +14,9 @@ TagManager:
   - PracticalProblem1
   - ParryBlock
   - Meteor
+  - BlockedPath
+  - Ground
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -40,7 +43,7 @@ TagManager:
   - BlockedPath
   - Toxin
   - FlipPatrol
-  - 
+  - Projectile
   - 
   - 
   - 

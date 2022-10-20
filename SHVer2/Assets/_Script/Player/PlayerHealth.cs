@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth = 100f;
     public float currentHealth = 100f;
     public bool isDead = false;
+    [HideInInspector] public bool canDamage = true;
     public static event Action<UIHealthType, float> SetMaxHealthUI;
     public static event Action<UIHealthType, float> SetCurrentHealthUI;
     private SpriteRenderer theRenderer;
@@ -45,10 +46,21 @@ public class PlayerHealth : MonoBehaviour
 
     public void DamagePlayer(float damage)
     {
-        StartCoroutine(HurtIndicator());
-        currentHealth -= damage;
-        if (currentHealth <= 0) currentHealth = 0;
-        SetCurrentHealthUI?.Invoke(UIHealthType.PlayerHealthBar, currentHealth);
+        if (canDamage)
+        {
+            StartCoroutine(HurtIndicator());
+            currentHealth -= damage;
+            if (currentHealth <= 0) currentHealth = 0;
+            SetCurrentHealthUI?.Invoke(UIHealthType.PlayerHealthBar, currentHealth);
+            canDamage = false;
+            StartCoroutine(IFrame());
+        }
+    }
+
+    private IEnumerator IFrame()
+    {
+        yield return new WaitForSeconds(1f);
+        canDamage = true;
     }
 
     public void HealPlayer(float heal)
@@ -70,15 +82,24 @@ public class PlayerHealth : MonoBehaviour
         DamagePlayer(maxHealth);
     }
 
+    private void Set_Death(bool x)
+    {
+        isDead = x;
+    }
+
     private void OnEnable()
     {
         HealthPotion.HealPlayer += HealPlayer;
         UIHealthController.SetSliderValue += SetInitialUIvalues;
+        Actions.ResetDeath += Set_Death;
+        Actions.SetPlayerHealth += HealPlayer;
     }
 
     private void OnDisable()
     {
         HealthPotion.HealPlayer -= HealPlayer;
         UIHealthController.SetSliderValue -= SetInitialUIvalues;
+        Actions.ResetDeath -= Set_Death;
+        Actions.SetPlayerHealth -= HealPlayer;
     }
 }

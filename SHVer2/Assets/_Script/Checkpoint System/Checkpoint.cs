@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
+    private bool isSet = false;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Actions.SetCheckPoint?.Invoke(transform.position);
+            if (!isSet)
+            {
+                isSet = true;
+                Actions.SetCheckPoint?.Invoke(transform.position);
+            }
         }
     }
 }

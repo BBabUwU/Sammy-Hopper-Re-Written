@@ -156,5 +156,11 @@ public static class Actions
 
     //Checkpoint System
     public static Action<Vector2> SetCheckPoint;
+    public static Action Check_Lives;
+
+    //Health system
+    public static Action<bool> ResetDeath;
+    public static Action<float> SetPlayerHealth;
+
 
 }

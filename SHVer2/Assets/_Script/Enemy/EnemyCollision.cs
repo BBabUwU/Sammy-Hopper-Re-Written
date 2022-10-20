@@ -58,7 +58,8 @@ public class EnemyCollision : MonoBehaviour
             Gizmos.DrawRay(groundDetection.position, Vector2.down * groundRayDistance);
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
+
+    private void OnTriggerStay2D(Collider2D other)
     {
         //Gets component of the collided object. E.g. Player projectile object will get component PlayerWeaponProjectile. 
         if (other.CompareTag("Player"))

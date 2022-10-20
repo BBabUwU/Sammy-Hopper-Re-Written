@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Toxin : MonoBehaviour
 {
-    public float damageCoolDownTime = 2f;
-    private float nextDamageTime = 0;
     public float damage;
 
     private void Awake()
@@ -17,11 +15,10 @@ public class Toxin : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (!OnCooldown())
+            PlayerHealth ph = other.GetComponent<PlayerHealth>();
+            if (ph.canDamage)
             {
-                other.GetComponent<PlayerHealth>().DamagePlayer(damage);
-                nextDamageTime = Time.time + damageCoolDownTime;
-
+                ph.DamagePlayer(damage);
                 Actions.addEveluation?.Invoke("hit");
             }
         }
@@ -30,10 +27,5 @@ public class Toxin : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
-    }
-    private bool OnCooldown()
-    {
-        bool onCooldown = Time.time > nextDamageTime ? false : true;
-        return onCooldown;
     }
 }
