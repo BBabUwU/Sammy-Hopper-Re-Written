@@ -41,7 +41,15 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.AnsweringQuiz:
+                Actions.Switch_Camera?.Invoke(CameraType.PlayerCamera);
+                Actions.Set_DefaultCamera?.Invoke(CameraType.PlayerCamera);
                 UIManager.Instance.TurnOnUI(UIType.QuizUI);
+                break;
+
+            case GameState.AnsweringGraph:
+                UIManager.Instance.DisableAllUI();
+                Actions.Switch_Camera?.Invoke(CameraType.Graphing);
+                Actions.Set_DefaultCamera?.Invoke(CameraType.Graphing);
                 break;
 
             case GameState.BossBattle:
@@ -63,12 +71,6 @@ public class GameManager : MonoBehaviour
                 UIManager.Instance.TurnOnUI(UIType.VideoMenu);
                 break;
 
-            case GameState.Puzzle:
-                break;
-
-            case GameState.LevelComplete:
-                break;
-
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
@@ -83,10 +85,9 @@ public enum GameState
     Exploration,
     NPCInteraction,
     VideoPlayer,
-    Puzzle,
     AnsweringQuiz,
+    AnsweringGraph,
     BossBattle,
     BossDefeated,
     PlayerDead,
-    LevelComplete
 }

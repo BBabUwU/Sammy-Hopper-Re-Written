@@ -6,16 +6,25 @@ public class PointController : MonoBehaviour
     public int xValue;
     public int yValue;
     private Button button;
+    [HideInInspector] public Image image;
 
     private void Awake()
     {
         button = GetComponent<Button>();
+        image = GetComponent<Image>();
         button.onClick.AddListener(PlotPoint);
     }
 
     private void PlotPoint()
     {
-        Debug.Log("X value: " + xValue);
-        Debug.Log("Y value: " + yValue);
+        if (Actions.CurrentAxis() == CurrentAxis.theX)
+        {
+            Actions.SetAxis?.Invoke(xValue, yValue, this.gameObject);
+        }
+
+        else if (Actions.CurrentAxis() == CurrentAxis.theY)
+        {
+            Actions.SetAxis?.Invoke(xValue, yValue, this.gameObject);
+        }
     }
 }

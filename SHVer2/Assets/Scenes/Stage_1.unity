@@ -41343,6 +41343,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4691707320797096777}
     m_Modifications:
+    - target: {fileID: 2272493940330184710, guid: 825cb83a73b6ba74e977d5f60d0bdff8, type: 3}
+      propertyPath: videoTutorial
+      value: 
+      objectReference: {fileID: 32900000, guid: 063146023819db8459d5a2cfdc72c314, type: 3}
     - target: {fileID: 2675662719472008476, guid: 825cb83a73b6ba74e977d5f60d0bdff8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -41427,9 +41431,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2881636022749528418, guid: 825cb83a73b6ba74e977d5f60d0bdff8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3485841865398199741, guid: 825cb83a73b6ba74e977d5f60d0bdff8, type: 3}
       propertyPath: m_Name
       value: Inventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 3485841865398199741, guid: 825cb83a73b6ba74e977d5f60d0bdff8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5291798955947993529, guid: 825cb83a73b6ba74e977d5f60d0bdff8, type: 3}
       propertyPath: m_AnchorMax.y

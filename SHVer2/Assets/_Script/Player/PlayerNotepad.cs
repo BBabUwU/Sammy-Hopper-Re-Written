@@ -5,7 +5,6 @@ public class PlayerNotepad : MonoBehaviour
 {
     private PlayerInput playerInput;
     [SerializeField] private bool isUsing;
-    private CameraSwitcher cameraSwitcher;
     public static event Action TurnOnNotepad;
     public static event Action TurnOffNotepad;
     private PlayerWeapon playerWeapon;
@@ -15,7 +14,6 @@ public class PlayerNotepad : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         playerWeapon = GetComponent<PlayerWeapon>();
-        cameraSwitcher = GetComponent<CameraSwitcher>();
     }
     public void SwitchToNotepad()
     {
@@ -24,8 +22,9 @@ public class PlayerNotepad : MonoBehaviour
             isUsing = false;
             playerWeapon.allowedToFire = true;
             CanvasManager.Instance.SwitchCanvas(CanvasType.GameUI);
-            cameraSwitcher.SwitchDefaultCamera();
+            Actions.Switch_DefaultCamera?.Invoke();
             TurnOffNotepad?.Invoke();
+            Actions.setInventory?.Invoke(true);
         }
 
         else if (playerInput.NotepadButtonPressed() && !isUsing && canUse)
@@ -33,8 +32,9 @@ public class PlayerNotepad : MonoBehaviour
             isUsing = true;
             playerWeapon.allowedToFire = false;
             CanvasManager.Instance.SwitchCanvas(CanvasType.Notepad);
-            cameraSwitcher.SwitchCamera(CameraType.NotepadCamera);
+            Actions.Switch_Camera?.Invoke(CameraType.NotepadCamera);
             TurnOnNotepad?.Invoke();
+            Actions.setInventory?.Invoke(false);
         }
     }
 

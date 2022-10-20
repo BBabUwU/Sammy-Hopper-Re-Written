@@ -21,6 +21,8 @@ public class Stage3QnA
     public bool noSolution;
     public bool notActive;
 
-    [Header("Only for graphing. Note: First answer")]
-    public List<Sprite> choices;
+    [Header("For Graphing only")]
+    public int[] first_initialPoint;
+    public int[] second_initialPoint;
+
 }

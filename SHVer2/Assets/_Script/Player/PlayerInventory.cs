@@ -20,12 +20,14 @@ public class PlayerInventory : MonoBehaviour
             CanvasManager.Instance.SwitchCanvas(CanvasType.Inventory);
             playerWeapon.allowedToFire = false;
             isUsing = true;
+            Actions.setNotepad?.Invoke(false);
         }
         else if (playerInput.InventoryButton() && isUsing)
         {
             CanvasManager.Instance.SwitchCanvas(CanvasType.GameUI);
             playerWeapon.allowedToFire = true;
             isUsing = false;
+            Actions.setNotepad?.Invoke(true);
         }
     }
 

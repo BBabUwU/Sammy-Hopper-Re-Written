@@ -84,9 +84,13 @@ public static class Actions
     public static Action inCorrect;
 
     //Graphing
-    public static Func<GraphState> TheGraphState;
-    public static Action<int, int> xAxis;
-    public static Action<int, int> yAxis;
+    public static Func<CurrentAxis> CurrentAxis;
+    public static Func<int[]> GraphCurrentAnswer;
+    public static Action<int, int, GameObject> SetAxis;
+    public static Action<int> LineIntersected;
+    public static Action<int> ResetLineIntersect;
+    public static Func<bool> CheckGraph;
+    public static Func<Stg3_Quiz> currentQuiz;
 
 
     ///<summary>---------------|
@@ -138,5 +142,10 @@ public static class Actions
 
     //Player position
     public static Func<Transform> playerPos;
+
+    //Camera options
+    public static Action<CameraType> Switch_Camera;
+    public static Action Switch_DefaultCamera;
+    public static Action<CameraType> Set_DefaultCamera;
 
 }

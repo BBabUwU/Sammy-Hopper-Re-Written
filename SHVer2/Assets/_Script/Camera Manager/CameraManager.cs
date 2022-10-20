@@ -62,13 +62,15 @@ public class CameraManager : MonoBehaviour
 
     private void OnEnable()
     {
-        CameraSwitcher.Switch_Camera += SwitchCamera;
-        CameraSwitcher.Switch_DefaultCamera += SwitchDefaultCamera;
+        Actions.Switch_Camera += SwitchCamera;
+        Actions.Switch_DefaultCamera += SwitchDefaultCamera;
+        Actions.Set_DefaultCamera += SetDefaultCamera;
     }
 
     private void OnDisable()
     {
-        CameraSwitcher.Switch_Camera -= SwitchCamera;
-        CameraSwitcher.Switch_DefaultCamera -= SwitchDefaultCamera;
+        Actions.Switch_Camera -= SwitchCamera;
+        Actions.Switch_DefaultCamera -= SwitchDefaultCamera;
+        Actions.Set_DefaultCamera -= SetDefaultCamera;
     }
 }
