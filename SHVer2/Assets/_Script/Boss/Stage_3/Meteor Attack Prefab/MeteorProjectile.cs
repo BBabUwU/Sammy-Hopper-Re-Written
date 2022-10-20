@@ -8,12 +8,12 @@ public class MeteorProjectile : MonoBehaviour
     [SerializeField] private float fireSpeed;
     [SerializeField] private float damage = 20f;
     private Rigidbody2D rb;
-    [HideInInspector] public SpriteRenderer renderer;
+    [HideInInspector] public SpriteRenderer _renderer;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        renderer = GetComponent<SpriteRenderer>();
+        _renderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()

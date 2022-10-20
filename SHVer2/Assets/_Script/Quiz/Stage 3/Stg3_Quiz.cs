@@ -63,6 +63,7 @@ public class Stg3_Quiz : MonoBehaviour
 
         questionBank.Qbank[questionIndex].notActive = true;
 
+        Display_Topic_Text();
         DisplayQuestion();
 
         Debug.Log("Answer 1: " + questionBank.Qbank[questionIndex].answer1);
@@ -84,6 +85,27 @@ public class Stg3_Quiz : MonoBehaviour
 
         Actions.UpdateQuestionText?.Invoke(UITextType.QuestionText_2, questionBank.Qbank[questionIndex].question_2);
     }
+
+    private void Display_Topic_Text()
+    {
+        if (questionBank.Qbank[questionIndex].topic == LinearTopic.Graphing)
+        {
+            Actions.UpdateTopic?.Invoke("Graphing");
+        }
+        else if (questionBank.Qbank[questionIndex].topic == LinearTopic.Elimination)
+        {
+            Actions.UpdateTopic?.Invoke("Elimination");
+        }
+        else if (questionBank.Qbank[questionIndex].topic == LinearTopic.Substitution)
+        {
+            Actions.UpdateTopic?.Invoke("Substitution");
+        }
+        else if (questionBank.Qbank[questionIndex].topic == LinearTopic.Determinants)
+        {
+            Actions.UpdateTopic?.Invoke("Determinants");
+        }
+    }
+
     public void ReadUserInput(AnswerType _type, string _answer)
     {
 

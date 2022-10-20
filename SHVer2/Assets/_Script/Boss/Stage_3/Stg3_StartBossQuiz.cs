@@ -17,6 +17,7 @@ public class Stg3_StartBossQuiz : Interactable
         {
             GameManager.Instance.UpdateGameState(GameState.AnsweringQuiz);
             bossManager.shootManager.canShoot = false;
+            bossManager.shootManager.StopAllCoroutines();
             quiz.enabled = true;
         }
     }

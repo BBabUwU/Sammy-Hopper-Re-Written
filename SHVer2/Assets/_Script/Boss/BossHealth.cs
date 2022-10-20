@@ -47,7 +47,8 @@ public class BossHealth : MonoBehaviour
     public void Damage(int damage)
     {
         damageInflicted += damage;
-        bossAnim.SetTrigger("Hurt");
+
+        if (bossAnim != null) bossAnim.SetTrigger("Hurt");
 
         if (damageLimit < damageInflicted && enableDamageLimit)
         {

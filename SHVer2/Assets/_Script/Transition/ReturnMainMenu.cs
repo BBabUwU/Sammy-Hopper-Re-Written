@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class ReturnMainMenu : MonoBehaviour
 {
+    public bool stageUnlockable;
     public int unlockStage;
     private Button button;
 
@@ -17,7 +18,7 @@ public class ReturnMainMenu : MonoBehaviour
     {
         SceneManager.LoadScene(0);
 
-        if (unlockStage > PlayerPrefs.GetInt("levelAt"))
+        if (stageUnlockable && unlockStage > PlayerPrefs.GetInt("levelAt"))
         {
             PlayerPrefs.SetInt("levelAt", PlayerPrefs.GetInt("levelAt") + 1);
         }

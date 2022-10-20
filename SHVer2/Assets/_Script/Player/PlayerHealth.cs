@@ -10,10 +10,12 @@ public class PlayerHealth : MonoBehaviour
     public static event Action<UIHealthType, float> SetMaxHealthUI;
     public static event Action<UIHealthType, float> SetCurrentHealthUI;
     private SpriteRenderer theRenderer;
+    private Animator anim;
 
     private void Awake()
     {
         theRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     public void SetInitialUIvalues(UIHealthType _sliderType)
@@ -27,12 +29,19 @@ public class PlayerHealth : MonoBehaviour
 
     public void IsDead()
     {
-        if (currentHealth <= 0)
+        if (!isDead && currentHealth <= 0)
         {
+            Actions.setAllControls(false);
             isDead = true;
-            GameManager.Instance.UpdateGameState(GameState.PlayerDead);
+            anim.SetTrigger("Death");
         }
     }
+
+    public void DeadState()
+    {
+        GameManager.Instance.UpdateGameState(GameState.PlayerDead);
+    }
+
 
     public void DamagePlayer(float damage)
     {

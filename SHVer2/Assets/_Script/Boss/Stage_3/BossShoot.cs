@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class BossShoot : MonoBehaviour
 {
-    [SerializeField] private GameObject quizProjPrefab;
-    [SerializeField] private GameObject projPrefab;
+    [SerializeField] private GameObject parriableProjPrefab;
+    [SerializeField] private GameObject nonParriableProjPrefab;
+    float randomTime;
     [SerializeField] private GameObject meteorPrefab;
+    [SerializeField] private Sprite parryMeteor;
+    [SerializeField] private Sprite[] damageMeteor;
     [SerializeField] private List<Transform> firePoints;
     [SerializeField] private List<Transform> meteorFirePoints;
     public float atkCoolDownTime = 3f;
     private float nextFireTime = 0;
     public bool canShoot = false;
+    public bool canContinueShooting = true;
 
     //Change attack pattern
     public float specialAtkCoolDownTime = 10f;
@@ -22,17 +26,19 @@ public class BossShoot : MonoBehaviour
     {
         if (canShoot)
         {
-            if (!AtkOnCooldown() && !specialAtkIsActive)
+            if (canContinueShooting && canShoot && !specialAtkIsActive)
             {
-                Normal_AttackPlayer();
-                nextFireTime = Time.time + atkCoolDownTime;
+
+                randomTime = Random.Range(1f, 3f);
+                StartCoroutine(AttackPlayer());
+                canContinueShooting = false;
             }
 
             if (!SpecialAtkOnCooldown())
             {
                 if (!specialAtkIsActive)
                 {
-                    ShowerAttack();
+                    MeteorAttack();
                     nextSpecialAtkFireTime = Time.time + specialAtkCoolDownTime;
                     specialAtkIsActive = true;
                 }
@@ -45,22 +51,29 @@ public class BossShoot : MonoBehaviour
         specialAtkIsActive = false;
     }
 
-    private void Normal_AttackPlayer()
+    IEnumerator AttackPlayer()
     {
-        int bulletType = UnityEngine.Random.Range(0, 2);
+        yield return new WaitForSeconds(randomTime);
+        Actions.shootAnim?.Invoke();
 
-        if (bulletType == 0)
+        int spawnIndex = UnityEngine.Random.Range(0, firePoints.Count);
+        int typeIndex = UnityEngine.Random.Range(0, 2);
+
+        if (typeIndex == 0)
         {
-            Instantiate(quizProjPrefab, firePoints[UnityEngine.Random.Range(0, firePoints.Count)].position, Quaternion.identity);
+            Instantiate(parriableProjPrefab, firePoints[spawnIndex].position, Quaternion.identity);
         }
-        else if (bulletType == 1)
+        else if (typeIndex == 1)
         {
-            Instantiate(projPrefab, firePoints[UnityEngine.Random.Range(0, firePoints.Count)].position, Quaternion.identity);
+            Instantiate(nonParriableProjPrefab, firePoints[spawnIndex].position, Quaternion.identity);
         }
+
+        canContinueShooting = true;
     }
 
-    private void ShowerAttack()
+    private void MeteorAttack()
     {
+        Actions.meteorShootAnim?.Invoke();
         int parryIndex = UnityEngine.Random.Range(0, meteorFirePoints.Count);
 
         for (int i = 0; i < meteorFirePoints.Count; i++)
@@ -72,7 +85,12 @@ public class BossShoot : MonoBehaviour
             if (i == parryIndex)
             {
                 meteor.isParriable = true;
-                meteor.renderer.color = Color.red;
+                meteor._renderer.sprite = parryMeteor;
+            }
+            else
+            {
+                meteor.isParriable = false;
+                meteor._renderer.sprite = damageMeteor[UnityEngine.Random.Range(0, 3)];
             }
         }
     }

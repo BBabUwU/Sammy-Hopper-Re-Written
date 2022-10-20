@@ -82,6 +82,11 @@ public static class Actions
     public static Action damageLimitReached;
     public static Action meteorAtkOver;
     public static Action inCorrect;
+    public static Action<int> interactColor;
+
+    //Boss animation
+    public static Action shootAnim;
+    public static Action meteorShootAnim;
 
     //Graphing
     public static Func<CurrentAxis> CurrentAxis;
@@ -101,6 +106,7 @@ public static class Actions
     public static Action<UITextType, string> UpdateQuestionText;
     public static Action ClearInput;
     public static Func<Canvas> canvas;
+    public static Action<String> UpdateTopic;
 
     //Dialogue UI
     public static Action<UITextType, string> nameText;
@@ -147,5 +153,8 @@ public static class Actions
     public static Action<CameraType> Switch_Camera;
     public static Action Switch_DefaultCamera;
     public static Action<CameraType> Set_DefaultCamera;
+
+    //Checkpoint System
+    public static Action<Vector2> SetCheckPoint;
 
 }

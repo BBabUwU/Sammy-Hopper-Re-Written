@@ -28,11 +28,14 @@ public class Stg3_BossManager : MonoBehaviour
     {
         Actions.switchShield?.Invoke(true);
         parryCounter = 0;
+        Actions.interactColor?.Invoke(parryCounter);
         shootManager.canShoot = true;
+        shootManager.canContinueShooting = true;
     }
 
     private void AnswerCorrect()
     {
+        Actions.interactColor?.Invoke(0);
         Actions.switchShield?.Invoke(false);
         shootManager.canShoot = false;
     }
@@ -45,6 +48,8 @@ public class Stg3_BossManager : MonoBehaviour
         {
             parryCounter = parryLimit;
         }
+
+        Actions.interactColor?.Invoke(parryCounter);
     }
 
     public bool CanAnswer()
