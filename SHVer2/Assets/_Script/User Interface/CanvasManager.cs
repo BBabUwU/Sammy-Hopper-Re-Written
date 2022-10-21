@@ -13,7 +13,8 @@ public enum CanvasType
     VideoPlayer,
     EndScreen,
     Puzzle,
-    BossTransition
+    BossTransition,
+    PauseMenu
 }
 
 public class CanvasManager : MonoBehaviour

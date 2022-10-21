@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour
     List<MenuController> menuControllerList;
     MenuController lastActiveMenu;
     int levelAt;
+    int completeLevel;
     private void Awake()
     {
 
@@ -21,13 +22,13 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.SetInt("levelAt", 1);
         SwitchMainMenu();
     }
 
     public void StartGame()
     {
-        levelAt = PlayerPrefs.GetInt("levelAt");
+        levelAt = PlayerPrefs.GetInt("levelAt", 1);
+        completeLevel = PlayerPrefs.GetInt("levelComplete", 0);
 
         if (levelAt == 1) sceneManager.Load_Stage_1();
         if (levelAt == 2) sceneManager.Load_Stage_2();
@@ -37,6 +38,11 @@ public class MenuManager : MonoBehaviour
     public void ResetProgress()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+    public void SwitchLearn()
+    {
+        SwitchMenu("Learn");
     }
 
     public void SwitchMainMenu()

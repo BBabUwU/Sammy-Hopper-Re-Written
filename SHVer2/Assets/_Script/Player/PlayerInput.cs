@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour
 
     public bool JumpIsPressed()
     {
-        return Input.GetButtonDown("Jump");
+        return Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.J);
     }
 
     public bool JumpIsReleased()
@@ -21,7 +21,7 @@ public class PlayerInput : MonoBehaviour
 
     public bool WeaponFirePressed()
     {
-        return Input.GetButtonDown("Fire1");
+        return Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.K);
     }
 
     public bool NotepadButtonPressed()
@@ -41,6 +41,11 @@ public class PlayerInput : MonoBehaviour
 
     public bool ParryButton()
     {
-        return Input.GetMouseButtonDown(1);
+        return Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.L);
+    }
+
+    public bool PauseButton()
+    {
+        return Input.GetKeyDown(KeyCode.Escape);
     }
 }

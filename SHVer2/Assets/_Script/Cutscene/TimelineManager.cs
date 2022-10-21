@@ -6,6 +6,7 @@ public class TimelineManager : MonoBehaviour
     private void Start()
     {
         Actions.setAllControls?.Invoke(false);
+        Actions.SetPause?.Invoke(false);
     }
 
     public void NextScene()

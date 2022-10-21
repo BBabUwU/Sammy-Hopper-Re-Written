@@ -118,8 +118,10 @@ public static class Actions
     //Video player
     public static Func<VideoPlayer> videoPlayer;
 
+
     //Objective Manager
     public static Func<List<QuestGiver>> ListQuest;
+    public static Func<List<int>> ExtrasList;
 
     //Add quest to the list
     public static Action<QuestGiver> addToList;
@@ -162,5 +164,10 @@ public static class Actions
     public static Action<bool> ResetDeath;
     public static Action<float> SetPlayerHealth;
 
+    //Pause control
+    public static Action<bool> SetPause;
+
+    //Increment Extras counter
+    public static Action IncrementExtra;
 
 }

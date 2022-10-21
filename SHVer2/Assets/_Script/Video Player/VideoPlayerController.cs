@@ -8,6 +8,7 @@ public class VideoPlayerController : MonoBehaviour
     [SerializeField] private Button playButton;
     [SerializeField] private Button pauseButton;
     [SerializeField] private Button closeButton;
+    [SerializeField] private bool isMainMenu = false;
 
     private void Awake()
     {
@@ -31,8 +32,16 @@ public class VideoPlayerController : MonoBehaviour
     {
         videoPlayer.Stop();
         Actions.playAudio?.Invoke("stg1_bgmusic");
-        UIManager.Instance.TurnOffUI(UIType.VideoPlayer);
-        GameManager.Instance.UpdateGameState(GameState.Exploration);
+
+        if (!isMainMenu)
+        {
+            UIManager.Instance.TurnOffUI(UIType.VideoPlayer);
+            GameManager.Instance.UpdateGameState(GameState.Exploration);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 
 

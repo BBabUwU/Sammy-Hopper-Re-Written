@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private PlayerHealth _playerHealth;
     private PlayerNotepad _playerNotepad;
     private PlayerInventory _playerInventory;
+    private PlayerPause _playerPause;
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
         _playerNotepad = GetComponent<PlayerNotepad>();
         _playerInventory = GetComponent<PlayerInventory>();
         _playerParry = GetComponent<PlayerParry>();
+        _playerPause = GetComponent<PlayerPause>();
     }
 
     private void FixedUpdate()
@@ -45,6 +47,9 @@ public class Player : MonoBehaviour
 
         //Parry for stage 3
         _playerParry.PlayerParryFeature();
+
+        //Pause feature
+        _playerPause.PauseState();
     }
 
     private Transform GetTransform()

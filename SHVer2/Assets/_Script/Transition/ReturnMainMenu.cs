@@ -20,7 +20,7 @@ public class ReturnMainMenu : MonoBehaviour
 
         if (stageUnlockable && unlockStage > PlayerPrefs.GetInt("levelAt"))
         {
-            PlayerPrefs.SetInt("levelAt", PlayerPrefs.GetInt("levelAt") + 1);
+            PlayerPrefs.SetInt("levelAt", unlockStage);
         }
     }
 }

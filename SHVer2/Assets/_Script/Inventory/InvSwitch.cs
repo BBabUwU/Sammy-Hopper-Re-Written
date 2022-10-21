@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public enum Bookmark
 {
     ObjectivesBookmark,
-    TutorialBookmark
+    TutorialBookmark,
+    ExtrasBookmark
 }
 
 public class InvSwitch : MonoBehaviour
@@ -37,12 +38,21 @@ public class InvSwitch : MonoBehaviour
             //Puts the bookmark in this button
             UIManager.Instance.TurnOffUI(UIType.TutorialPage);
             UIManager.Instance.TurnOnUI(UIType.ObjectivePage);
+            UIManager.Instance.TurnOffUI(UIType.ExtrasPage);
         }
         else if (bookmark == Bookmark.TutorialBookmark)
         {
             //Puts the bookmark in this button
             UIManager.Instance.TurnOnUI(UIType.TutorialPage);
             UIManager.Instance.TurnOffUI(UIType.ObjectivePage);
+            UIManager.Instance.TurnOffUI(UIType.ExtrasPage);
+        }
+        else if (bookmark == Bookmark.ExtrasBookmark)
+        {
+            //Puts the bookmark in this button
+            UIManager.Instance.TurnOffUI(UIType.TutorialPage);
+            UIManager.Instance.TurnOffUI(UIType.ObjectivePage);
+            UIManager.Instance.TurnOnUI(UIType.ExtrasPage);
         }
     }
 }
