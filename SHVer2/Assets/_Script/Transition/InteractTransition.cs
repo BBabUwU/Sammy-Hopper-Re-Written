@@ -10,6 +10,7 @@ public class InteractTransition : Interactable
         Actions.setWeapon?.Invoke(false);
         Actions.setNotepad?.Invoke(false);
         Actions.setInventory?.Invoke(false);
+
         CanvasManager.Instance.SwitchCanvas(CanvasType.BossTransition);
     }
 }

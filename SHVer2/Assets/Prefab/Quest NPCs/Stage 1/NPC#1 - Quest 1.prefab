@@ -7,9 +7,73 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3677946614520376761, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: lines.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376761, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: lines.Array.data[0]
+      value: Hey kid do you know how to fight?
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376761, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: lines.Array.data[1]
+      value: Not actual fighting but i have my fair share at simulated enemies.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376761, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: lines.Array.data[2]
+      value: Good enough. can you clear a path for me i forgot something on my desk
+        which can be helpful on dispelling the magic barrier inside the school. I
+        can give you the spell to do so if you are successful. Please be careful.
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376761, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: whoIsTalking.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376761, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: whoIsTalking.Array.data[0]
+      value: Miller
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376761, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: whoIsTalking.Array.data[1]
+      value: Sammy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376761, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: whoIsTalking.Array.data[2]
+      value: Miller
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376761, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: questCompleteLines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376761, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: completeWhoIsTalking.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376761, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: questCompleteLines.Array.data[0]
+      value: 'Ahh thank you for clearing me a path, I got my spell book back, but
+        some of my spells are extinguished by the spell of the dark lord earlier. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376761, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: questCompleteLines.Array.data[1]
+      value: 'Here maybe you can find this useful it needs another spell to dispel
+        the barrier but my other colleague has it, he''s trapped inside the school. '
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376761, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: completeWhoIsTalking.Array.data[0]
+      value: Miller
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376761, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: completeWhoIsTalking.Array.data[1]
+      value: Miller
+      objectReference: {fileID: 0}
     - target: {fileID: 3677946614520376762, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
       propertyPath: m_Name
-      value: NPC#1 - Base
+      value: NPC#1 - Quest 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376762, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: m_Layer
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 3677946614520376763, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
       propertyPath: m_RootOrder
@@ -17,11 +81,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3677946614520376763, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -29.57
       objectReference: {fileID: 0}
     - target: {fileID: 3677946614520376763, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -86
       objectReference: {fileID: 0}
     - target: {fileID: 3677946614520376763, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -55,5 +119,66 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376765, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: enableGizmo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376765, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: forceDialogue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376767, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: m_Size.x
+      value: 90.094574
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376767, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: m_Size.y
+      value: 120.52023
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376767, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: m_Offset.x
+      value: -2.304718
+      objectReference: {fileID: 0}
+    - target: {fileID: 3677946614520376767, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: m_Offset.y
+      value: 27.864914
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222078350847504968, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: quest.Reward
+      value: '"What is Scientific Notation" Tutorial'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222078350847504968, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: quest.questID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222078350847504968, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+      propertyPath: quest.description
+      value: Clear the path for Professor Miller.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+--- !u!1 &2806896291765419536 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3677946614520376762, guid: 080ee021e5165074f804f6384320e8b8, type: 3}
+  m_PrefabInstance: {fileID: 1584890743219000234}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &109914600
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2806896291765419536}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 24f0047de690398488b5e2cede4c4718, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

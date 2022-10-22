@@ -30,11 +30,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        Play("stg1_bgmusic");
-    }
-
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
@@ -46,6 +41,14 @@ public class AudioManager : MonoBehaviour
         }
 
         s.source.Play();
+    }
+
+    public void StopAll()
+    {
+        foreach (var sound in sounds)
+        {
+            sound.source.Stop();
+        }
     }
 
     public void PauseSound(string name)

@@ -7,8 +7,10 @@ public class CheckpointManager : MonoBehaviour
 {
     private Vector2 lastCheckPointPos;
     [SerializeField] private Transform player;
+    [SerializeField] private bool unlimitedLives = false;
     [SerializeField] private int lives;
     [SerializeField] private Button button;
+    [SerializeField] private GameObject setIcon;
     [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI buttonText;
 
@@ -19,7 +21,7 @@ public class CheckpointManager : MonoBehaviour
 
     private void On_Click()
     {
-        if (lives == 0)
+        if (lives == 0 && !unlimitedLives)
         {
             Reset_Level();
         }
@@ -37,7 +39,9 @@ public class CheckpointManager : MonoBehaviour
         Actions.ResetDeath?.Invoke(false);
         GameManager.Instance.UpdateGameState(GameState.Exploration);
         UIManager.Instance.TurnOffUI(UIType.PlayerDeathUI);
-        --lives;
+
+        if (!unlimitedLives) --lives;
+
     }
 
     private void Reset_Level()
@@ -55,7 +59,18 @@ public class CheckpointManager : MonoBehaviour
         else
         {
             buttonText.text = "Reload last checkpoint";
-            livesText.text = "x " + lives;
+
+            if (!unlimitedLives)
+            {
+                livesText.text = "x " + lives;
+                setIcon.SetActive(true);
+            }
+            else
+            {
+                setIcon.SetActive(false);
+                livesText.text = "";
+            }
+
         }
     }
 

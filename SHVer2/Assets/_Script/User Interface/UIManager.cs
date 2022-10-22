@@ -19,7 +19,8 @@ public enum UIType
     puzzle_1,
     puzzle_2,
     GraphingUI,
-    ExtrasPage
+    ExtrasPage,
+    UpdateIndicator
 }
 
 public class UIManager : MonoBehaviour

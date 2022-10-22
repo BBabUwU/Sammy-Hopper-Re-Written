@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1769957778420092965}
   - component: {fileID: 1769957778420092966}
+  - component: {fileID: 1054743825}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -47,7 +48,7 @@ MonoBehaviour:
   sounds:
   - name: Fire
     clip: {fileID: 8300000, guid: bcb2321d6b16e594395f7eadacf437e8, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -59,13 +60,67 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: explosion
     clip: {fileID: 8300000, guid: f5db108697c9c0e4586a1c834d481822, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: monster_sound
-    clip: {fileID: 8300000, guid: 509997b03613929478a3f21505b6081a, type: 3}
+  - name: cutscene_1
+    clip: {fileID: 8300000, guid: 2ea026fd7005c6946ba0779ca932f9b3, type: 3}
     volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: cutscene_2
+    clip: {fileID: 8300000, guid: 324433bec17f29048936a40dade822dd, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: cutscene_3
+    clip: {fileID: 8300000, guid: 0290f37ff73cc10448da1139aa943aea, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: cutscene_ending
+    clip: {fileID: 8300000, guid: 6b8c4fa8075cedf428b14f570077fdc9, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: stg2_bgmusic
+    clip: {fileID: 8300000, guid: 082f78a28fd4f1f41a8adc073dd880d3, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: stg3_bgmusic
+    clip: {fileID: 8300000, guid: eb326074517d2344a84fa714c1dcccd3, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: voice_deep
+    clip: {fileID: 8300000, guid: dd11ded766401524d99930eb8da7776c, type: 3}
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: voice_light
+    clip: {fileID: 8300000, guid: e720e0ae967a0444e90e95392575f4de, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+--- !u!114 &1054743825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769957778420092964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f3f9e11c0417774aa30b7eb298b4b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

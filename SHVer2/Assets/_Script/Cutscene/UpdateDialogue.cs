@@ -9,6 +9,9 @@ public class UpdateDialogue : MonoBehaviour
     [SerializeField] private float textSpeed = 0.03f;
     private int currentLineIndex = 0;
     private TextMeshProUGUI theText;
+    [SerializeField] private bool enableSound;
+    [SerializeField] private bool isDavis;
+
 
     private void Awake()
     {
@@ -30,6 +33,12 @@ public class UpdateDialogue : MonoBehaviour
     {
         foreach (char c in lines[currentLineIndex].ToCharArray())
         {
+            if (enableSound)
+            {
+                if (isDavis) AudioManager.Instance.Play("voice_deep");
+                else AudioManager.Instance.Play("voice_light");
+            }
+
             theText.text += c;
             yield return new WaitForSeconds(textSpeed);
         }

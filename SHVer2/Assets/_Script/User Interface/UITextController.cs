@@ -31,6 +31,7 @@ public class UITextController : MonoBehaviour
     {
         if (textType == UITextType.DialogueText)
         {
+            AudioManager.Instance.Play("voice_light");
             textUI.text += c;
         }
     }

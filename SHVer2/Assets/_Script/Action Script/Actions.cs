@@ -170,4 +170,7 @@ public static class Actions
     //Increment Extras counter
     public static Action IncrementExtra;
 
+    //Indicator
+    public static Action<string> UpdateIndicator;
+
 }
