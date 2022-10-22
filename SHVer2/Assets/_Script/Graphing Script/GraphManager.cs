@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public enum CurrentAxis
@@ -17,7 +18,6 @@ public enum LineTurn
 
 public class GraphManager : MonoBehaviour
 {
-
     //NOTE! 0 = line 1 / 1 = line 2
 
     //Line to be currently drawn
@@ -70,9 +70,9 @@ public class GraphManager : MonoBehaviour
         lineTurn = LineTurn.line_1;
         currentAxis = CurrentAxis.theX;
 
-        if (pos1[0] != null) pos1[0].GetComponent<PointController>().image.color = new Color(255, 0, 239);
+        if (pos1[0] != null) pos1[0].GetComponent<PointController>().image.color = Color.clear;
 
-        if (pos2[0] != null) pos2[0].GetComponent<PointController>().image.color = new Color(255, 0, 239);
+        if (pos2[0] != null) pos2[0].GetComponent<PointController>().image.color = Color.clear;
 
         Reset_Values(0);
         Destroy(line_1);
@@ -83,9 +83,9 @@ public class GraphManager : MonoBehaviour
         points_placed[1] = 0;
         lineTurn = LineTurn.line_2;
         currentAxis = CurrentAxis.theX;
-        if (pos1[1] != null) pos1[1].GetComponent<PointController>().image.color = new Color(255, 0, 239);
+        if (pos1[1] != null) pos1[1].GetComponent<PointController>().image.color = Color.clear;
 
-        if (pos2[1] != null) pos2[1].GetComponent<PointController>().image.color = new Color(255, 0, 239);
+        if (pos2[1] != null) pos2[1].GetComponent<PointController>().image.color = Color.clear;
 
         Reset_Values(1);
         Destroy(line_2);

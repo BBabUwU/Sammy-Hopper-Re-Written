@@ -127,6 +127,7 @@ public class Stg3_Quiz : MonoBehaviour
 
     private void Correct()
     {
+        AudioManager.Instance.Play("right_answer");
         Debug.Log("Correct");
         Actions.correctAnswer?.Invoke();
         ReturnWorld();
@@ -135,6 +136,7 @@ public class Stg3_Quiz : MonoBehaviour
 
     private void Incorrect()
     {
+        AudioManager.Instance.Play("wrong_answer");
         Debug.Log("Wrong");
         Actions.inCorrect?.Invoke();
         questionBank.Qbank[questionIndex].notActive = false;

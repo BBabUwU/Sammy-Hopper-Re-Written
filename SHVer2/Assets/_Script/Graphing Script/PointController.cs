@@ -14,6 +14,10 @@ public class PointController : MonoBehaviour
         image = GetComponent<Image>();
         button.onClick.AddListener(PlotPoint);
     }
+    private void Start()
+    {
+        image.color = Color.clear;
+    }
 
     private void PlotPoint()
     {
