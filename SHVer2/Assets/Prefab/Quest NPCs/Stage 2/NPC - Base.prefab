@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 41965d7c71b2f014bba33f8f6e1c3f09, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 25a34d35fd955994081200ec662a5abc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -140,13 +140,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 945aa0689e5910c44b572f14d5eedd9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whoIsTalking: []
+  uiFadeTime: 2
+  whoIsTalking:
+  - Dio
   lines: []
   textSpeed: 0.05
   doneTalking: 0
+  spriteTexture: {fileID: 0}
   hasQuest: 1
+  canChangeForm: 0
+  hasInitialBlockArea: 0
+  selfDestruct: 0
+  initialBarrier: {fileID: 0}
   completeWhoIsTalking: []
   questCompleteLines: []
+  hasActiveAfter: 0
+  activateAfter: {fileID: 0}
 --- !u!114 &2733471752795706036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceDialogue: 1
+  distance: 1.5
+  enableGizmo: 0
   isPerson: 1
 --- !u!114 &2733471752795706056
 MonoBehaviour:
@@ -174,9 +185,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest:
-    questID: 0
+    questID: 1
     completed: 0
-    description: 
+    description: Eratos
     goal:
       goalType: 1
       requiredAmount: 5

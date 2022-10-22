@@ -75,6 +75,7 @@ public class BossQuiz : MonoBehaviour
     {
         if (IsCorrect())
         {
+            AudioManager.Instance.Play("right_answer");
             questionBank.QnA[questionIndex].NotActive = true;
             destroyEssence?.Invoke(difficulty);
             correctAnswer?.Invoke(difficulty);
@@ -91,6 +92,7 @@ public class BossQuiz : MonoBehaviour
 
     private void WrongAnswer()
     {
+        AudioManager.Instance.Play("wrong_answer");
         questionBank.QnA[questionIndex].NotActive = false;
         destroyEssence?.Invoke(difficulty);
         Actions.wrongAnswer?.Invoke(difficulty);

@@ -16,6 +16,7 @@ public class ReturnMainMenu : MonoBehaviour
 
     private void MainMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
 
         if (stageUnlockable && unlockStage > PlayerPrefs.GetInt("levelAt"))

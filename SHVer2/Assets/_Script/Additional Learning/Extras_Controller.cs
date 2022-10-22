@@ -5,20 +5,16 @@ using System;
 
 public class Extras_Controller : MonoBehaviour
 {
-    private Image image;
     public int extrasID;
-    public Sprite thumbnail;
     public Sprite extra;
     private Button button;
     [SerializeField] private GameObject viewWindow;
 
     private void Awake()
     {
-        image = GetComponent<Image>();
         button = GetComponent<Button>();
         button.onClick.AddListener(On_Click);
 
-        image.sprite = thumbnail;
     }
 
     private void OnEnable()
@@ -28,7 +24,7 @@ public class Extras_Controller : MonoBehaviour
 
     private void CheckUnlock()
     {
-        image.enabled = false;
+        button.interactable = false;
 
         if (Actions.ExtrasList != null)
         {
@@ -36,7 +32,7 @@ public class Extras_Controller : MonoBehaviour
             {
                 if (extraIndex == extrasID)
                 {
-                    image.enabled = true;
+                    button.interactable = true;
                 }
             }
         }

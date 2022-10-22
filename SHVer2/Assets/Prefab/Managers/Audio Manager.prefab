@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1769957778420092965}
   - component: {fileID: 1769957778420092966}
-  - component: {fileID: 1054743825}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -54,7 +53,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: stg1_bgmusic
     clip: {fileID: 8300000, guid: a01807241a5829b41ac3ac6d5fe037c2, type: 3}
-    volume: 0.5
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -66,37 +65,37 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: cutscene_1
     clip: {fileID: 8300000, guid: 2ea026fd7005c6946ba0779ca932f9b3, type: 3}
-    volume: 0.5
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: cutscene_2
     clip: {fileID: 8300000, guid: 324433bec17f29048936a40dade822dd, type: 3}
-    volume: 0.5
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: cutscene_3
     clip: {fileID: 8300000, guid: 0290f37ff73cc10448da1139aa943aea, type: 3}
-    volume: 0.5
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: cutscene_ending
     clip: {fileID: 8300000, guid: 6b8c4fa8075cedf428b14f570077fdc9, type: 3}
-    volume: 0.5
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: stg2_bgmusic
     clip: {fileID: 8300000, guid: 082f78a28fd4f1f41a8adc073dd880d3, type: 3}
-    volume: 0.5
+    volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: stg3_bgmusic
     clip: {fileID: 8300000, guid: eb326074517d2344a84fa714c1dcccd3, type: 3}
-    volume: 0.5
+    volume: 0.1
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -112,15 +111,21 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
---- !u!114 &1054743825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1769957778420092964}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f3f9e11c0417774aa30b7eb298b4b07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  - name: right_answer
+    clip: {fileID: 8300000, guid: 435d8fa3c8247a941a4f0b3e3ced79bc, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: wrong_answer
+    clip: {fileID: 8300000, guid: 6e4ab8c880313f544906502381d40a39, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: main_menu
+    clip: {fileID: 8300000, guid: 61a4db72f50083b4fb64c48f8294dc31, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}

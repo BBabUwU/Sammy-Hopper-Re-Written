@@ -10,26 +10,54 @@ public class FollowProjectile : MonoBehaviour, IDamageable
     private Transform player;
     private Vector2 moveDirection;
     private Rigidbody2D rb;
+    public bool isFacingRight = true;
+    private SpriteRenderer theRenderer;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        theRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.position, fireSpeed * Time.deltaTime);
-        transform.up = player.position - transform.position;
+        FlipEnemy();
     }
 
     public void Damage(int damage)
     {
+        StartCoroutine(HurtIndicator());
         projHealth -= damage;
 
         if (projHealth <= 0)
         {
             DestroyProjectile();
+        }
+    }
+
+    private void FlipEnemy()
+    {
+        if (player.position.x > transform.position.x)
+        {
+            isFacingRight = true;
+        }
+        else
+        {
+            isFacingRight = false;
+        }
+
+        if (isFacingRight)
+        {
+            isFacingRight = false;
+            transform.eulerAngles = new Vector3(0, -180, 0);
+        }
+
+        else if (!isFacingRight)
+        {
+            isFacingRight = true;
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
     }
 
@@ -44,6 +72,13 @@ public class FollowProjectile : MonoBehaviour, IDamageable
             other.GetComponent<PlayerHealth>().DamagePlayer(damage);
             DestroyProjectile();
         }
+    }
+
+    IEnumerator HurtIndicator()
+    {
+        theRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        theRenderer.color = Color.white;
     }
 
     private void DestroyProjectile()

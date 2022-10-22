@@ -77,6 +77,7 @@ public class ExplorationQuiz : MonoBehaviour
             UIManager.Instance.TurnOffUI(UIType.QuizUI);
             GameManager.Instance.UpdateGameState(GameState.Exploration);
             QuizComplete?.Invoke(QuizPart);
+            AudioManager.Instance.Play("right_answer");
             Destroy(gameObject);
         }
 
@@ -84,6 +85,7 @@ public class ExplorationQuiz : MonoBehaviour
         {
             RandomizeQuestion();
             questionBank.qna[questionIndex].NotActive = false;
+            AudioManager.Instance.Play("wrong_answer");
         }
 
         ClearInput?.Invoke();

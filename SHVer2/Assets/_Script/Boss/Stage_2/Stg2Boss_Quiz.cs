@@ -106,6 +106,7 @@ public class Stg2Boss_Quiz : MonoBehaviour
     {
         if (currentAnswer == answer)
         {
+            AudioManager.Instance.Play("right_answer");
             Debug.Log("Right");
             RandomizeQuestion();
             Actions.spawnEnemy?.Invoke();
@@ -113,6 +114,7 @@ public class Stg2Boss_Quiz : MonoBehaviour
         }
         else
         {
+            AudioManager.Instance.Play("wrong_answer");
             Debug.Log("Wrong");
             Actions.addEveluation?.Invoke("mistake");
             Actions.spawnEnemy?.Invoke();

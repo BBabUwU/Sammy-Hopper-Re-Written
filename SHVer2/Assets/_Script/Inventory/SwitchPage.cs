@@ -16,6 +16,11 @@ public class SwitchPage : MonoBehaviour
         previousPage.onClick.AddListener(PreviousPage);
     }
 
+    private void Start()
+    {
+        pages[0].SetActive(true);
+    }
+
     private void NextPage()
     {
         currentPage++;

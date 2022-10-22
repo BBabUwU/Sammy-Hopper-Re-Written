@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case GameState.Exploration:
+                Actions.setInventory?.Invoke(true);
                 CanvasManager.Instance.SwitchCanvas(CanvasType.GameUI);
                 UIManager.Instance.TurnOnUI(UIType.PlayerUI);
                 break;
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
                 Actions.Switch_Camera?.Invoke(CameraType.PlayerCamera);
                 Actions.Set_DefaultCamera?.Invoke(CameraType.PlayerCamera);
                 UIManager.Instance.TurnOnUI(UIType.QuizUI);
+                Actions.setInventory?.Invoke(false);
                 break;
 
             case GameState.AnsweringGraph:

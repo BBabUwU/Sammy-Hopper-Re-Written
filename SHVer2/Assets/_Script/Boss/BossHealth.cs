@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class BossHealth : MonoBehaviour
 {
@@ -13,11 +14,13 @@ public class BossHealth : MonoBehaviour
     public static event Action<UIHealthType, float> SetMaxHealthUI;
     public static event Action<UIHealthType, float> SetCurrentHealthUI;
     public static event Action BossDefeated;
+    private SpriteRenderer theRenderer;
 
 
     private void Awake()
     {
         bossAnim = GetComponent<Animator>();
+        theRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void SetInitialUIvalues(UIHealthType _sliderType)
@@ -48,6 +51,7 @@ public class BossHealth : MonoBehaviour
     {
         damageInflicted += damage;
 
+        StartCoroutine(HurtIndicator());
         if (bossAnim != null) bossAnim.SetTrigger("Hurt");
 
         if (damageLimit < damageInflicted && enableDamageLimit)
@@ -59,6 +63,13 @@ public class BossHealth : MonoBehaviour
         currentHealth -= damage;
         SetCurrentHealthUI?.Invoke(UIHealthType.BossHealthBar, currentHealth);
         IsDead();
+    }
+
+    IEnumerator HurtIndicator()
+    {
+        theRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        theRenderer.color = Color.white;
     }
 
     private void OnEnable()

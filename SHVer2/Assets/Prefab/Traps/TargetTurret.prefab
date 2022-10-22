@@ -101,6 +101,12 @@ MonoBehaviour:
   fire: {fileID: 9216962114994073963, guid: 8dff46f2819ce04449a305b4614a921e, type: 3}
   firePoint: {fileID: 4074046291559628059}
   coolDown: 3
+  hasRange: 1
+  enableGizmo: 1
+  lineOfSite: 7
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &4074046291559628056
 GameObject:
   m_ObjectHideFlags: 0

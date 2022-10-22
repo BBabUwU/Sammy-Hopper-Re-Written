@@ -32,6 +32,8 @@ public class InteractionDialogue : MonoBehaviour
     [SerializeField] private List<string> completeWhoIsTalking;
     [SerializeField] private List<string> questCompleteLines;
     private bool HasAdded = false;
+    [SerializeField] private bool hasActiveAfter = false;
+    [SerializeField] private GameObject activateAfter;
 
     private Animator anim;
 
@@ -155,10 +157,12 @@ public class InteractionDialogue : MonoBehaviour
             if (questGiver != null && questGiver.quest.completed)
             {
                 UIManager.Instance.TurnOnUI(UIType.UpdateIndicator);
-                Actions.UpdateIndicator?.Invoke("Quest Complete");
+                Actions.UpdateIndicator?.Invoke("Video Tutorial Added");
                 StartCoroutine(disableIndicator());
                 col.enabled = false;
                 anim.SetTrigger("explode");
+
+                if (hasActiveAfter) activateAfter.SetActive(true);
             }
         }
     }

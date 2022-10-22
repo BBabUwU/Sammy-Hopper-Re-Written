@@ -98,12 +98,14 @@ public class Stage2_Quiz : MonoBehaviour
         {
             Debug.Log("Correct");
             questionCounter++;
+            AudioManager.Instance.Play("right_answer");
         }
         else
         {
             Debug.Log("Wrong");
             Actions.punish?.Invoke(answer, quizNumber);
             Qbank.qna[questionIndex].notActive = false;
+            AudioManager.Instance.Play("wrong_answer");
         }
 
         if (stillHasQuestion())
@@ -128,10 +130,12 @@ public class Stage2_Quiz : MonoBehaviour
     private void OnEnable()
     {
         Actions.answer += CheckCorrect;
+        Actions.setInventory?.Invoke(false);
     }
 
     private void OnDisable()
     {
         Actions.answer -= CheckCorrect;
+        Actions.setInventory?.Invoke(true);
     }
 }

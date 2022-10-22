@@ -12,6 +12,7 @@ public class Proj_Trap : MonoBehaviour
     [SerializeField] private bool enableGizmo = false;
     public float lineOfSite;
     private Transform player;
+    public LayerMask playerLayer;
 
     private void Awake()
     {
@@ -20,25 +21,29 @@ public class Proj_Trap : MonoBehaviour
 
     private void Update()
     {
-        if (canShoot)
+        if (hasRange)
         {
-            if (hasRange && InRange())
+            if (canShoot && InRange())
+            {
+                Debug.Log("Here");
+                StartCoroutine(AttackPlayer());
+                canShoot = false;
+            }
+        }
+        else
+        {
+            if (canShoot)
             {
                 StartCoroutine(AttackPlayer());
+                canShoot = false;
             }
-            else
-            {
-                StartCoroutine(AttackPlayer());
-            }
-
-            canShoot = false;
         }
     }
 
     private bool InRange()
     {
-        float distanceFromPlayer = Vector2.Distance(player.position, transform.position);
-        return distanceFromPlayer < lineOfSite;
+        Collider2D playerCol = Physics2D.OverlapCircle(transform.position, lineOfSite, playerLayer);
+        return playerCol != null;
     }
 
     private void OnDrawGizmos()

@@ -10,7 +10,6 @@ public class Tutorial : MonoBehaviour
     public int questID;
     public VideoClip videoTutorial;
     public VideoPlayer videoPlayer;
-    public bool isUnlocked = false;
     private Button button;
 
     private void Awake()
@@ -27,7 +26,7 @@ public class Tutorial : MonoBehaviour
 
     private void CheckUnlock()
     {
-        image.enabled = false;
+        button.interactable = false;
 
         if (Actions.ListQuest != null)
         {
@@ -35,8 +34,7 @@ public class Tutorial : MonoBehaviour
             {
                 if (questID == item.quest.questID && item.quest.completed)
                 {
-                    image.enabled = true;
-                    isUnlocked = true;
+                    button.interactable = true;
                 }
             }
         }
@@ -44,10 +42,7 @@ public class Tutorial : MonoBehaviour
 
     private void OnClickVideoPlayerWindow()
     {
-        if (isUnlocked)
-        {
-            UIManager.Instance.TurnOnUI(UIType.VideoPlayer);
-            videoPlayer.clip = videoTutorial;
-        }
+        UIManager.Instance.TurnOnUI(UIType.VideoPlayer);
+        videoPlayer.clip = videoTutorial;
     }
 }
